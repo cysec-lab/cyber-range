@@ -39,7 +39,8 @@ if (isset($_POST["login"])) {
         $db_hashed_pwd = $result['password'];
       }
 
-      $order = "SHA1('$password')";
+      $salt = $userid . $password
+      $order = "SHA1('$salt')";
       $sql = "SELECT $order";
       $stmt = $pdo->query($sql);
       while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
