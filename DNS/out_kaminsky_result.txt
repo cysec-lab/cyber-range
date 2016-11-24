@@ -1,0 +1,154 @@
+ Request:  b'\x00\x01\x05\x01\x00\x01\x00\x01\x00\x01\x00\x02\x07nx\x00\x00\x00\x00\x01\x03web\x06server\x05cysec\x05local\x00\x00\x01\x00\x01\x07nx\x00\x00\x00\x00\x01\x03web\x06server\x05cysec\x05local\x00\x00\x01\x00\x01\x00\x00\x0e\x10\x00\x04\xc0\xa8\x02e\xc0\x14\x00\x02\x00\x01\x00\x00\x0e\x10\x00\x02\xc0\x0c\xc0\x14\x00\x01\x00\x01\x00\x00\x0e\x10\x00\x04\xff\xff\xff\xff\x00\x00)\x02\x00\x00\x00\x80\x00\x00\x00'
+ RCODE:    1
+00001回目     48.043784618377686[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00002回目     48.35067796707153[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00003回目     48.049028158187866[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00004回目     49.623106956481934[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00005回目     49.28656768798828[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00006回目     48.14974021911621[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00007回目     47.40898394584656[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00008回目     48.721561431884766[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00009回目     48.97272038459778[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00010回目     50.24488401412964[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00011回目     49.867374420166016[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00012回目     48.385950565338135[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00013回目     47.29176616668701[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00014回目     48.83984327316284[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00015回目     49.19698357582092[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00016回目     48.72192859649658[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00017回目     47.953099727630615[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00018回目     47.782697439193726[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00019回目     48.73018455505371[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00020回目     48.424662590026855[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00021回目     49.4638614654541[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00022回目     49.26154685020447[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00023回目     48.96272850036621[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00024回目     47.73700428009033[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00025回目     49.52075529098511[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00026回目     49.08523941040039[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00027回目     49.64261555671692[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00028回目     49.10361385345459[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00029回目     49.37672281265259[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00030回目     48.6194703578949[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00031回目     48.736525774002075[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00032回目     49.02125787734985[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00033回目     50.66607069969177[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00034回目     51.29388928413391[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00035回目     49.60156583786011[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00036回目     51.08460283279419[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00037回目     50.881677865982056[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4
+00038回目     50.29888916015625[sec]
+poisning check
+origin IP   :192.168.0.4
+response IP :192.168.0.4

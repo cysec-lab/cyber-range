@@ -1,0 +1,25 @@
+$TTL	86400
+@	IN	SOA	server.xxxx.xx.xx. postmaster.XXXX.XX.XX (
+	2013060900	; Serial no (yyyy/mm/dd/nn)
+	3600		; Refresh after 1 hour
+	1800		; Retry after 30 minutes
+	604800		; Expire after 1 week
+	7200 )		; Minumu TTL of 2 hours
+
+	IN	NS	ns
+	IN	NS	xxxx.xxxx.xx.xx.
+	IN	MX 10	server
+
+localhost	IN	A	127.0.0.1
+
+router	IN	A	000.000.000.000
+server	IN	A	000.000.000.000
+ns	IN	A	000.000.000.000
+
+smtp	IN	CNAME	server
+pop	IN	CNAME	server
+imap	IN	CNAME	server
+ftp	IN	CNAME	server
+www	IN	CNAME	server
+proxy	IN	CNAME	server
+

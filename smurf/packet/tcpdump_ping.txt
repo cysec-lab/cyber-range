@@ -1,0 +1,26 @@
+12:24:55.371600 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 1, length 64
+12:24:55.371633 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:24:55.371690 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 1, length 64
+12:24:56.373151 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 2, length 64
+12:24:56.373178 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:24:56.373204 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 2, length 64
+12:24:57.374329 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 3, length 64
+12:24:57.374366 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:24:57.374388 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 3, length 64
+12:24:58.375608 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 4, length 64
+12:24:58.375636 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:24:58.375664 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 4, length 64
+12:24:59.376904 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 5, length 64
+12:24:59.376935 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:24:59.376957 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 5, length 64
+12:25:03.382398 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 9, length 64
+12:25:03.382427 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:25:03.382457 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 9, length 64
+12:25:04.381378 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 10, length 64
+12:25:04.381397 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 10, length 64
+12:25:05.382668 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 11, length 64
+12:25:05.382701 IP 192.168.0.11 > 192.168.0.12: ICMP redirect 192.168.0.1 to host 192.168.0.1, length 92
+12:25:05.382723 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 11, length 64
+12:25:06.384304 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 12, length 64
+12:25:06.384329 IP 192.168.0.12 > 192.168.0.1: ICMP echo request, id 41493, seq 12, length 64
+

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# inotifywait: Start/Stop inotifywait
+#
+# chkconfig: - 80 20
+# description: inotifywait waits for changes to files using inotify.
+#
+# processname: inotifywait
+
+. /etc/rc.d/init.d/functions
+. /etc/sysconfig/network
+. /etc/inotifywait.conf
+
+LOCK=/var/lock/subsys/inotifywait
+
+RETVAL=0
+start() {
+  echo -n $"Starting inotifywait: "
+  /usr/bin/inotifywait \
+    --format '%w%f %e %T' \
+    --timefmt '%Y/%m/%d-%H:%M:%S' \
+    --exclude '.*\.sw[pox].*' \
+    -e $EVENT \
+    -o $LOGFILE \
+    -dmrq $MONITOR
+
+  RETVAL=$?
+  echo
+  [ $RETVAL -eq 0 ] && touch $LOCK
+  return $RETVAL
+}
+stop() {
+  echo -n $"Stopping inotifywait: "
+  killproc inotifywait
+  RETVAL=$?
+  echo
+  [ $RETVAL -eq 0 ] && rm -f $LOCK
+  return $RETVAL
+}
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status inotifywait
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|status|restart}"
+    exit 1
+esac
+exit $?
+

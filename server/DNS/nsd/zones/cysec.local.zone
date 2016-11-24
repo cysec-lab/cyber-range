@@ -1,0 +1,18 @@
+$TTL	86400
+@	IN	SOA	nsd.server.cysec.local. postmaster.nsd.server.cysec.local. (
+	2016053003	; Serial
+	3600		; Refresh
+	1800		; Retry
+	360000		; Expire
+	86400	)	; Minimum
+
+nsd.server	IN	NS	ns.nsd.server
+ns.nsd.server	IN	A	192.168.0.2
+dns.server	IN	NS	ns.dns.server
+ns.dns.server	IN	A	192.168.0.6
+
+@	IN	A	192.168.0.6
+mail.server	IN	A	192.168.0.3
+web.server	IN	A	192.168.0.4
+file.server	IN	A	192.168.0.5
+alfresco.server	IN	A	192.168.0.7

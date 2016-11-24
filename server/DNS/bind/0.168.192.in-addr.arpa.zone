@@ -1,0 +1,17 @@
+$TTL	86400
+@	IN	SOA	dns.server.cysec.local. postmaster.dns.server.cysec.local. (
+	2016060203	; Serial
+	3600		; Refresh
+	1800		; Retry
+	360000		; Expire
+	86400 ) 	; Minimum
+
+	IN	NS	dns.server.cysec.local.
+	IN	NS	nsd.server.cysec.local.
+
+2	IN	PTR	nsd.server.cysec.local.
+3	IN	PTR	mail.server.cysec.local.
+4	IN	PTR	web.server.cysec.local.
+5	IN	PTR	file.server.cysec.local.
+6	IN	PTR	dns.server.cysec.local.
+7	IN	PTR	alfresco.server.cysec.local.

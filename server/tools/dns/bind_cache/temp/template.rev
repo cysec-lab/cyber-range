@@ -1,0 +1,14 @@
+$TTL	86400
+@	IN	SOA	server.xxxx.xx.xx. postmaster.xxxx.xx.xx (
+	2013060900	; Serial no (yyyy/mm/dd/nn)
+	3600		; REfresh after 1hour
+	1800		; Retry afte 30 minutes
+	604800		; Expire after 1 week
+	7200 )		; Minumum TTL of 2 hours
+
+	IN	NS	ns.xxxx.xx.xx.
+	IN	NS	xxxx.xxxx.xx.xx.
+
+001	IN	PTR	router.xxxx.xx.xx.
+002	IN	PTR	server.xxxx.xx.xx.
+
