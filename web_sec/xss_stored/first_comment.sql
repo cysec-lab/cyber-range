@@ -1,3 +1,3 @@
-insert into guestbook(name, comment) values 
+insert into guestbook(name, comment) values
     ('Taro', 'Hello'),
-    ('Anonymous', 'Hacked');
+    ('Jiro', 'Hacked');
