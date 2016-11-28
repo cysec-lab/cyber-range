@@ -2,7 +2,7 @@
 # can't use [] character
 
 yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
-yum -y install mysql-server php-mysql
+yum -y install mysql-server
 
 FORMAT_INFO='character-set-server=utf8'
 FORMAT_FILE='/etc/my.cnf'
@@ -10,7 +10,6 @@ sed -i -e "/symbolic-links=0/a ${FORMAT_INFO}" ${FORMAT_FILE}
 
 service mysqld start
 chkconfig mysqld on
-
 
 yum -y install expect
 expect -c "
@@ -34,4 +33,3 @@ expect \"Reload privilege tables now?\"
 send \"Y\\n\"
 interact
 "
-

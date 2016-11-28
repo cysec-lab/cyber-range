@@ -5,7 +5,8 @@
 HOSTNAME=`hostname`
 
 yum -y install httpd httpd-manual
-yum -y install --enablerepo=remi,remi-php70 php php-devel php-opcache php-mbstring php-mcrypt php-pdo php-gd php-mysqlnd php-pecl-xdebug php-fpm php-xml
+rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+yum install -y php70w php70w-common php70w-devel php70w-intl php70w-mysql php70w-mbstring php70w-gd php70w-pear php70w-mcry php70w-pdo
 
 mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
 sed -i -e "s/^ServerName.*$/ServerName ${HOSTNAME}/g" '/root/httpd.conf'
