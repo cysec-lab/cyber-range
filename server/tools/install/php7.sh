@@ -1,4 +1,8 @@
 #!/bin/sh
 
 yum -y remove php-*
-yum -y install --enablerepo=remi,remi-php70 php php-devel php-opcache php-mbstring php-mcrypt php-pdo php-gd php-mysqlnd php-pecl-xdebug php-fpm php-xml
+
+rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+yum -y install php70w php70w-common php70w-devel php70w-intl php70w-mysql php70w-mbstring php70w-gd php70w-pear php70w-mcrypt
+
+#yum -y install --enablerepo=remi,remi-php70 php php-devel php-opcache php-mbstring php-mcrypt php-pdo php-gd php-mysqlnd php-pecl-xdebug php-fpm php-xml
