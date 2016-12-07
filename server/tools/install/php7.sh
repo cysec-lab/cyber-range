@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#TODO can't install php7 instead of installing php5
 yum -y remove php-*
 
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
