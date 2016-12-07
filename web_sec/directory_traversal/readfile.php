@@ -8,15 +8,15 @@ if (isset($_POST['submit'])) {
     if (file_exists($file) === true) {
 	readfile($file);
     } else {
-	print ("Dosen't exist file");
+	print ("ファイルは存在しません");
     }
 }
 ?>
 
 <html>
 <body>
-  <h1>Read File</h1>
-  <p>Enter file name</p>
+  <h1>書類閲覧サイト</h1>
+  <p>ファイル名を入力してください(拡張子込みで)</p>
   <form action="" method="post">
     <input type="text" name="filename" size="30"><br />
     <input type="submit" name="submit" value="submit">
