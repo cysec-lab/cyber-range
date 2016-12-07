@@ -8,19 +8,20 @@ fi
 eth0=$1 # コンフィグレーションモードに入る前に引数を別の変数に代入して使用
 eth1=$2
 
+
 #### コンフィグレーションモード
 source /opt/vyatta/etc/functions/script-template
 configure
 
-# set service ssh port '22'
 delete system console device ttyS0
 
-set interfaces ethernet eth0
-set interfaces ethernet eth0 address "$eth0/24"
-#set interfaces ethernet eth0 address '192.168.100.240/24'
+#set interfaces ethernet eth0
+#set interfaces ethernet eth0 address "$eth0/24"
 
+# need to add network device
 set interfaces ethernet eth1
-set interfaces ethernet eth1 address "$eth1/24" nat source rule 100 outbound-interface 'eth0'
+set interfaces ethernet eth1 address "$eth1/24"
+set nat source rule 100 outbound-interface 'eth0'
 set nat source rule 100 source address "${eth1%.*}.0/24"
 set nat source rule 100 translation address masquerade
 
@@ -31,7 +32,7 @@ set service dns forwarding cache-size '150'
 set service dns forwarding listen-on 'eth1'
 set service dns forwarding name-server '8.8.8.8'
 
-set system login user vyos authentication plaintext-passwrd 'cysec.lab'
+#set service ssh port '22'
 
 set system time-zone 'Asia/Tokyo'
 
