@@ -5,7 +5,6 @@ tar zxvf apache_install.tar.gz
 ./apache_install.sh
 rm apache_install.sh apache_install.tar.gz
 
-# TODO php-pdoインストール消す
 # install mysql
 tar zxvf mysql_install.tar.gz
 ./mysql_install.sh

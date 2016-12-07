@@ -24,7 +24,6 @@ try {
 } catch(PDOException $e) {
     print ('Error:'.$e->getMessage());
 }
-
 ?>
 
 <html>
@@ -37,4 +36,3 @@ try {
   </form>
 </body>
 </html>
-
