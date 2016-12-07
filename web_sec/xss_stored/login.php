@@ -39,7 +39,8 @@ if (isset($_POST["login"])) {
         $db_hashed_pwd = $result['password'];
       }
 
-      $order = "SHA1('$password')";
+      $salt = $userid . $password
+      $order = "SHA1('$salt')";
       $sql = "SELECT $order";
       $stmt = $pdo->query($sql);
       while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -57,8 +58,8 @@ if (isset($_POST["login"])) {
     if ($hashed_pwd == $db_hashed_pwd) {
       // ４．認証成功なら、セッションIDを新規に発行する
       session_regenerate_id(true);
-      $_SESSION["NAME"] = $name;
-      header("Location: xss_stored.php");
+      $_SESSION["NAME"] = $name
+      header("Location: main.php");
       exit;
     }
     else {

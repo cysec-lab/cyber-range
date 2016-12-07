@@ -2,7 +2,7 @@
 session_start();
 
 // ログイン状態のチェック
-if (!isset($_SESSION["NAME"])) {
+if (!isset($_SESSION['NAME'])) {
   header("Location: logout.php");
   exit;
 }
@@ -17,18 +17,14 @@ if (!isset($_SESSION["NAME"])) {
   <body>
     <h1>掲示板</h1>
     <!-- ユーザIDにHTMLタグが含まれても良いようにエスケープする -->
-    <p>ようこそ<?=htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?>さん</p>
+    <p>ようこそ<?=htmlspecialchars($_SESSION['NAME'], ENT_QUOTES); ?>さん</p>
     自由に投稿してください
     <form action="" method="post">
-      <p>Name</p>
-      <input type="text" name="name" size="30"><br />
-      <p>Message</p>
+      <p>メッセージ</p>
       <textarea type="text" name="message" size="50"></textarea><br />
       <input type="submit" name="submit" value="submit">
     </form>
-  <ul>
-  <li><a href="logout.php">ログアウト</a></li>
-  </ul>
+    <br /><a href="logout.php">ログアウト</a><br /><br />
   </body>
 </html>
 
@@ -58,10 +54,8 @@ try {
 
 if(isset($_POST['submit'])) {
 
-  $name    = trim($_POST['name']);
+  $name    = $_SESSION['NAME'];
   $message = trim($_POST['message']);
-
-  #$name = mysql_real_escape_string($name);
 
   $message = stripslashes($message);
   #$message = mysql_real_escape_string($message);

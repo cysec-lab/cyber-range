@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
 
     $cmd = shell_exec($send_data);
     #echo $send_data;
-    #var_dump($send_data);
+    var_dump($cmd);
     #echo '<pre>'.$cmd.'</pre>';
     #exec($send_data, $output, $return_var);
     #echo $return_var;
