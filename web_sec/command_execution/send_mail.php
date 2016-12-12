@@ -5,20 +5,12 @@ if(isset($_POST['submit'])){
 
     $address = $_POST['address'];
     $text = $_POST['text'];
-    #$send_data = "echo \"$text\" | mail -s \"mail test\" $address";
     $send_data = "echo \"$text\" | mail -s \"send mail from website\" -r mail@centos.jp $address";
 
-
-    #$send_data = "ls | grep \"php\"";
-    #$send_data = "whoami";
-
     $cmd = shell_exec($send_data);
-    #echo $send_data;
-    var_dump($cmd);
-    #echo '<pre>'.$cmd.'</pre>';
-    #exec($send_data, $output, $return_var);
-    #echo $return_var;
-    #echo $send_data;
+    if ($cmd !== null) {
+        var_dump($cmd);
+    }
 }
 ?>
 
