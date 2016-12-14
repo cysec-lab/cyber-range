@@ -23,5 +23,3 @@ HTTPINFO='-A INPUT -p tcp -m tcp --dport http -j ACCEPT'
 sed -i -e "/22/a ${HTTPINFO}" ${IPTABLEFILE}
 service iptables restart
 
-reboot
-

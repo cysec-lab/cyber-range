@@ -2,5 +2,5 @@
 
 mkdir /public
 mkdir /secret
-mv /root/secret secret_document.txt
-mv /root/public open_document.txt 
+cp secret_document.txt /secret 
+cp open_document.txt /public
