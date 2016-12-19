@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TEMPLATE_NAME='web'
+TEMPLATE_NUM='414'
+CLONE_NUM='464'
+
+qm clone $TEMPLATE_NUM $CLONE_NUM --name $TEMPLATE_NAME$CLONE_NUM
+
+qm start $CLONE_NUM
+
