@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# -ne 3 ]; then
-    echo "tempalte name & template num & new vm num need"
+    echo "[tempalte name] & [template num] & [new vm num] need"
     echo "example:"
     echo "./clone_vm.sh web 111 222"
     exit 1
@@ -15,7 +15,12 @@ TEMPLATE_NAME=$1
 TEMPLATE_NUM=$2
 CLONE_NUM=$3
 
+# clone
 qm clone $TEMPLATE_NUM $CLONE_NUM --name $TEMPLATE_NAME$CLONE_NUM
 
+# serial console connection setup
+qm set $CLONE_NUM -serial0 socket
+
+# start vm
 qm start $CLONE_NUM
 
