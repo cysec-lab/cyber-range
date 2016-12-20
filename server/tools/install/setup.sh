@@ -20,11 +20,11 @@ chkconfig yum-cron on
 # initialize network
 ./use_static_network.sh $1 $2
 
+# serial console
+./serial_console.sh
+
 # change hostname
 ./chg_hostname.sh $3
-
-# install php7
-./php7.sh
 
 # reboot
 reboot
