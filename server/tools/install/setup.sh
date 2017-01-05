@@ -8,6 +8,7 @@ if [ $# -ne 3 ]; then
 fi
 
 yum -y update
+yum -y install vim
 
 # install third-party
 ./third_party.sh
