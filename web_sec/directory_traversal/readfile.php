@@ -1,6 +1,11 @@
 <?php
 ini_set('display_errors',1);
 
+
+
+
+###########################
+# 以下の文を変更してください
 if (isset($_POST['submit'])) {
     $filename = $_POST['filename'];
     $file = "/public/" . $filename;
@@ -11,6 +16,12 @@ if (isset($_POST['submit'])) {
 	print ("ファイルは存在しません");
     }
 }
+###########################
+
+
+
+
+
 ?>
 
 <html>

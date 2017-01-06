@@ -1,6 +1,11 @@
 <?php
 ini_set('display_errors',1);
 
+
+
+
+###########################
+# 以下の文を変更してください
 if(isset($_POST['submit'])){
 
     $address = $_POST['address'];
@@ -12,6 +17,9 @@ if(isset($_POST['submit'])){
         var_dump($cmd);
     }
 }
+###########################
+
+
 ?>
 
 <html>

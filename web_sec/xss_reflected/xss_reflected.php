@@ -1,5 +1,9 @@
 <?php
 
+
+
+############################
+# 以下の文を変更してください
 if(!array_key_exists ("name", $_GET) || $_GET['name'] == NULL || $_GET['name'] == ''){
   $isempty = true;
 } else {
@@ -7,6 +11,10 @@ if(!array_key_exists ("name", $_GET) || $_GET['name'] == NULL || $_GET['name'] =
   echo 'Hello ' . $_GET['name'];
   echo '</pre>';
 }
+############################
+
+
+
 ?>
 <html>
 <body>

@@ -9,6 +9,14 @@ try {
         $user,
         $password
     );
+
+
+
+
+
+    ###########################
+    #以下の文を変更してください
+
     if (isset($_POST['submit'])) {
 
     	$id = $_POST['id'];
@@ -21,6 +29,13 @@ try {
     	}
     	$pdo = null;
     }
+    ############################
+
+
+
+
+
+
 } catch(PDOException $e) {
     print ('Error:'.$e->getMessage());
 }

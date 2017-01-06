@@ -52,13 +52,15 @@ try {
   print ('Error:'.$e->getMessage());
 }
 
+
+############################
+# 以下の文を変更してください
 if(isset($_POST['submit'])) {
 
   $name    = $_SESSION['NAME'];
   $message = trim($_POST['message']);
 
   $message = stripslashes($message);
-  #$message = mysql_real_escape_string($message);
 
   $sql = "INSERT INTO guestbook (name, comment) VALUES ('$name', '$message')";
   $stmt = $pdo->prepare($sql);
@@ -67,4 +69,9 @@ if(isset($_POST['submit'])) {
   $pdo = null;
   echo '<script type="text/javascript">window.location.href=location;</script>';
 }
+#############################
+
+
+
+
 ?>
