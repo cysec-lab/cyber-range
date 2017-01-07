@@ -31,7 +31,7 @@ elif [ $1 = 'server' ]; then
     INSERT_LINE='-A INPUT -m state --state NEW -m tcp -p tcp --dport 2049 -j ACCEPT\n-A INPUT -m state --state NEW -m udp -p udp --dport 2049 -j ACCEPT\n-A INPUT -m state --state NEW -m tcp -p tcp --dport 111 -j ACCEPT\n-A INPUT -m state --state NEW -m udp -p udp --dport 111 -j ACCEPT'
 
     IPTABELS='/etc/sysconfig/iptables'
-    sed -i -e "10a $INSERT_LINE" $IPTABELS
+    sed -i -e "/22/a $INSERT_LINE" $IPTABELS
     service iptables restart
     chkconfig nfs on
 
