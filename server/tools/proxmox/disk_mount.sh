@@ -1,8 +1,6 @@
 #!/bin/bash
-# TODO cloneテンプレートのVG名の究明（VM名?）
-#      vgrenameの引数への渡し方
-#      応急処置でtestで用いるvg_web713を使用
-# TODO 設定を変更するとVM操作が出来ない問題
+# TODO cloneテンプレートのVG名の究明（ホスト名?）
+# TODO VG名重複問題
 
 if [ $# -ne 3 ]; then
     echo "[vm num] [IP Address] [PC type] need"
@@ -40,19 +38,22 @@ partprobe /dev/nbd$NBD_NUM
 
 # cloneによるPV,VGのUUID副重問題の解決
 pvchange --uuid /dev/nbd${NBD_NUM}p2
-vgrename vg_web713 vg_$VM_NUM
+#vgrename vg_web713 vg_$VM_NUM           # kernel panicの原因
 
 # Phisical Volume  mount
-vgchange -ay vg_$VM_NUM
+vgchange -ay vg_web713
+#vgchange -ay vg_$VM_NUM
 mkdir /mnt/vm$VM_NUM
-mount /dev/vg_$VM_NUM/lv_root /mnt/vm$VM_NUM
-
+mount /dev/vg_web713/lv_root /mnt/vm$VM_NUM
+#mount /dev/vg_$VM_NUM/lv_root /mnt/vm$VM_NUM
+ 
 # VM clone setup
 ./clone.sh $IP_ADDRESS $PC_TYPE$VM_NUM $VM_NUM
 
 # cleanup
 umount /mnt/vm$VM_NUM
 rmdir /mnt/vm$VM_NUM
-vgchange -an vg_$VM_NUM
+vgchange -an vg_web713
+#vgchange -an vg_$VM_NUM
 qemu-nbd -d /dev/nbd$NBD_NUM
 

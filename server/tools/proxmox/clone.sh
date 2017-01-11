@@ -9,9 +9,10 @@ fi
 
 #VM_NUM=`echo $2 | sed -e "s/[^0-9]*//"`
 VM_NUM=$3
+MOUNT_DIR="/mnt/vm$VM_NUM"
 
-RULEFILE="/mnt/vm$VM_NUM/etc/udev/rules.d/70-persistent-net.rules"
-ETHFILE="/mnt/vm$VM_NUM/etc/sysconfig/network-scripts/ifcfg-eth0"
+RULEFILE="$MOUNT_DIR/etc/udev/rules.d/70-persistent-net.rules"
+ETHFILE="$MOUNT_DIR/etc/sysconfig/network-scripts/ifcfg-eth0"
 
 while read line
 do
@@ -36,7 +37,7 @@ sed -i -e "s/GATEWAY=.*$/GATEWAY=${1%.*}.1/g" $ETHFILE
 sed -i -e "s/BROADCAST=.*$/BROADCAST=${1%.*}.255/g" $ETHFILE
 
 
-FILENAME="/mnt/$VM_NUM/etc/sysconfig/network"
+FILENAME="$MOUNT_DIR/etc/sysconfig/network"
 sed -i -e "s/HOSTNAME=.*/HOSTNAME=$2/g" ${FILENAME}
 
 #service network restart

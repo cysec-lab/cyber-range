@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Hostnameの引数が必要
+if [ $# -ne 1 ]; then
+  echo "Need Hostname"
+  echo "./chg_hostname.sh Hostname"
+  exit 1
+fi
+
+FILENAME='/etc/sysconfig/network'
+sed -i -e "s/HOSTNAME=.*/HOSTNAME=$1/g" ${FILENAME}
+
+service network restart
