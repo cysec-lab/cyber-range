@@ -16,8 +16,8 @@ if [ $1 = 'client' ]; then
     SERVER_IP=${IP##*.}
     SERVER_IP=${SERVER_IP:0:2}4
     mkdir /home/workspace
-    mount -t nfs ${IP%.*}.$SERVER_IP:/var/www/html /home/workspace
-    echo "${IP%.*}.$SERVER_IP:/var/www/html\t/home/workspace\tnfs\trsize=8192,wsize=8192,nosuid,hard,intr\t0 0" >> /etc/fstab
+    #mount -t nfs ${IP%.*}.$SERVER_IP:/var/www/html /home/workspace
+    echo -e "${IP%.*}.$SERVER_IP:/var/www/html\t/home/workspace\tnfs\trsize=8192,wsize=8192,nosuid,hard,intr\t0 0" >> /etc/fstab
 
 
 elif [ $1 = 'server' ]; then

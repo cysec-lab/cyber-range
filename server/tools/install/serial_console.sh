@@ -1,4 +1,5 @@
 #!/bin/bash
+# 適応するにはVMの停止が必要
 
 FILENAME='/boot/grub/grub.conf'
 sed -i -e "s/quiet/quiet console=ttyS0,115200/g" $FILENAME

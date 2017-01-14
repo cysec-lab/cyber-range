@@ -3,7 +3,7 @@
 # Need new IPAddress
 if [ $# -ne 2 ]; then
   echo "Need new IPAddress and Hostname"
-  echo "$0 [aaa.bbb.ccc.ddd] [hostname]"
+  echo "./clone.sh [aaa.bbb.ccc.ddd] [hostname]"
   exit 1
 fi
 
@@ -32,38 +32,20 @@ sed -i -e "s/DNS1=.*$/DNS1=${1%.*}.1/g" $ETHFILE
 sed -i -e "s/GATEWAY=.*$/GATEWAY=${1%.*}.1/g" $ETHFILE
 sed -i -e "s/BROADCAST=.*$/BROADCAST=${1%.*}.255/g" $ETHFILE
 
-
-INITFILE='/etc/inittab'
-sed -i -e 's/id:3:initdefault:/id:5:initdefault:/g' $INITFILE
-
 HOSTNAME=$2
 
-useradd 'client'
-#useradd ${HOSTNAME}
+useradd ${HOSTNAME}
 
-
-yum -y install expect
+#yum -y install expect
 expect -c "
 set timeout 5
-spawn passwd client
+spawn passwd ${HOSTNAME}
 expect \"New password:\"
-send \"client\n\"
+send \"${HOSTNAME}\n\"
 expect \"Retype new password:\"
-send \"client\n\"
+send \"${HOSTNAME}\n\"
 interact
 "
-#yum -y install expect
-#expect -c "
-#set timeout 5
-#spawn passwd ${HOSTNAME}
-#expect \"New password:\"
-#send \"${HOSTNAME}\n\"
-#expect \"Retype new password:\"
-#send \"${HOSTNAME}\n\"
-#interact
-#"
-
-#yum -y install gedit
 
 ./chg_hostname.sh $HOSTNAME
 

@@ -21,8 +21,12 @@ chkconfig yum-cron on
 # initialize network
 ./use_static_network.sh $1 $2
 
+# DNS add
+./add_dns.sh 8.8.8.8
+./add_dns.sh 8.8.4.4
+
 # serial console
-./serial_console.sh
+#./serial_console.sh
 
 # change hostname
 ./chg_hostname.sh $3
