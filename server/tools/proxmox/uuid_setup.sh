@@ -52,15 +52,17 @@ modprobe nbd max_part=16
 # disk image mount
 # TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
 #      排他制御が必要
-qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
-partprobe /dev/nbd$NBD_NUM
+#qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
+#partprobe /dev/nbd$NBD_NUM
    
-## cloneによるPV,VGのUUID副重問題の解決
-#pvchange --uuid /dev/nbd${NBD_NUM}p2
-#vgrename vg_$TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
-#vgchange --uuid vg_$VM_NUM
-##vgchange -ay vg_$TEMPLATE_NAME
-#vgchange -ay vg_$VM_NUM
+# cloneによるPV,VGのUUID副重問題の解決
+pvchange --uuid /dev/nbd${NBD_NUM}p2
+vgrename $TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
+vgchange --uuid vg_$VM_NUM
+
+
+#vgchange -ay vg_$TEMPLATE_NAME
+##vgchange -ay vg_$VM_NUM
 #
 ##)
 ## ->排他的制御終了

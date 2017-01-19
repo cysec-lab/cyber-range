@@ -23,7 +23,7 @@ if [ ! -e $QEOW2_FILE_PATH ]; then
 fi
 
 # parted install LVM is need parted
-apt-get install parted
+#apt-get install parted
 
 TENS_PLACE=${VM_NUM:1:1}
 TENS_PLACE=$((TENS_PLACE-1))
@@ -32,7 +32,7 @@ ONE_PLACE=$((ONE_PLACE-1))
 NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
 
 
-modprobe nbd max_part=16
+#modprobe nbd max_part=16
 
 
 
@@ -52,21 +52,21 @@ modprobe nbd max_part=16
 # disk image mount
 # TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
 #      排他制御が必要
-qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
-partprobe /dev/nbd$NBD_NUM
+#qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
+#partprobe /dev/nbd$NBD_NUM
    
-## cloneによるPV,VGのUUID副重問題の解決
+# cloneによるPV,VGのUUID副重問題の解決
 #pvchange --uuid /dev/nbd${NBD_NUM}p2
 #vgrename vg_$TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
 #vgchange --uuid vg_$VM_NUM
 ##vgchange -ay vg_$TEMPLATE_NAME
 #vgchange -ay vg_$VM_NUM
-#
-##)
-## ->排他的制御終了
-#
-#
-#
+
+#)
+# ->排他的制御終了
+
+
+
 #mkdir /mnt/vm$VM_NUM
 #
 ## boot config edit grub
@@ -87,12 +87,12 @@ partprobe /dev/nbd$NBD_NUM
 ## VM clone setup
 #./clone.sh $IP_ADDRESS $PC_TYPE$VM_NUM $VM_NUM
 #
-## Phisical Volume umount
-#umount /mnt/vm$VM_NUM
-#
-## cleanup
-#rmdir /mnt/vm$VM_NUM
-##vgchange -an vg_$TEMPLATE_NAME
-#vgchange -an vg_$VM_NUM
-#qemu-nbd -d /dev/nbd$NBD_NUM
-#
+# Phisical Volume umount
+umount /mnt/vm$VM_NUM
+
+# cleanup
+rmdir /mnt/vm$VM_NUM
+#vgchange -an vg_$TEMPLATE_NAME
+vgchange -an vg_$VM_NUM
+qemu-nbd -d /dev/nbd$NBD_NUM
+

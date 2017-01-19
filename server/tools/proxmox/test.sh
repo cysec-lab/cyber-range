@@ -1,30 +1,28 @@
 #!/bin/bash
 
-start_time=`date +%s`
+VM_NUM=402
+TEMPLATE_NUM=717
+TEMPLATE_NAME="vg_717"
+PC_TYPE="client"
+#TEMPLATE_NAME="VolGroup"
 
-PC_TYPE='web'
-CLIENT_NUM=(611 612 613)
-WEB_NUM=(614 624 634 644)
-clone_pid=()
+#VM_NUM=401
+#TEMPLATE_NUM=716
+#TEMPLATE_NAME="vg_web713"
+#PC_TYPE="web"
+##TEMPLATE_NAME="VolGroup"
 
-for num in ${CLIENT_NUM[@]}; do
-    ./clone_vm.sh 'client' 599 $num &
-    pid=$!
-    clone_pid+=($pid)
-    sleep 1
-done
 
-#for num in ${WEB_NUM[@]}; do
-#    ./clone_vm.sh 'web' 600 $num &
-#    pid=$!
-#    clone_pid+=($pid)
-#    sleep 1
-#done
+IP_ADDRESS="192.168.110.131"
+NBD_NUM=0
 
-wait ${clone_pid[@]}
+./clone_vm.sh $PC_TYPE $TEMPLATE_NUM $VM_NUM
 
-end_time=`date +%s`
+./normal_mount.sh $VM_NUM $TEMPLATE_NAME $NBD_NUM 
+./normal_centos_config_setup.sh $VM_NUM $TEMPLATE_NAME $NBD_NUM
 
-time=$((end_time - start_time))
-echo $time
+./clone.sh $VM_NUM $IP_ADDRESS test${VM_NUM}
 
+./normal_umount.sh $VM_NUM $NBD_NUM
+
+qm start $VM_NUM

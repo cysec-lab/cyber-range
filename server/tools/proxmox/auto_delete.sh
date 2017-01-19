@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in `seq 611 650`
+for i in `seq 310 345`
 do
     status=`qm status $i`
 
