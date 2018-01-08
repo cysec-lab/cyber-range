@@ -5,7 +5,6 @@ do
     status=`qm status $i`
 
     if [ "$status" == "status: running" ]; then
-    #if [ "$status" == "status: stopped" ]; then
-        ./delete_vm.sh $i
+        qm stop $i
     fi
 done

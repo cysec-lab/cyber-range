@@ -26,9 +26,9 @@ if [ $? -ne 0 ]; then
 fi
 
 # zfs clone
-zfs clone $SNAPSHOT /data/vm-${CLONE_NUM}-disk-1
+zfs clone $SNAPSHOT rpool/data/vm-${CLONE_NUM}-disk-1
 
-# copy config file
+# copy vm config file
 cp $TEMPLATE_CONFIG_PATH $CLONE_CONFIG_PATH
 sed -i -e "s/vm-${TEMPLATE_NUM}-disk-1/vm-${CLONE_NUM}-disk-1/g" $CLONE_CONFIG_PATH
 sed -i -e "s/^name:.*/name: ${VM_NAME}/g" $CLONE_CONFIG_PATH
