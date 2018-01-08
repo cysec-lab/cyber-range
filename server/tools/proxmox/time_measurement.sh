@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ $# -lt 1 ]; then
-    echo "./[SCRIPT_NAME] ([SCRIPT_ARGMENT])"
-    echo "$0 ./script.sh "
+    echo "[SCRIPT_NAME] ([SCRIPT_ARGMENT])"
+    echo "$0 script.sh "
     exit 1
 fi
 
@@ -11,7 +11,8 @@ ARGUMENT=${@:2}
 
 start_time=`date +%s`
 
-$1 $ARGUMENT
+cmd="bash $1 $ARGUMENT"
+eval $cmd
 
 end_time=`date +%s`
 

@@ -14,12 +14,19 @@ CLONE_NUM=$3
 VM_NAME=$PC_TYPE$CLONE_NUM
 TEMPLATE_CONFIG_PATH=/etc/pve/qemu-server/${TEMPLATE_NUM}.conf
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
+SNAPSHOT=rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot
 
-# create snapshot
-zfs snapshot rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot
+# check snapshot
+snapshot_check_cmd="zfs list -r -t snapshot -o name,creation rpool"
+eval "$snapshot_check_cmd | grep $SNAPSHOT > /dev/null"
+# snapshot not exist
+if [ $? -ne 0 ]; then
+    # create snapshot
+    zfs snapshot $SNAPSHOT
+fi
 
 # zfs clone
-zfs clone rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot rpool/data/vm-${CLONE_NUM}-disk-1
+zfs clone $SNAPSHOT /data/vm-${CLONE_NUM}-disk-1
 
 # copy config file
 cp $TEMPLATE_CONFIG_PATH $CLONE_CONFIG_PATH
