@@ -26,7 +26,8 @@ zfs clone rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot rpool/da
 # copy config file
 cp $TEMPLATE_CONFIG_PATH $CLONE_CONFIG_PATH
 sed -i -e "s/vm-${TEMPLATE_NUM}-disk-1/vm-${CLONE_NUM}-disk-1/g" $CLONE_CONFIG_PATH
-sed -i -e "s/^name:*/name: ${VM_NAME}/g" $CLONE_CONFIG_PATH
+sed -i -e "s/^name:.*/name: ${VM_NAME}/g" $CLONE_CONFIG_PATH
+qm start $CLONE_NUM
 
 
 #./disk_mount.sh $CLONE_NUM $IP_ADDRESS $PC_TYPE $TEMPLATE_NAME
