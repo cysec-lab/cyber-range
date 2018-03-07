@@ -2,7 +2,6 @@
 
 start_time=`date +%s`
 
-PC_TYPE='web'
 CLIENT_NUM=(611 612 613 621 622 623 631 632 633 634 641 642 643)
 WEB_NUM=(614 624 634 644)
 clone_pid=()

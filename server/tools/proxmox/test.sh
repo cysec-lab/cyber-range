@@ -1,28 +1,28 @@
 #!/bin/bash
+#TODO VM IPアドレス
 
-VM_NUM=402
-TEMPLATE_NUM=717
-TEMPLATE_NAME="vg_717"
-PC_TYPE="client"
-#TEMPLATE_NAME="VolGroup"
+#echo $0
+#
+#if [ $# -ne 3 ]; then
+#    echo "[PC TYPE] [TEMPLATE_NUM] [VM NUM]  need"
+#    echo "example:"
+#    echo "$0 web 719 111"
+#    exit 1
+#fi
+#
+#echo $1
+TEMPLATE_NUM=$1
+SNAPSHOT=rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot
+cmd="zfs list -r -t snapshot -o name,creation rpool"
+eval "$cmd | grep $SNAPSHOT > /dev/null"
 
-#VM_NUM=401
-#TEMPLATE_NUM=716
-#TEMPLATE_NAME="vg_web713"
-#PC_TYPE="web"
-##TEMPLATE_NAME="VolGroup"
+if [ $? -ne 0 ]; then
+    echo "unmatch"
+else
+    echo "match"
+fi
 
+eval "$cmd"
 
-IP_ADDRESS="192.168.110.131"
-NBD_NUM=0
-
-./clone_vm.sh $PC_TYPE $TEMPLATE_NUM $VM_NUM
-
-./normal_mount.sh $VM_NUM $TEMPLATE_NAME $NBD_NUM 
-./normal_centos_config_setup.sh $VM_NUM $TEMPLATE_NAME $NBD_NUM
-
-./clone.sh $VM_NUM $IP_ADDRESS test${VM_NUM}
-
-./normal_umount.sh $VM_NUM $NBD_NUM
-
-qm start $VM_NUM
+#eval "$cmd | grep $SNAPSHOT"
+#echo $SNAPSHOT
