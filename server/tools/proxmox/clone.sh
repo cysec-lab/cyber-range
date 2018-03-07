@@ -15,7 +15,11 @@ VMM_HOSTNAME=`hostname`
 
 RULEFILE="${MOUNT_DIR}/etc/udev/rules.d/70-persistent-net.rules"
 ETHFILE="${MOUNT_DIR}/etc/sysconfig/network-scripts/ifcfg-eth0"
+<<<<<<< HEAD
 NET_UUID_PATH="/etc/pve/nodes/${VMM_HOSTNAME}/qemu-server/${VM_NUM}.conf"
+=======
+NET_UUID_PATH="/etc/pve/nodes/${HOST}/qemu-server/${VM_NUM}.conf"
+>>>>>>> aedd5ca2dbc7246ec0df9ba5a99aeb9ff464afee
 
 OUTFILE="$MOUNT_DIR/root/test.txt"
 touch $OUTFILE
