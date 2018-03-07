@@ -84,8 +84,8 @@ mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
 sed -i -e "s/$TEMPLATE_NAME/$VG_NAME/g" /mnt/vm$VM_NUM/etc/fstab
 
 # VM clone setup
-./clone.sh $IP_ADDRESS $PC_TYPE$VM_NUM $VM_NUM
-./nfs_setup.sh $IP_ADDRESS $PC_TYPE $VM_NUM
+./clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
+./nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
 
 ./disk_umount.sh $VM_NUM $IP_ADDRESS $PC_TYPE $TEMPLATE_NAME
 qm start $VM_NUM

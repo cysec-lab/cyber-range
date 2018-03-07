@@ -3,14 +3,14 @@
 # テンプレートIPアドレス決め打ち
 
 if [ $# -ne 3 ]; then
-  echo "Need [IPAddress] [PC Type] [VM num]"
-  echo "$0 [aaa.bbb.ccc.ddd] [client] [111]"
+  echo "Need [VM num] [IPAddress] [PC Type]"
+  echo "$0 [100] [aaa.bbb.ccc.ddd] [client]"
   exit 1
 fi
 
-IP=$1
-PC_TYPE=$2
-VM_NUM=$3
+VM_NUM=$1
+IP=$2
+PC_TYPE=$3
 DIR_PATH="/mnt/vm$VM_NUM"
 
 if [ $PC_TYPE = 'client' ]; then
