@@ -14,7 +14,7 @@ MOUNT_DIR="/mnt/vm$VM_NUM"
 
 RULEFILE="${MOUNT_DIR}/etc/udev/rules.d/70-persistent-net.rules"
 ETHFILE="${MOUNT_DIR}/etc/sysconfig/network-scripts/ifcfg-eth0"
-NET_UUID_PATH="/etc/pve/nodes/proxmox/qemu-server/${VM_NUM}.conf"
+NET_UUID_PATH="/etc/pve/nodes/${HOST}/qemu-server/${VM_NUM}.conf"
 
 OUTFILE="$MOUNT_DIR/root/test.txt"
 touch $OUTFILE
