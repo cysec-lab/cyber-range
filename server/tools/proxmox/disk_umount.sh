@@ -57,9 +57,9 @@ NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
    
 # cloneによるPV,VGのUUID副重問題の解決
 #pvchange --uuid /dev/nbd${NBD_NUM}p2
-#vgrename vg_$TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
+#vgrename $TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
 #vgchange --uuid vg_$VM_NUM
-##vgchange -ay vg_$TEMPLATE_NAME
+##vgchange -ay $TEMPLATE_NAME
 #vgchange -ay vg_$VM_NUM
 
 #)
@@ -75,7 +75,7 @@ NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
 #umount /mnt/vm$VM_NUM
 #
 ## Phisical Volume mount
-##mount /dev/vg_$TEMPLATE_NAME/lv_root /mnt/vm$VM_NUM
+##mount /dev/$TEMPLATE_NAME/lv_root /mnt/vm$VM_NUM
 #mount /dev/vg_$VM_NUM/lv_root /mnt/vm$VM_NUM
 #
 ## boot config edit fstab
