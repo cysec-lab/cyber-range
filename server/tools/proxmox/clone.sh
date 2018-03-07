@@ -11,10 +11,11 @@ VM_NUM=$1
 IP_ADDRESS=$2
 HOSTNAME=$3
 MOUNT_DIR="/mnt/vm$VM_NUM"
+VMM_HOSTNAME=`hostname`
 
 RULEFILE="${MOUNT_DIR}/etc/udev/rules.d/70-persistent-net.rules"
 ETHFILE="${MOUNT_DIR}/etc/sysconfig/network-scripts/ifcfg-eth0"
-NET_UUID_PATH="/etc/pve/nodes/proxmox/qemu-server/${VM_NUM}.conf"
+NET_UUID_PATH="/etc/pve/nodes/${VMM_HOSTNAME}/qemu-server/${VM_NUM}.conf"
 
 OUTFILE="$MOUNT_DIR/root/test.txt"
 touch $OUTFILE
