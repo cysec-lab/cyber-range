@@ -7,5 +7,8 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-qm stop $1
-qm destroy $1
+file="/etc/pve/qemu-server/${1}.conf"
+if [ -e $file ]; then
+    qm stop $1
+    qm destroy $1
+fi
