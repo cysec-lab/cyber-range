@@ -17,7 +17,7 @@ TEMPLATE_NAME=$3 # 使っていない
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 
 if [ ! -e $QEOW2_FILE_PATH ]; then
-    echo "file is not exists"
+    echo "$QEOW2_FILE_PATH is not exists"
     exit 1
 fi
 
@@ -29,7 +29,7 @@ apt-get install parted
 #ONE_PLACE=${VM_NUM:2:1}
 #ONE_PLACE=$((ONE_PLACE-1))
 #NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
-NBD_NUM=${VM_NUM:2:1}
+NBD_NUM=${VM_NUM:1:1}
 
 
 modprobe nbd max_part=16
