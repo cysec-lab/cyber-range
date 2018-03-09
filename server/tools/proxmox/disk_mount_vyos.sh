@@ -11,7 +11,7 @@ if [ $# -ne 3 ]; then
 fi
 
 VM_NUM=$1
-IP_ADDRESS=$2
+IP_ADDRESS=$2    # 使っていない
 TEMPLATE_NAME=$3 # 使っていない
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
