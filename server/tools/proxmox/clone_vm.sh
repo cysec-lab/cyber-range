@@ -2,9 +2,9 @@
 #TODO VM IPアドレス
 
 if [ $# -ne 3 ]; then
-    echo "[PC TYPE] [TEMPLATE_NUM] [VM NUM]  need"
+    echo "[VM NUM] [TEMPLATE_NUM] [PC TYPE]  need"
     echo "example:"
-    echo "./clone_vm.sh web 719 111"
+    echo "$0 111 719 web"
     exit 1
 fi
 
@@ -12,9 +12,9 @@ fi
 #TEMPLATE_NUM='414'
 #CLONE_NUM='464'
 
-PC_TYPE=$1
+CLONE_NUM=$1
 TEMPLATE_NUM=$2
-CLONE_NUM=$3
+PC_TYPE=$3
 VM_NAME=$PC_TYPE$CLONE_NUM
 #IP_ADDRESS="192.168.1${CLONE_NUM:1:1}0.${CLONE_NUM:1:2}"
 #TEMPLATE_NAME=$PC_TYPE$TEMPLATE_NUM
