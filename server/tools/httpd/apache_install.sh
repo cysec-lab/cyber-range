@@ -10,7 +10,7 @@ yum install -y php70w php70w-common php70w-devel php70w-intl php70w-mysql php70w
 
 mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
 sed -i -e "s/^ServerName.*$/ServerName ${HOSTNAME}/g" '/root/httpd.conf'
-mv /root/httpd.conf /etc/httpd/conf/
+mv ./httpd.conf /etc/httpd/conf/
 chcon --reference=/etc/httpd/conf/httpd.conf.bak /etc/httpd/conf/httpd.conf
 #chcon -u system_u -t httpd_config_t /etc/httpd/conf/httpd.conf
 
