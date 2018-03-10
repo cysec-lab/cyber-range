@@ -16,6 +16,7 @@ PC_TYPE=$3
 TEMPLATE_NAME=$4
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
+MAX_PART=16
 
 if [ ! -e $QEOW2_FILE_PATH ]; then
     echo "file is not exists"
@@ -28,11 +29,11 @@ fi
 TENS_PLACE=${VM_NUM:1:1}
 TENS_PLACE=$((TENS_PLACE-1))
 ONE_PLACE=${VM_NUM:2:1}
-ONE_PLACE=$((ONE_PLACE-1))
-NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
+ONE_PLACE=$((ONE_PLACE-2))
+NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 
 
-#modprobe nbd max_part=16
+#modprobe nbd max_part=$MAX_PART
 
 
 

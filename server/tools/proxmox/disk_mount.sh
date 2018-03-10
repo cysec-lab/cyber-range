@@ -16,23 +16,27 @@ PC_TYPE=$3
 TEMPLATE_NAME=$4
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
+MAX_PART=16
 
 if [ ! -e $QEOW2_FILE_PATH ]; then
-    echo "file is not exists"
+    echo "$QEOW2_FILE_PATH is not exists"
     exit 1
 fi
 
 # parted install LVM is need parted
-apt-get install parted
+result=`dpkg -l | grep parted`
+if [ ${#result} -eq 0 ]; then
+    apt-get install parted
+fi
 
 TENS_PLACE=${VM_NUM:1:1}
 TENS_PLACE=$((TENS_PLACE-1))
 ONE_PLACE=${VM_NUM:2:1}
-ONE_PLACE=$((ONE_PLACE-1))
-NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
+ONE_PLACE=$((ONE_PLACE-2))
+NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 
 
-modprobe nbd max_part=16
+modprobe nbd max_part=$MAX_PART
 
 
 
@@ -66,6 +70,7 @@ partprobe /dev/nbd$NBD_NUM
 ## ->排他的制御終了
 #
 #
+
 #
 #mkdir /mnt/vm$VM_NUM
 #

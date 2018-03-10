@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]; then
     echo "[PC name] need  (client or server)"
-    echo "./nfs.sh [client]"
+    echo "$0 [client]"
     exit 1
 fi
 
@@ -13,8 +13,9 @@ IP=`echo $IP | awk '{print $1}'`
 yum -y install rpcbind nfs-utils nfs-util-lib
 
 if [ $1 = 'client' ]; then
-    SERVER_IP=${IP##*.}
-    SERVER_IP=${SERVER_IP:0:2}4
+    #SERVER_IP=${IP##*.}
+    #SERVER_IP=${SERVER_IP:0:2}4
+    SERVER_IP=2
     mkdir /home/workspace
     #mount -t nfs ${IP%.*}.$SERVER_IP:/var/www/html /home/workspace
     echo "${IP%.*}.$SERVER_IP:/var/www/html\t/home/workspace\tnfs\trsize=8192,wsize=8192,nosuid,hard,intr\t0 0" >> /etc/fstab
