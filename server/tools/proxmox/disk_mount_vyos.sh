@@ -85,7 +85,7 @@ mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
 
 
 # VM clone setup
-./clone_vyos.sh $VM_NUM
+$WORK_DIR/clone_vyos.sh $VM_NUM
 
 # Phisical Volume umount
 umount /mnt/vm$VM_NUM

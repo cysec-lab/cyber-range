@@ -2,15 +2,15 @@
 #TODO VM IPアドレス
 
 if [ $# -ne 3 ]; then
-    echo "[PC TYPE] [TEMPLATE_NUM] [VM NUM]  need"
+    echo "[VM NUM] [TEMPLATE_NAME] [PC TYPE] need"
     echo "example:"
-    echo "$0 web 719 111"
+    echo "$0 111 719 web"
     exit 1
 fi
 
-PC_TYPE=$1
+CLONE_NUM=$1
 TEMPLATE_NUM=$2
-CLONE_NUM=$3
+PC_TYPE=$3
 VM_NAME=$PC_TYPE$CLONE_NUM
 TEMPLATE_CONFIG_PATH=/etc/pve/qemu-server/${TEMPLATE_NUM}.conf
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
