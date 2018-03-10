@@ -32,20 +32,3 @@ zfs clone $SNAPSHOT rpool/data/vm-${CLONE_NUM}-disk-1
 cp $TEMPLATE_CONFIG_PATH $CLONE_CONFIG_PATH
 sed -i -e "s/vm-${TEMPLATE_NUM}-disk-1/vm-${CLONE_NUM}-disk-1/g" $CLONE_CONFIG_PATH
 sed -i -e "s/^name:.*/name: ${VM_NAME}/g" $CLONE_CONFIG_PATH
-
-# TODO
-# change vm config files
-
-# start vm
-qm start $CLONE_NUM
-
-
-#./disk_mount.sh $CLONE_NUM $IP_ADDRESS $PC_TYPE $TEMPLATE_NAME
-
-
-# serial console connection setup
-#qm set $CLONE_NUM -serial0 socket
-
-
-# after clone setup
-#./expect_serial_clone.sh $CLONE_NUM 192.168.130.${CLONE_NUM:1:2} $TEMPLATE_NAME$CLONE_NUM
