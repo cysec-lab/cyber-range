@@ -13,6 +13,9 @@ yum -y install vim
 # install third-party
 ./third_party.sh
 
+# install python3
+./python3.sh
+
 # install auto-update
 yum -y install yum-cron
 service yum-cron start
