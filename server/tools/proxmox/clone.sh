@@ -11,17 +11,12 @@ VM_NUM=$1
 IP_ADDRESS=$2
 HOSTNAME=$3
 MOUNT_DIR="/mnt/vm$VM_NUM"
-VMM_HOSTNAME=`hostname`
 
 RULEFILE="${MOUNT_DIR}/etc/udev/rules.d/70-persistent-net.rules"
 ETHFILE="${MOUNT_DIR}/etc/sysconfig/network-scripts/ifcfg-eth0"
-CONF_PATH="/etc/pve/nodes/${VMM_HOSTNAME}/qemu-server/${VM_NUM}.conf"
-
-OUTFILE="$MOUNT_DIR/root/test.txt"
-touch $OUTFILE
-
-cat $ETHFILE >> $OUTFILE
-cat $RULEFILE >> $OUTFILE
+NETWORKFILE="${MOUNT_DIR}/etc/sysconfig/network"
+CRONFILE="${MOUNT_DIR}/var/spool/cron/root"
+CONF_PATH="/etc/pve/qemu-server/${VM_NUM}.conf"
 
 #while read line
 #do
@@ -53,10 +48,8 @@ sed -i -e "s/DNS1=.*$/DNS1=${IP_ADDRESS%.*}.1/g" $ETHFILE
 sed -i -e "s/GATEWAY=.*$/GATEWAY=${IP_ADDRESS%.*}.1/g" $ETHFILE
 sed -i -e "s/BROADCAST=.*$/BROADCAST=${IP_ADDRESS%.*}.255/g" $ETHFILE
 
-#cat $attr >> $MOUNT_DIR/root/test.txt
-cat $ETHFILE >> $OUTFILE
-cat $RULEFILE >> $OUTFILE
+# change hostname
+sed -i -e "s/HOSTNAME=.*/HOSTNAME=${HOSTNAME}/g" $NETWORKFILE
 
-FILENAME="${MOUNT_DIR}/etc/sysconfig/network"
-sed -i -e "s/HOSTNAME=.*/HOSTNAME=${HOSTNAME}/g" ${FILENAME}
-
+# crontab comment delete
+#sed -i -e "s/^#//g" $CRONFILE
