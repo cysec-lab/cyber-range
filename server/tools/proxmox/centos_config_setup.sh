@@ -75,6 +75,9 @@ mkdir /mnt/vm$VM_NUM
 # boot config edit grub
 mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
 sed -i -e "s/$TEMPLATE_NAME/$VG_NAME/g" /mnt/vm$VM_NUM/grub/grub.conf
+sync
+sync
+sync
 umount /mnt/vm$VM_NUM
 
 # Phisical Volume mount

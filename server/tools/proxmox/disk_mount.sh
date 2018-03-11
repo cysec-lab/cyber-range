@@ -38,8 +38,6 @@ NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 
 modprobe nbd max_part=$MAX_PART
 
-
-
 # 排他的制御 ->
 # flockコマンド
 # TODO ロックファイル置きっぱなし
@@ -57,6 +55,7 @@ modprobe nbd max_part=$MAX_PART
 # TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
 #      排他制御が必要
 qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
+sleep 2
 partprobe /dev/nbd$NBD_NUM
    
 ## cloneによるPV,VGのUUID副重問題の解決

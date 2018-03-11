@@ -62,6 +62,7 @@ modprobe nbd max_part=16
 # TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
 #      排他制御が必要
 qemu-nbd -c /dev/nbd$NBD_NUM -f raw $DISK_DATA_FILE # 拡張子を明示する
+sleep 2
 partprobe /dev/nbd$NBD_NUM
    
 # cloneによるPV,VGのUUID副重問題の解決
@@ -80,6 +81,9 @@ mkdir $MOUNT_DIR
 #mount $DATA_DIR/vm-${VM_NUM}-disk-1-part1 $MOUNT_DIR 左でもできた
 mount /dev/nbd${NBD_NUM}p1 $MOUNT_DIR
 sed -i -e "s/$TEMP_VG_NAME/$NEW_VG_NAME/g" $MOUNT_DIR/grub/grub.conf
+sync
+sync
+sync
 umount $MOUNT_DIR
 
 # Phisical Volume mount
@@ -96,7 +100,11 @@ $WORK_DIR/clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
 $WORK_DIR/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
 
 # Phisical Volume umount
+sync
+sync
+sync
 umount $MOUNT_DIR
+#sleep 5
 
 # cleanup
 rmdir $MOUNT_DIR

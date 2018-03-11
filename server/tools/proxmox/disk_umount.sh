@@ -89,6 +89,9 @@ NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 #./clone.sh $IP_ADDRESS $PC_TYPE$VM_NUM $VM_NUM
 #
 # Phisical Volume umount
+sync
+sync
+sync
 umount /mnt/vm$VM_NUM
 
 # cleanup
