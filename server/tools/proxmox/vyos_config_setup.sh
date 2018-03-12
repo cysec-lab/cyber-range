@@ -4,15 +4,13 @@
 # TODO UUID変更は本当に必要ないのかの究明
 
 if [ $# -ne 3 ]; then
-    echo "[vm num] [IP Address] [TEMPLATE_NAME] need"
+    echo "[vm num] need"
     echo "example:"
-    echo "$0 111 192.168.100.221 vyos"
+    echo "$0 111"
     exit 1
 fi
 
 VM_NUM=$1
-IP_ADDRESS=$2    # 使っていない
-TEMPLATE_NAME=$3 # 使っていない
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 
@@ -37,23 +35,8 @@ NBD_NUM=${VM_NUM:1:1}
 
 modprobe nbd max_part=16
 
-# 排他的制御 ->
-# flockコマンド
-# TODO ロックファイル置きっぱなし
-#LOCK_FILE='/tmp/example.lock'
-#mkdir $LOCK_FILE
-
-# 参考:http://fj.hatenablog.jp/entry/2016/03/12/223319
-#(
-#    flock -w 60 || {
-#        echo "ERROR: lock timeout" 1>&2
-#        exit 1;
-#    }
-#
-# disk image mount
-# TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
-#      排他制御が必要
 qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
+sleep 2
 partprobe /dev/nbd$NBD_NUM
 mkdir /mnt/vm$VM_NUM
 mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
@@ -64,25 +47,6 @@ mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
 #vgchange --uuid vg_$VM_NUM
 ##vgchange -ay vg_$TEMPLATE_NAME
 #vgchange -ay vg_$VM_NUM
-
-#)
-# ->排他的制御終了
-
-# boot config edit grub
-#mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
-#sed -i -e "s/$TEMPLATE_NAME/$VM_NUM/g" /mnt/vm$VM_NUM/grub/grub.conf
-#umount /mnt/vm$VM_NUM
-
-# Phisical Volume mount
-#mount /dev/vg_$TEMPLATE_NAME/lv_root /mnt/vm$VM_NUM
-
-# boot config edit fstab
-# TODO UUID change
-#VG_UUID=`vgdisplay vg_$VM_NUM | grep 'VG UUID' | awk '{print $3}'`
-#sed -i -e "s/UUID=\w{6}-\w{4}-\w{4}-\w{4}......\t/UUID=$VG_UUID\t/g" /mnt/vm$VM_NUM/etc/fstab
-#sed -i -e "s/$TEMPLATE_NAME/$VM_NUM/g" /mnt/vm$VM_NUM/etc/fstab
-
-
 
 # VM clone setup
 $WORK_DIR/clone_vyos.sh $VM_NUM

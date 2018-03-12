@@ -9,6 +9,7 @@ export LANG=ja_JP.UTF-8
 # proxmoxの設定ファイルのパス
 export CONF_DIR='/etc/pve/qemu-server'
 export IMAGE_DIR='/var/lib/vz/images'
+export WORK_DIR='/root/github/cyber_range/server/tools/proxmox'
 
 
 # 色を使用出来るようにする
@@ -140,7 +141,7 @@ alias -g L='| less'
 alias -g G='| grep'
 
 # 作業スペースへ移動
-alias go_work='cd /root/github/cybar_range/server/tools/proxmox'
+alias go_work='cd $WORK_DIR'
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1

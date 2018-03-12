@@ -1,0 +1,217 @@
+scenario number(1 or 2):   Physical volume "/dev/nbd0p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_512"
+  Volume group "vg_512" successfully changed
+  2 logical volume(s) in volume group "vg_512" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_512" now active
+/dev/nbd0 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_522"
+  Volume group "vg_522" successfully changed
+  2 logical volume(s) in volume group "vg_522" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_522" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd8p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_532"
+  Volume group "vg_532" successfully changed
+  2 logical volume(s) in volume group "vg_532" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_532" now active
+/dev/nbd8 disconnected
+  Physical volume "/dev/nbd12p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_542"
+  Volume group "vg_542" successfully changed
+  2 logical volume(s) in volume group "vg_542" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_542" now active
+/dev/nbd12 disconnected
+  Physical volume "/dev/nbd0p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_552"
+  Volume group "vg_552" successfully changed
+  2 logical volume(s) in volume group "vg_552" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_552" now active
+/dev/nbd0 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_562"
+  Volume group "vg_562" successfully changed
+  2 logical volume(s) in volume group "vg_562" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_562" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_513"
+  Volume group "vg_513" successfully changed
+  2 logical volume(s) in volume group "vg_513" now active
+  0 logical volume(s) in volume group "vg_513" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_514"
+  Volume group "vg_514" successfully changed
+  2 logical volume(s) in volume group "vg_514" now active
+  0 logical volume(s) in volume group "vg_514" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_515"
+  Volume group "vg_515" successfully changed
+  2 logical volume(s) in volume group "vg_515" now active
+  0 logical volume(s) in volume group "vg_515" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_516"
+  Volume group "vg_516" successfully changed
+  2 logical volume(s) in volume group "vg_516" now active
+  0 logical volume(s) in volume group "vg_516" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_523"
+  Volume group "vg_523" successfully changed
+  2 logical volume(s) in volume group "vg_523" now active
+  0 logical volume(s) in volume group "vg_523" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd6p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_524"
+  Volume group "vg_524" successfully changed
+  2 logical volume(s) in volume group "vg_524" now active
+  0 logical volume(s) in volume group "vg_524" now active
+/dev/nbd6 disconnected
+  Physical volume "/dev/nbd7p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_525"
+  Volume group "vg_525" successfully changed
+  2 logical volume(s) in volume group "vg_525" now active
+  0 logical volume(s) in volume group "vg_525" now active
+/dev/nbd7 disconnected
+  Physical volume "/dev/nbd8p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_526"
+  Volume group "vg_526" successfully changed
+  2 logical volume(s) in volume group "vg_526" now active
+  0 logical volume(s) in volume group "vg_526" now active
+/dev/nbd8 disconnected
+  Physical volume "/dev/nbd9p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_533"
+  Volume group "vg_533" successfully changed
+  2 logical volume(s) in volume group "vg_533" now active
+  0 logical volume(s) in volume group "vg_533" now active
+/dev/nbd9 disconnected
+  Physical volume "/dev/nbd10p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_534"
+  Volume group "vg_534" successfully changed
+  2 logical volume(s) in volume group "vg_534" now active
+  0 logical volume(s) in volume group "vg_534" now active
+/dev/nbd10 disconnected
+  Physical volume "/dev/nbd11p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_535"
+  Volume group "vg_535" successfully changed
+  2 logical volume(s) in volume group "vg_535" now active
+  0 logical volume(s) in volume group "vg_535" now active
+/dev/nbd11 disconnected
+  Physical volume "/dev/nbd12p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_536"
+  Volume group "vg_536" successfully changed
+  2 logical volume(s) in volume group "vg_536" now active
+  0 logical volume(s) in volume group "vg_536" now active
+/dev/nbd12 disconnected
+  Physical volume "/dev/nbd13p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_543"
+  Volume group "vg_543" successfully changed
+  2 logical volume(s) in volume group "vg_543" now active
+  0 logical volume(s) in volume group "vg_543" now active
+/dev/nbd13 disconnected
+  Physical volume "/dev/nbd14p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_544"
+  Volume group "vg_544" successfully changed
+  2 logical volume(s) in volume group "vg_544" now active
+  0 logical volume(s) in volume group "vg_544" now active
+/dev/nbd14 disconnected
+  Physical volume "/dev/nbd15p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_545"
+  Volume group "vg_545" successfully changed
+  2 logical volume(s) in volume group "vg_545" now active
+  0 logical volume(s) in volume group "vg_545" now active
+/dev/nbd15 disconnected
+  Physical volume "/dev/nbd0p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_546"
+  Volume group "vg_546" successfully changed
+  2 logical volume(s) in volume group "vg_546" now active
+  0 logical volume(s) in volume group "vg_546" now active
+/dev/nbd0 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_553"
+  Volume group "vg_553" successfully changed
+  2 logical volume(s) in volume group "vg_553" now active
+  0 logical volume(s) in volume group "vg_553" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_554"
+  Volume group "vg_554" successfully changed
+  2 logical volume(s) in volume group "vg_554" now active
+  0 logical volume(s) in volume group "vg_554" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_555"
+  Volume group "vg_555" successfully changed
+  2 logical volume(s) in volume group "vg_555" now active
+  0 logical volume(s) in volume group "vg_555" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_556"
+  Volume group "vg_556" successfully changed
+  2 logical volume(s) in volume group "vg_556" now active
+  0 logical volume(s) in volume group "vg_556" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_563"
+  Volume group "vg_563" successfully changed
+  2 logical volume(s) in volume group "vg_563" now active
+  0 logical volume(s) in volume group "vg_563" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd6p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_564"
+  Volume group "vg_564" successfully changed
+  2 logical volume(s) in volume group "vg_564" now active
+  0 logical volume(s) in volume group "vg_564" now active
+/dev/nbd6 disconnected
+  Physical volume "/dev/nbd7p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_565"
+  Volume group "vg_565" successfully changed
+  2 logical volume(s) in volume group "vg_565" now active
+  0 logical volume(s) in volume group "vg_565" now active
+/dev/nbd7 disconnected
+  Physical volume "/dev/nbd8p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_566"
+  Volume group "vg_566" successfully changed
+  2 logical volume(s) in volume group "vg_566" now active
+  0 logical volume(s) in volume group "vg_566" now active
+/dev/nbd8 disconnected
+210
