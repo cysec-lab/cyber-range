@@ -8,6 +8,8 @@ VYOS_TEMP=952
 PROXMOX_MAX_NUM=9
 STUDENTS_PER_GROUP=4
 GROUP_MAX_NUM=8
+VG_NAME='VolGroup'
+LOG_FILE="./setup.log"
 
 # TODO: 現在1のみ利用
 PROXMOX_NUM=1
@@ -18,6 +20,8 @@ PROXMOX_NUM=1
 #else
 #    PROXMOX_NUM=$proxmox_num
 #fi
+# 各グループのネットワークに接続しているbridge番号(=Proxmox番号)
+VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
 
 # TODO: WEB_NUMとCLIENT_NUM割り当てのルール設定
 read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
@@ -45,11 +49,6 @@ else
     echo 'invalid'
     exit 1
 fi
-
-VG_NAME='VolGroup'
-LOG_FILE="./setup.log"
-# 各グループのネットワークに接続しているbridge番号(=Proxmox番号)
-VYOS_NETWORK_BRIDGE=$PROXMOX_NUM 
 
 #VYOS_NUM=(611 621 631 641 651 661)
 #WEB_NUM=(512 522 532 542 552 562)

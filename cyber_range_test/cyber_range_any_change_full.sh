@@ -7,24 +7,39 @@ CLIENT_NUM=()
 #WEB_NUM=(512 522 532 542 552 562)
 #CLIENT_NUM=(513 514 515 516 523 524 525 526 533 534 535 536 543 544 545 546 553 554 555 556 563 564 565 566)
 
+PROXMOX_NUM=0
 WEB_TEMP=0
 CLIENT_TEMP=0
 VYOS_TEMP=952
 
+PROXMOX_MAX_NUM=9
 STUDENTS_PER_GROUP=4
-GROUP_NUM=6
+GROUP_MAX_NUM=9
 VG_NAME='VolGroup'
 LOG_FILE="./setup.log"
 
-read -p "group number(1 ~ $GROUP_NUM): " group_num
-if [ $group_num -lt 1 ] || [ $GROUP_NUM -lt $group_num ]; then
+# TODO: 現在1のみ利用
+PROXMOX_NUM=1
+#read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
+#if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
+#    echo 'invalid'
+#    exit 1
+#else
+#    PROXMOX_NUM=$proxmox_num
+#fi
+# 各グループのネットワークに接続しているbridge番号(=Proxmox番号)
+VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
+
+# TODO: WEB_NUMとCLIENT_NUM割り当てのルール設定
+read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
+if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 else
-    #VYOS_NUM+=("5${group_num}1")
-    WEB_NUM+=("5${group_num}2")
+    VYOS_NUM+=("${group_num}01")
+    WEB_NUM+=("${group_num}02")
     for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
-        CLIENT_NUM+=("5${group_num}${i}")
+        CLIENT_NUM+=("${group_num}0${i}")
     done
 fi
 
@@ -47,17 +62,21 @@ for num in ${VYOS_NUM[@]} ${WEB_NUM[@]} ${CLIENT_NUM[@]}; do
     $WORK_DIR/delete_vm.sh $num
 done
 
-#pc_type='vyos'
-#for num in ${VYOS_NUM[@]}; do
-#    $WORK_DIR/clone_vm.sh $num $VYOS_TEMP $pc_type
-#    $WORK_DIR/vyos_config_setup.sh $num
-#    qm start $num &
-#done
+pc_type='vyos'
+for num in ${VYOS_NUM[@]}; do
+    # bridgeのルール https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
+    group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
+    $WORK_DIR/clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge
+    $WORK_DIR/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
+    qm start $num &
+done
 
 pc_type='web'
 for num in ${WEB_NUM[@]}; do
-    ip_address="192.168.${num:0:2}.${num:2:1}"
-    $WORK_DIR/clone_vm.sh $num $WEB_TEMP $pc_type
+    # bridgeのルール https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
+    group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
+    ip_address="192.168.${group_network_bridge}.${num:2:1}"
+    $WORK_DIR/clone_vm.sh $num $WEB_TEMP $pc_type $group_network_bridge
     $WORK_DIR/disk_mount.sh $num $ip_address $pc_type $VG_NAME
     $WORK_DIR/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
     $WORK_DIR/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
@@ -68,8 +87,10 @@ done
 
 pc_type='client'
 for num in ${CLIENT_NUM[@]}; do
-    ip_address="192.168.${num:0:2}.${num:2:1}"
-    $WORK_DIR/clone_vm.sh $num $CLIENT_TEMP $pc_type
+    # bridgeのルール https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
+    group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
+    ip_address="192.168.${group_network_bridge}.${num:2:1}"
+    $WORK_DIR/clone_vm.sh $num $CLIENT_TEMP $pc_type $group_network_bridge
     if [ $scenario_num -eq 1 ]; then
         $WORK_DIR/disk_mount.sh $num $ip_address $pc_type $VG_NAME
         $WORK_DIR/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
