@@ -4,13 +4,15 @@
 # TODO UUID変更は本当に必要ないのかの究明
 
 if [ $# -ne 3 ]; then
-    echo "[vm num] need"
+    echo "[vm num] [VYOS_NETWORK_BRIDGE] [GROUP_NETWORK_BRIDGE] need"
     echo "example:"
-    echo "$0 111"
+    echo "$0 111 1 132"
     exit 1
 fi
 
 VM_NUM=$1
+VYOS_NETWORK_BRIDGE=$2
+GROUP_NETWORK_BRIDGE=$3
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 
@@ -30,7 +32,7 @@ fi
 #ONE_PLACE=${VM_NUM:2:1}
 #ONE_PLACE=$((ONE_PLACE-1))
 #NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
-NBD_NUM=${VM_NUM:1:1}
+NBD_NUM=${VM_NUM:0:1}
 
 
 modprobe nbd max_part=16
@@ -49,7 +51,7 @@ mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
 #vgchange -ay vg_$VM_NUM
 
 # VM clone setup
-$WORK_DIR/clone_vyos.sh $VM_NUM
+$WORK_DIR/clone_vyos.sh $VM_NUM $VYOS_NETWORK_BRIDGE $GROUP_NETWORK_BRIDGE
 
 # Phisical Volume umount
 umount /mnt/vm$VM_NUM

@@ -2,19 +2,31 @@
 
 start_time=`date +%s`
 
+PROXMOX_MAX_NUM=9
 STUDENTS_PER_GROUP=4
-GROUP_NUM=6
+GROUP_MAX_NUM=9
 
-read -p "group number(1 ~ $GROUP_NUM): " group_num
-if [ $group_num -lt 1 ] || [ $GROUP_NUM -lt $group_num ]; then
+# TODO: 現在1のみ利用
+PROXMOX_NUM=1
+#read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
+#if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
+#    echo 'invalid'
+#    exit 1
+#else
+#    PROXMOX_NUM=$proxmox_num
+#fi
+
+# TODO: WEB_NUMとCLIENT_NUM割り当てのルール設定
+read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
+if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 else
     for g_num in `seq 1 $group_num`; do
-        #VYOS_NUM+=("5${group_num}1")
-        WEB_NUM+=("5${g_num}2")
+        VYOS_NUM+=("${g_num}01")
+        WEB_NUM+=("${g_num}02")
         for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
-            CLIENT_NUM+=("5${g_num}${i}")
+            CLIENT_NUM+=("${g_num}0${i}")
         done
     done
 fi

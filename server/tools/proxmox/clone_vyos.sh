@@ -1,14 +1,19 @@
 #!/bin/bash
+#TODO: テンプレートVMを指定する
 
-if [ $# -ne 1 ]; then
-  echo "Need new [VM num]"
-  echo "$0 [228]"
+if [ $# -ne 3 ]; then
+  echo "Need new [VM num] [VYOS_NETWORK_BRIDGE] [GROUP_NETWORK_BRIDGE]"
+  echo "example:"
+  echo "$0 111 1 132"
   exit 1
 fi
 
 VM_NUM=$1
-Proxmox_side_IP_ADDRESS="192.168.1.${VM_NUM:0:2}" # 上2桁
-VyOS_side_NETWORK="192.168.${VM_NUM:0:2}"
+VYOS_NETWORK_BRIDGE=$2
+GROUP_NETWORK_BRIDGE=$3
+# VYOS_NETWORK_BRIDGEとnetworkアドレスは同じ
+Proxmox_side_IP_ADDRESS="192.168.${VYOS_NETWORK_BRIDGE}.${GROUP_NETWORK_BRIDGE}"
+VyOS_side_NETWORK="192.168.${GROUP_NETWORK_BRIDGE}"
 MOUNT_DIR="/mnt/vm$VM_NUM"
 
 CONFIG_FILE="$MOUNT_DIR/boot/1.1.7/live-rw/config/config.boot"
