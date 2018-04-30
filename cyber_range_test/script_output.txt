@@ -1,0 +1,835 @@
+create full clone of drive ide0 (local:952/vm-952-disk-1.qcow2)
+Formatting '/var/lib/vz/images/101/vm-101-disk-1.qcow2', fmt=qcow2 size=34359738368 encryption=off cluster_size=65536 preallocation=metadata lazy_refcounts=off refcount_bits=16
+transferred: 0 bytes remaining: 34359738368 bytes total: 34359738368 bytes progression: 0.00 %
+transferred: 353905305 bytes remaining: 34005833063 bytes total: 34359738368 bytes progression: 1.03 %
+transferred: 831505668 bytes remaining: 33528232700 bytes total: 34359738368 bytes progression: 2.42 %
+transferred: 1181974999 bytes remaining: 33177763369 bytes total: 34359738368 bytes progression: 3.44 %
+transferred: 1529008357 bytes remaining: 32830730011 bytes total: 34359738368 bytes progression: 4.45 %
+transferred: 1876041714 bytes remaining: 32483696654 bytes total: 34359738368 bytes progression: 5.46 %
+transferred: 2226511046 bytes remaining: 32133227322 bytes total: 34359738368 bytes progression: 6.48 %
+transferred: 2573544403 bytes remaining: 31786193965 bytes total: 34359738368 bytes progression: 7.49 %
+transferred: 2924013735 bytes remaining: 31435724633 bytes total: 34359738368 bytes progression: 8.51 %
+transferred: 3271047092 bytes remaining: 31088691276 bytes total: 34359738368 bytes progression: 9.52 %
+transferred: 3618080450 bytes remaining: 30741657918 bytes total: 34359738368 bytes progression: 10.53 %
+transferred: 3968549781 bytes remaining: 30391188587 bytes total: 34359738368 bytes progression: 11.55 %
+transferred: 4315583139 bytes remaining: 30044155229 bytes total: 34359738368 bytes progression: 12.56 %
+transferred: 4666052470 bytes remaining: 29693685898 bytes total: 34359738368 bytes progression: 13.58 %
+transferred: 5013085827 bytes remaining: 29346652541 bytes total: 34359738368 bytes progression: 14.59 %
+transferred: 5360119185 bytes remaining: 28999619183 bytes total: 34359738368 bytes progression: 15.60 %
+transferred: 5710588516 bytes remaining: 28649149852 bytes total: 34359738368 bytes progression: 16.62 %
+transferred: 6057621874 bytes remaining: 28302116494 bytes total: 34359738368 bytes progression: 17.63 %
+transferred: 6404655231 bytes remaining: 27955083137 bytes total: 34359738368 bytes progression: 18.64 %
+transferred: 6755124563 bytes remaining: 27604613805 bytes total: 34359738368 bytes progression: 19.66 %
+transferred: 7102157920 bytes remaining: 27257580448 bytes total: 34359738368 bytes progression: 20.67 %
+transferred: 7452627252 bytes remaining: 26907111116 bytes total: 34359738368 bytes progression: 21.69 %
+transferred: 7799660609 bytes remaining: 26560077759 bytes total: 34359738368 bytes progression: 22.70 %
+transferred: 8146693967 bytes remaining: 26213044401 bytes total: 34359738368 bytes progression: 23.71 %
+transferred: 8497163298 bytes remaining: 25862575070 bytes total: 34359738368 bytes progression: 24.73 %
+transferred: 8844196655 bytes remaining: 25515541713 bytes total: 34359738368 bytes progression: 25.74 %
+transferred: 9191230013 bytes remaining: 25168508355 bytes total: 34359738368 bytes progression: 26.75 %
+transferred: 9541699344 bytes remaining: 24818039024 bytes total: 34359738368 bytes progression: 27.77 %
+transferred: 9888732702 bytes remaining: 24471005666 bytes total: 34359738368 bytes progression: 28.78 %
+transferred: 10239202033 bytes remaining: 24120536335 bytes total: 34359738368 bytes progression: 29.80 %
+transferred: 10586235391 bytes remaining: 23773502977 bytes total: 34359738368 bytes progression: 30.81 %
+transferred: 10933268748 bytes remaining: 23426469620 bytes total: 34359738368 bytes progression: 31.82 %
+transferred: 11283738080 bytes remaining: 23076000288 bytes total: 34359738368 bytes progression: 32.84 %
+transferred: 11630771437 bytes remaining: 22728966931 bytes total: 34359738368 bytes progression: 33.85 %
+transferred: 11977804795 bytes remaining: 22381933573 bytes total: 34359738368 bytes progression: 34.86 %
+transferred: 12328274126 bytes remaining: 22031464242 bytes total: 34359738368 bytes progression: 35.88 %
+transferred: 12675307483 bytes remaining: 21684430885 bytes total: 34359738368 bytes progression: 36.89 %
+transferred: 13025776815 bytes remaining: 21333961553 bytes total: 34359738368 bytes progression: 37.91 %
+transferred: 13372810172 bytes remaining: 20986928196 bytes total: 34359738368 bytes progression: 38.92 %
+transferred: 13719843530 bytes remaining: 20639894838 bytes total: 34359738368 bytes progression: 39.93 %
+transferred: 14070312861 bytes remaining: 20289425507 bytes total: 34359738368 bytes progression: 40.95 %
+transferred: 14417346219 bytes remaining: 19942392149 bytes total: 34359738368 bytes progression: 41.96 %
+transferred: 14764379576 bytes remaining: 19595358792 bytes total: 34359738368 bytes progression: 42.97 %
+transferred: 15114848908 bytes remaining: 19244889460 bytes total: 34359738368 bytes progression: 43.99 %
+transferred: 15461882265 bytes remaining: 18897856103 bytes total: 34359738368 bytes progression: 45.00 %
+transferred: 15812351596 bytes remaining: 18547386772 bytes total: 34359738368 bytes progression: 46.02 %
+transferred: 16159384954 bytes remaining: 18200353414 bytes total: 34359738368 bytes progression: 47.03 %
+transferred: 16506418311 bytes remaining: 17853320057 bytes total: 34359738368 bytes progression: 48.04 %
+transferred: 16856887643 bytes remaining: 17502850725 bytes total: 34359738368 bytes progression: 49.06 %
+transferred: 17203921000 bytes remaining: 17155817368 bytes total: 34359738368 bytes progression: 50.07 %
+transferred: 17554390332 bytes remaining: 16805348036 bytes total: 34359738368 bytes progression: 51.09 %
+transferred: 17901423689 bytes remaining: 16458314679 bytes total: 34359738368 bytes progression: 52.10 %
+transferred: 18248457047 bytes remaining: 16111281321 bytes total: 34359738368 bytes progression: 53.11 %
+transferred: 18598926378 bytes remaining: 15760811990 bytes total: 34359738368 bytes progression: 54.13 %
+transferred: 18945959736 bytes remaining: 15413778632 bytes total: 34359738368 bytes progression: 55.14 %
+transferred: 19292993093 bytes remaining: 15066745275 bytes total: 34359738368 bytes progression: 56.15 %
+transferred: 19643462424 bytes remaining: 14716275944 bytes total: 34359738368 bytes progression: 57.17 %
+transferred: 19990495782 bytes remaining: 14369242586 bytes total: 34359738368 bytes progression: 58.18 %
+transferred: 20340965113 bytes remaining: 14018773255 bytes total: 34359738368 bytes progression: 59.20 %
+transferred: 20691434445 bytes remaining: 13668303923 bytes total: 34359738368 bytes progression: 60.22 %
+transferred: 21052211698 bytes remaining: 13307526670 bytes total: 34359738368 bytes progression: 61.27 %
+transferred: 21399245055 bytes remaining: 12960493313 bytes total: 34359738368 bytes progression: 62.28 %
+transferred: 21749714386 bytes remaining: 12610023982 bytes total: 34359738368 bytes progression: 63.30 %
+transferred: 22096747744 bytes remaining: 12262990624 bytes total: 34359738368 bytes progression: 64.31 %
+transferred: 22553732264 bytes remaining: 11806006104 bytes total: 34359738368 bytes progression: 65.64 %
+transferred: 22904201596 bytes remaining: 11455536772 bytes total: 34359738368 bytes progression: 66.66 %
+transferred: 23289030665 bytes remaining: 11070707703 bytes total: 34359738368 bytes progression: 67.78 %
+transferred: 23697911552 bytes remaining: 10661826816 bytes total: 34359738368 bytes progression: 68.97 %
+transferred: 24082740622 bytes remaining: 10276997746 bytes total: 34359738368 bytes progression: 70.09 %
+transferred: 24453825796 bytes remaining: 9905912572 bytes total: 34359738368 bytes progression: 71.17 %
+transferred: 24855834735 bytes remaining: 9503903633 bytes total: 34359738368 bytes progression: 72.34 %
+transferred: 25244099778 bytes remaining: 9115638590 bytes total: 34359738368 bytes progression: 73.47 %
+transferred: 25611748979 bytes remaining: 8747989389 bytes total: 34359738368 bytes progression: 74.54 %
+transferred: 25989706101 bytes remaining: 8370032267 bytes total: 34359738368 bytes progression: 75.64 %
+transferred: 26336739459 bytes remaining: 8022998909 bytes total: 34359738368 bytes progression: 76.65 %
+transferred: 26687208790 bytes remaining: 7672529578 bytes total: 34359738368 bytes progression: 77.67 %
+transferred: 27034242147 bytes remaining: 7325496221 bytes total: 34359738368 bytes progression: 78.68 %
+transferred: 27381275505 bytes remaining: 6978462863 bytes total: 34359738368 bytes progression: 79.69 %
+transferred: 27731744836 bytes remaining: 6627993532 bytes total: 34359738368 bytes progression: 80.71 %
+transferred: 28078778194 bytes remaining: 6280960174 bytes total: 34359738368 bytes progression: 81.72 %
+transferred: 28425811551 bytes remaining: 5933926817 bytes total: 34359738368 bytes progression: 82.73 %
+transferred: 28776280883 bytes remaining: 5583457485 bytes total: 34359738368 bytes progression: 83.75 %
+transferred: 29123314240 bytes remaining: 5236424128 bytes total: 34359738368 bytes progression: 84.76 %
+transferred: 29473783572 bytes remaining: 4885954796 bytes total: 34359738368 bytes progression: 85.78 %
+transferred: 29820816929 bytes remaining: 4538921439 bytes total: 34359738368 bytes progression: 86.79 %
+transferred: 30167850287 bytes remaining: 4191888081 bytes total: 34359738368 bytes progression: 87.80 %
+transferred: 30518319618 bytes remaining: 3841418750 bytes total: 34359738368 bytes progression: 88.82 %
+transferred: 30865352975 bytes remaining: 3494385393 bytes total: 34359738368 bytes progression: 89.83 %
+transferred: 31212386333 bytes remaining: 3147352035 bytes total: 34359738368 bytes progression: 90.84 %
+transferred: 31562855664 bytes remaining: 2796882704 bytes total: 34359738368 bytes progression: 91.86 %
+transferred: 31909889022 bytes remaining: 2449849346 bytes total: 34359738368 bytes progression: 92.87 %
+transferred: 32260358353 bytes remaining: 2099380015 bytes total: 34359738368 bytes progression: 93.89 %
+transferred: 32607391711 bytes remaining: 1752346657 bytes total: 34359738368 bytes progression: 94.90 %
+transferred: 32954425068 bytes remaining: 1405313300 bytes total: 34359738368 bytes progression: 95.91 %
+transferred: 33304894400 bytes remaining: 1054843968 bytes total: 34359738368 bytes progression: 96.93 %
+transferred: 33651927757 bytes remaining: 707810611 bytes total: 34359738368 bytes progression: 97.94 %
+transferred: 33998961115 bytes remaining: 360777253 bytes total: 34359738368 bytes progression: 98.95 %
+transferred: 34349430446 bytes remaining: 10307922 bytes total: 34359738368 bytes progression: 99.97 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+/dev/nbd1 disconnected
+create full clone of drive ide0 (local:952/vm-952-disk-1.qcow2)
+Formatting '/var/lib/vz/images/201/vm-201-disk-1.qcow2', fmt=qcow2 size=34359738368 encryption=off cluster_size=65536 preallocation=metadata lazy_refcounts=off refcount_bits=16
+transferred: 0 bytes remaining: 34359738368 bytes total: 34359738368 bytes progression: 0.00 %
+transferred: 353905305 bytes remaining: 34005833063 bytes total: 34359738368 bytes progression: 1.03 %
+transferred: 831505668 bytes remaining: 33528232700 bytes total: 34359738368 bytes progression: 2.42 %
+transferred: 1181974999 bytes remaining: 33177763369 bytes total: 34359738368 bytes progression: 3.44 %
+transferred: 1529008357 bytes remaining: 32830730011 bytes total: 34359738368 bytes progression: 4.45 %
+transferred: 1876041714 bytes remaining: 32483696654 bytes total: 34359738368 bytes progression: 5.46 %
+transferred: 2226511046 bytes remaining: 32133227322 bytes total: 34359738368 bytes progression: 6.48 %
+transferred: 2573544403 bytes remaining: 31786193965 bytes total: 34359738368 bytes progression: 7.49 %
+transferred: 2924013735 bytes remaining: 31435724633 bytes total: 34359738368 bytes progression: 8.51 %
+transferred: 3271047092 bytes remaining: 31088691276 bytes total: 34359738368 bytes progression: 9.52 %
+transferred: 3618080450 bytes remaining: 30741657918 bytes total: 34359738368 bytes progression: 10.53 %
+transferred: 3968549781 bytes remaining: 30391188587 bytes total: 34359738368 bytes progression: 11.55 %
+transferred: 4315583139 bytes remaining: 30044155229 bytes total: 34359738368 bytes progression: 12.56 %
+transferred: 4666052470 bytes remaining: 29693685898 bytes total: 34359738368 bytes progression: 13.58 %
+transferred: 5013085827 bytes remaining: 29346652541 bytes total: 34359738368 bytes progression: 14.59 %
+transferred: 5360119185 bytes remaining: 28999619183 bytes total: 34359738368 bytes progression: 15.60 %
+transferred: 5710588516 bytes remaining: 28649149852 bytes total: 34359738368 bytes progression: 16.62 %
+transferred: 6057621874 bytes remaining: 28302116494 bytes total: 34359738368 bytes progression: 17.63 %
+transferred: 6404655231 bytes remaining: 27955083137 bytes total: 34359738368 bytes progression: 18.64 %
+transferred: 6755124563 bytes remaining: 27604613805 bytes total: 34359738368 bytes progression: 19.66 %
+transferred: 7102157920 bytes remaining: 27257580448 bytes total: 34359738368 bytes progression: 20.67 %
+transferred: 7452627252 bytes remaining: 26907111116 bytes total: 34359738368 bytes progression: 21.69 %
+transferred: 7799660609 bytes remaining: 26560077759 bytes total: 34359738368 bytes progression: 22.70 %
+transferred: 8146693967 bytes remaining: 26213044401 bytes total: 34359738368 bytes progression: 23.71 %
+transferred: 8497163298 bytes remaining: 25862575070 bytes total: 34359738368 bytes progression: 24.73 %
+transferred: 8844196655 bytes remaining: 25515541713 bytes total: 34359738368 bytes progression: 25.74 %
+transferred: 9191230013 bytes remaining: 25168508355 bytes total: 34359738368 bytes progression: 26.75 %
+transferred: 9541699344 bytes remaining: 24818039024 bytes total: 34359738368 bytes progression: 27.77 %
+transferred: 9888732702 bytes remaining: 24471005666 bytes total: 34359738368 bytes progression: 28.78 %
+transferred: 10239202033 bytes remaining: 24120536335 bytes total: 34359738368 bytes progression: 29.80 %
+transferred: 10586235391 bytes remaining: 23773502977 bytes total: 34359738368 bytes progression: 30.81 %
+transferred: 10933268748 bytes remaining: 23426469620 bytes total: 34359738368 bytes progression: 31.82 %
+transferred: 11283738080 bytes remaining: 23076000288 bytes total: 34359738368 bytes progression: 32.84 %
+transferred: 11630771437 bytes remaining: 22728966931 bytes total: 34359738368 bytes progression: 33.85 %
+transferred: 11977804795 bytes remaining: 22381933573 bytes total: 34359738368 bytes progression: 34.86 %
+transferred: 12328274126 bytes remaining: 22031464242 bytes total: 34359738368 bytes progression: 35.88 %
+transferred: 12675307483 bytes remaining: 21684430885 bytes total: 34359738368 bytes progression: 36.89 %
+transferred: 13025776815 bytes remaining: 21333961553 bytes total: 34359738368 bytes progression: 37.91 %
+transferred: 13372810172 bytes remaining: 20986928196 bytes total: 34359738368 bytes progression: 38.92 %
+transferred: 13719843530 bytes remaining: 20639894838 bytes total: 34359738368 bytes progression: 39.93 %
+transferred: 14070312861 bytes remaining: 20289425507 bytes total: 34359738368 bytes progression: 40.95 %
+transferred: 14417346219 bytes remaining: 19942392149 bytes total: 34359738368 bytes progression: 41.96 %
+transferred: 14764379576 bytes remaining: 19595358792 bytes total: 34359738368 bytes progression: 42.97 %
+transferred: 15114848908 bytes remaining: 19244889460 bytes total: 34359738368 bytes progression: 43.99 %
+transferred: 15461882265 bytes remaining: 18897856103 bytes total: 34359738368 bytes progression: 45.00 %
+transferred: 15812351596 bytes remaining: 18547386772 bytes total: 34359738368 bytes progression: 46.02 %
+transferred: 16159384954 bytes remaining: 18200353414 bytes total: 34359738368 bytes progression: 47.03 %
+transferred: 16506418311 bytes remaining: 17853320057 bytes total: 34359738368 bytes progression: 48.04 %
+transferred: 16856887643 bytes remaining: 17502850725 bytes total: 34359738368 bytes progression: 49.06 %
+transferred: 17203921000 bytes remaining: 17155817368 bytes total: 34359738368 bytes progression: 50.07 %
+transferred: 17554390332 bytes remaining: 16805348036 bytes total: 34359738368 bytes progression: 51.09 %
+transferred: 17901423689 bytes remaining: 16458314679 bytes total: 34359738368 bytes progression: 52.10 %
+transferred: 18248457047 bytes remaining: 16111281321 bytes total: 34359738368 bytes progression: 53.11 %
+transferred: 18598926378 bytes remaining: 15760811990 bytes total: 34359738368 bytes progression: 54.13 %
+transferred: 18945959736 bytes remaining: 15413778632 bytes total: 34359738368 bytes progression: 55.14 %
+transferred: 19292993093 bytes remaining: 15066745275 bytes total: 34359738368 bytes progression: 56.15 %
+transferred: 19643462424 bytes remaining: 14716275944 bytes total: 34359738368 bytes progression: 57.17 %
+transferred: 19990495782 bytes remaining: 14369242586 bytes total: 34359738368 bytes progression: 58.18 %
+transferred: 20340965113 bytes remaining: 14018773255 bytes total: 34359738368 bytes progression: 59.20 %
+transferred: 20691434445 bytes remaining: 13668303923 bytes total: 34359738368 bytes progression: 60.22 %
+transferred: 21052211698 bytes remaining: 13307526670 bytes total: 34359738368 bytes progression: 61.27 %
+transferred: 21399245055 bytes remaining: 12960493313 bytes total: 34359738368 bytes progression: 62.28 %
+transferred: 21749714386 bytes remaining: 12610023982 bytes total: 34359738368 bytes progression: 63.30 %
+transferred: 22096747744 bytes remaining: 12262990624 bytes total: 34359738368 bytes progression: 64.31 %
+transferred: 22553732264 bytes remaining: 11806006104 bytes total: 34359738368 bytes progression: 65.64 %
+transferred: 22904201596 bytes remaining: 11455536772 bytes total: 34359738368 bytes progression: 66.66 %
+transferred: 23289030665 bytes remaining: 11070707703 bytes total: 34359738368 bytes progression: 67.78 %
+transferred: 23697911552 bytes remaining: 10661826816 bytes total: 34359738368 bytes progression: 68.97 %
+transferred: 24082740622 bytes remaining: 10276997746 bytes total: 34359738368 bytes progression: 70.09 %
+transferred: 24453825796 bytes remaining: 9905912572 bytes total: 34359738368 bytes progression: 71.17 %
+transferred: 24855834735 bytes remaining: 9503903633 bytes total: 34359738368 bytes progression: 72.34 %
+transferred: 25244099778 bytes remaining: 9115638590 bytes total: 34359738368 bytes progression: 73.47 %
+transferred: 25611748979 bytes remaining: 8747989389 bytes total: 34359738368 bytes progression: 74.54 %
+transferred: 25989706101 bytes remaining: 8370032267 bytes total: 34359738368 bytes progression: 75.64 %
+transferred: 26336739459 bytes remaining: 8022998909 bytes total: 34359738368 bytes progression: 76.65 %
+transferred: 26687208790 bytes remaining: 7672529578 bytes total: 34359738368 bytes progression: 77.67 %
+transferred: 27034242147 bytes remaining: 7325496221 bytes total: 34359738368 bytes progression: 78.68 %
+transferred: 27381275505 bytes remaining: 6978462863 bytes total: 34359738368 bytes progression: 79.69 %
+transferred: 27731744836 bytes remaining: 6627993532 bytes total: 34359738368 bytes progression: 80.71 %
+transferred: 28078778194 bytes remaining: 6280960174 bytes total: 34359738368 bytes progression: 81.72 %
+transferred: 28425811551 bytes remaining: 5933926817 bytes total: 34359738368 bytes progression: 82.73 %
+transferred: 28776280883 bytes remaining: 5583457485 bytes total: 34359738368 bytes progression: 83.75 %
+transferred: 29123314240 bytes remaining: 5236424128 bytes total: 34359738368 bytes progression: 84.76 %
+transferred: 29473783572 bytes remaining: 4885954796 bytes total: 34359738368 bytes progression: 85.78 %
+transferred: 29820816929 bytes remaining: 4538921439 bytes total: 34359738368 bytes progression: 86.79 %
+transferred: 30167850287 bytes remaining: 4191888081 bytes total: 34359738368 bytes progression: 87.80 %
+transferred: 30518319618 bytes remaining: 3841418750 bytes total: 34359738368 bytes progression: 88.82 %
+transferred: 30865352975 bytes remaining: 3494385393 bytes total: 34359738368 bytes progression: 89.83 %
+transferred: 31212386333 bytes remaining: 3147352035 bytes total: 34359738368 bytes progression: 90.84 %
+transferred: 31562855664 bytes remaining: 2796882704 bytes total: 34359738368 bytes progression: 91.86 %
+transferred: 31909889022 bytes remaining: 2449849346 bytes total: 34359738368 bytes progression: 92.87 %
+transferred: 32260358353 bytes remaining: 2099380015 bytes total: 34359738368 bytes progression: 93.89 %
+transferred: 32607391711 bytes remaining: 1752346657 bytes total: 34359738368 bytes progression: 94.90 %
+transferred: 32954425068 bytes remaining: 1405313300 bytes total: 34359738368 bytes progression: 95.91 %
+transferred: 33304894400 bytes remaining: 1054843968 bytes total: 34359738368 bytes progression: 96.93 %
+transferred: 33651927757 bytes remaining: 707810611 bytes total: 34359738368 bytes progression: 97.94 %
+transferred: 33998961115 bytes remaining: 360777253 bytes total: 34359738368 bytes progression: 98.95 %
+transferred: 34349430446 bytes remaining: 10307922 bytes total: 34359738368 bytes progression: 99.97 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+/dev/nbd2 disconnected
+create full clone of drive ide0 (local:952/vm-952-disk-1.qcow2)
+Formatting '/var/lib/vz/images/301/vm-301-disk-1.qcow2', fmt=qcow2 size=34359738368 encryption=off cluster_size=65536 preallocation=metadata lazy_refcounts=off refcount_bits=16
+transferred: 0 bytes remaining: 34359738368 bytes total: 34359738368 bytes progression: 0.00 %
+transferred: 353905305 bytes remaining: 34005833063 bytes total: 34359738368 bytes progression: 1.03 %
+transferred: 831505668 bytes remaining: 33528232700 bytes total: 34359738368 bytes progression: 2.42 %
+transferred: 1181974999 bytes remaining: 33177763369 bytes total: 34359738368 bytes progression: 3.44 %
+transferred: 1529008357 bytes remaining: 32830730011 bytes total: 34359738368 bytes progression: 4.45 %
+transferred: 1876041714 bytes remaining: 32483696654 bytes total: 34359738368 bytes progression: 5.46 %
+transferred: 2226511046 bytes remaining: 32133227322 bytes total: 34359738368 bytes progression: 6.48 %
+transferred: 2573544403 bytes remaining: 31786193965 bytes total: 34359738368 bytes progression: 7.49 %
+transferred: 2924013735 bytes remaining: 31435724633 bytes total: 34359738368 bytes progression: 8.51 %
+transferred: 3271047092 bytes remaining: 31088691276 bytes total: 34359738368 bytes progression: 9.52 %
+transferred: 3618080450 bytes remaining: 30741657918 bytes total: 34359738368 bytes progression: 10.53 %
+transferred: 3968549781 bytes remaining: 30391188587 bytes total: 34359738368 bytes progression: 11.55 %
+transferred: 4315583139 bytes remaining: 30044155229 bytes total: 34359738368 bytes progression: 12.56 %
+transferred: 4666052470 bytes remaining: 29693685898 bytes total: 34359738368 bytes progression: 13.58 %
+transferred: 5013085827 bytes remaining: 29346652541 bytes total: 34359738368 bytes progression: 14.59 %
+transferred: 5360119185 bytes remaining: 28999619183 bytes total: 34359738368 bytes progression: 15.60 %
+transferred: 5710588516 bytes remaining: 28649149852 bytes total: 34359738368 bytes progression: 16.62 %
+transferred: 6057621874 bytes remaining: 28302116494 bytes total: 34359738368 bytes progression: 17.63 %
+transferred: 6404655231 bytes remaining: 27955083137 bytes total: 34359738368 bytes progression: 18.64 %
+transferred: 6755124563 bytes remaining: 27604613805 bytes total: 34359738368 bytes progression: 19.66 %
+transferred: 7102157920 bytes remaining: 27257580448 bytes total: 34359738368 bytes progression: 20.67 %
+transferred: 7452627252 bytes remaining: 26907111116 bytes total: 34359738368 bytes progression: 21.69 %
+transferred: 7799660609 bytes remaining: 26560077759 bytes total: 34359738368 bytes progression: 22.70 %
+transferred: 8146693967 bytes remaining: 26213044401 bytes total: 34359738368 bytes progression: 23.71 %
+transferred: 8497163298 bytes remaining: 25862575070 bytes total: 34359738368 bytes progression: 24.73 %
+transferred: 8844196655 bytes remaining: 25515541713 bytes total: 34359738368 bytes progression: 25.74 %
+transferred: 9191230013 bytes remaining: 25168508355 bytes total: 34359738368 bytes progression: 26.75 %
+transferred: 9541699344 bytes remaining: 24818039024 bytes total: 34359738368 bytes progression: 27.77 %
+transferred: 9888732702 bytes remaining: 24471005666 bytes total: 34359738368 bytes progression: 28.78 %
+transferred: 10239202033 bytes remaining: 24120536335 bytes total: 34359738368 bytes progression: 29.80 %
+transferred: 10586235391 bytes remaining: 23773502977 bytes total: 34359738368 bytes progression: 30.81 %
+transferred: 10933268748 bytes remaining: 23426469620 bytes total: 34359738368 bytes progression: 31.82 %
+transferred: 11283738080 bytes remaining: 23076000288 bytes total: 34359738368 bytes progression: 32.84 %
+transferred: 11630771437 bytes remaining: 22728966931 bytes total: 34359738368 bytes progression: 33.85 %
+transferred: 11977804795 bytes remaining: 22381933573 bytes total: 34359738368 bytes progression: 34.86 %
+transferred: 12328274126 bytes remaining: 22031464242 bytes total: 34359738368 bytes progression: 35.88 %
+transferred: 12675307483 bytes remaining: 21684430885 bytes total: 34359738368 bytes progression: 36.89 %
+transferred: 13025776815 bytes remaining: 21333961553 bytes total: 34359738368 bytes progression: 37.91 %
+transferred: 13372810172 bytes remaining: 20986928196 bytes total: 34359738368 bytes progression: 38.92 %
+transferred: 13719843530 bytes remaining: 20639894838 bytes total: 34359738368 bytes progression: 39.93 %
+transferred: 14070312861 bytes remaining: 20289425507 bytes total: 34359738368 bytes progression: 40.95 %
+transferred: 14417346219 bytes remaining: 19942392149 bytes total: 34359738368 bytes progression: 41.96 %
+transferred: 14764379576 bytes remaining: 19595358792 bytes total: 34359738368 bytes progression: 42.97 %
+transferred: 15114848908 bytes remaining: 19244889460 bytes total: 34359738368 bytes progression: 43.99 %
+transferred: 15461882265 bytes remaining: 18897856103 bytes total: 34359738368 bytes progression: 45.00 %
+transferred: 15812351596 bytes remaining: 18547386772 bytes total: 34359738368 bytes progression: 46.02 %
+transferred: 16159384954 bytes remaining: 18200353414 bytes total: 34359738368 bytes progression: 47.03 %
+transferred: 16506418311 bytes remaining: 17853320057 bytes total: 34359738368 bytes progression: 48.04 %
+transferred: 16856887643 bytes remaining: 17502850725 bytes total: 34359738368 bytes progression: 49.06 %
+transferred: 17203921000 bytes remaining: 17155817368 bytes total: 34359738368 bytes progression: 50.07 %
+transferred: 17554390332 bytes remaining: 16805348036 bytes total: 34359738368 bytes progression: 51.09 %
+transferred: 17901423689 bytes remaining: 16458314679 bytes total: 34359738368 bytes progression: 52.10 %
+transferred: 18248457047 bytes remaining: 16111281321 bytes total: 34359738368 bytes progression: 53.11 %
+transferred: 18598926378 bytes remaining: 15760811990 bytes total: 34359738368 bytes progression: 54.13 %
+transferred: 18945959736 bytes remaining: 15413778632 bytes total: 34359738368 bytes progression: 55.14 %
+transferred: 19292993093 bytes remaining: 15066745275 bytes total: 34359738368 bytes progression: 56.15 %
+transferred: 19643462424 bytes remaining: 14716275944 bytes total: 34359738368 bytes progression: 57.17 %
+transferred: 19990495782 bytes remaining: 14369242586 bytes total: 34359738368 bytes progression: 58.18 %
+transferred: 20340965113 bytes remaining: 14018773255 bytes total: 34359738368 bytes progression: 59.20 %
+transferred: 20691434445 bytes remaining: 13668303923 bytes total: 34359738368 bytes progression: 60.22 %
+transferred: 21052211698 bytes remaining: 13307526670 bytes total: 34359738368 bytes progression: 61.27 %
+transferred: 21399245055 bytes remaining: 12960493313 bytes total: 34359738368 bytes progression: 62.28 %
+transferred: 21749714386 bytes remaining: 12610023982 bytes total: 34359738368 bytes progression: 63.30 %
+transferred: 22096747744 bytes remaining: 12262990624 bytes total: 34359738368 bytes progression: 64.31 %
+transferred: 22553732264 bytes remaining: 11806006104 bytes total: 34359738368 bytes progression: 65.64 %
+transferred: 22904201596 bytes remaining: 11455536772 bytes total: 34359738368 bytes progression: 66.66 %
+transferred: 23289030665 bytes remaining: 11070707703 bytes total: 34359738368 bytes progression: 67.78 %
+transferred: 23697911552 bytes remaining: 10661826816 bytes total: 34359738368 bytes progression: 68.97 %
+transferred: 24082740622 bytes remaining: 10276997746 bytes total: 34359738368 bytes progression: 70.09 %
+transferred: 24453825796 bytes remaining: 9905912572 bytes total: 34359738368 bytes progression: 71.17 %
+transferred: 24855834735 bytes remaining: 9503903633 bytes total: 34359738368 bytes progression: 72.34 %
+transferred: 25244099778 bytes remaining: 9115638590 bytes total: 34359738368 bytes progression: 73.47 %
+transferred: 25611748979 bytes remaining: 8747989389 bytes total: 34359738368 bytes progression: 74.54 %
+transferred: 25989706101 bytes remaining: 8370032267 bytes total: 34359738368 bytes progression: 75.64 %
+transferred: 26336739459 bytes remaining: 8022998909 bytes total: 34359738368 bytes progression: 76.65 %
+transferred: 26687208790 bytes remaining: 7672529578 bytes total: 34359738368 bytes progression: 77.67 %
+transferred: 27034242147 bytes remaining: 7325496221 bytes total: 34359738368 bytes progression: 78.68 %
+transferred: 27381275505 bytes remaining: 6978462863 bytes total: 34359738368 bytes progression: 79.69 %
+transferred: 27731744836 bytes remaining: 6627993532 bytes total: 34359738368 bytes progression: 80.71 %
+transferred: 28078778194 bytes remaining: 6280960174 bytes total: 34359738368 bytes progression: 81.72 %
+transferred: 28425811551 bytes remaining: 5933926817 bytes total: 34359738368 bytes progression: 82.73 %
+transferred: 28776280883 bytes remaining: 5583457485 bytes total: 34359738368 bytes progression: 83.75 %
+transferred: 29123314240 bytes remaining: 5236424128 bytes total: 34359738368 bytes progression: 84.76 %
+transferred: 29473783572 bytes remaining: 4885954796 bytes total: 34359738368 bytes progression: 85.78 %
+transferred: 29820816929 bytes remaining: 4538921439 bytes total: 34359738368 bytes progression: 86.79 %
+transferred: 30167850287 bytes remaining: 4191888081 bytes total: 34359738368 bytes progression: 87.80 %
+transferred: 30518319618 bytes remaining: 3841418750 bytes total: 34359738368 bytes progression: 88.82 %
+transferred: 30865352975 bytes remaining: 3494385393 bytes total: 34359738368 bytes progression: 89.83 %
+transferred: 31212386333 bytes remaining: 3147352035 bytes total: 34359738368 bytes progression: 90.84 %
+transferred: 31562855664 bytes remaining: 2796882704 bytes total: 34359738368 bytes progression: 91.86 %
+transferred: 31909889022 bytes remaining: 2449849346 bytes total: 34359738368 bytes progression: 92.87 %
+transferred: 32260358353 bytes remaining: 2099380015 bytes total: 34359738368 bytes progression: 93.89 %
+transferred: 32607391711 bytes remaining: 1752346657 bytes total: 34359738368 bytes progression: 94.90 %
+transferred: 32954425068 bytes remaining: 1405313300 bytes total: 34359738368 bytes progression: 95.91 %
+transferred: 33304894400 bytes remaining: 1054843968 bytes total: 34359738368 bytes progression: 96.93 %
+transferred: 33651927757 bytes remaining: 707810611 bytes total: 34359738368 bytes progression: 97.94 %
+transferred: 33998961115 bytes remaining: 360777253 bytes total: 34359738368 bytes progression: 98.95 %
+transferred: 34349430446 bytes remaining: 10307922 bytes total: 34359738368 bytes progression: 99.97 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+/dev/nbd3 disconnected
+create full clone of drive ide0 (local:952/vm-952-disk-1.qcow2)
+Formatting '/var/lib/vz/images/401/vm-401-disk-1.qcow2', fmt=qcow2 size=34359738368 encryption=off cluster_size=65536 preallocation=metadata lazy_refcounts=off refcount_bits=16
+transferred: 0 bytes remaining: 34359738368 bytes total: 34359738368 bytes progression: 0.00 %
+transferred: 353905305 bytes remaining: 34005833063 bytes total: 34359738368 bytes progression: 1.03 %
+transferred: 831505668 bytes remaining: 33528232700 bytes total: 34359738368 bytes progression: 2.42 %
+transferred: 1181974999 bytes remaining: 33177763369 bytes total: 34359738368 bytes progression: 3.44 %
+transferred: 1529008357 bytes remaining: 32830730011 bytes total: 34359738368 bytes progression: 4.45 %
+transferred: 1876041714 bytes remaining: 32483696654 bytes total: 34359738368 bytes progression: 5.46 %
+transferred: 2226511046 bytes remaining: 32133227322 bytes total: 34359738368 bytes progression: 6.48 %
+transferred: 2573544403 bytes remaining: 31786193965 bytes total: 34359738368 bytes progression: 7.49 %
+transferred: 2924013735 bytes remaining: 31435724633 bytes total: 34359738368 bytes progression: 8.51 %
+transferred: 3271047092 bytes remaining: 31088691276 bytes total: 34359738368 bytes progression: 9.52 %
+transferred: 3618080450 bytes remaining: 30741657918 bytes total: 34359738368 bytes progression: 10.53 %
+transferred: 3968549781 bytes remaining: 30391188587 bytes total: 34359738368 bytes progression: 11.55 %
+transferred: 4315583139 bytes remaining: 30044155229 bytes total: 34359738368 bytes progression: 12.56 %
+transferred: 4666052470 bytes remaining: 29693685898 bytes total: 34359738368 bytes progression: 13.58 %
+transferred: 5013085827 bytes remaining: 29346652541 bytes total: 34359738368 bytes progression: 14.59 %
+transferred: 5360119185 bytes remaining: 28999619183 bytes total: 34359738368 bytes progression: 15.60 %
+transferred: 5710588516 bytes remaining: 28649149852 bytes total: 34359738368 bytes progression: 16.62 %
+transferred: 6057621874 bytes remaining: 28302116494 bytes total: 34359738368 bytes progression: 17.63 %
+transferred: 6404655231 bytes remaining: 27955083137 bytes total: 34359738368 bytes progression: 18.64 %
+transferred: 6755124563 bytes remaining: 27604613805 bytes total: 34359738368 bytes progression: 19.66 %
+transferred: 7102157920 bytes remaining: 27257580448 bytes total: 34359738368 bytes progression: 20.67 %
+transferred: 7452627252 bytes remaining: 26907111116 bytes total: 34359738368 bytes progression: 21.69 %
+transferred: 7799660609 bytes remaining: 26560077759 bytes total: 34359738368 bytes progression: 22.70 %
+transferred: 8146693967 bytes remaining: 26213044401 bytes total: 34359738368 bytes progression: 23.71 %
+transferred: 8497163298 bytes remaining: 25862575070 bytes total: 34359738368 bytes progression: 24.73 %
+transferred: 8844196655 bytes remaining: 25515541713 bytes total: 34359738368 bytes progression: 25.74 %
+transferred: 9191230013 bytes remaining: 25168508355 bytes total: 34359738368 bytes progression: 26.75 %
+transferred: 9541699344 bytes remaining: 24818039024 bytes total: 34359738368 bytes progression: 27.77 %
+transferred: 9888732702 bytes remaining: 24471005666 bytes total: 34359738368 bytes progression: 28.78 %
+transferred: 10239202033 bytes remaining: 24120536335 bytes total: 34359738368 bytes progression: 29.80 %
+transferred: 10586235391 bytes remaining: 23773502977 bytes total: 34359738368 bytes progression: 30.81 %
+transferred: 10933268748 bytes remaining: 23426469620 bytes total: 34359738368 bytes progression: 31.82 %
+transferred: 11283738080 bytes remaining: 23076000288 bytes total: 34359738368 bytes progression: 32.84 %
+transferred: 11630771437 bytes remaining: 22728966931 bytes total: 34359738368 bytes progression: 33.85 %
+transferred: 11977804795 bytes remaining: 22381933573 bytes total: 34359738368 bytes progression: 34.86 %
+transferred: 12328274126 bytes remaining: 22031464242 bytes total: 34359738368 bytes progression: 35.88 %
+transferred: 12675307483 bytes remaining: 21684430885 bytes total: 34359738368 bytes progression: 36.89 %
+transferred: 13025776815 bytes remaining: 21333961553 bytes total: 34359738368 bytes progression: 37.91 %
+transferred: 13372810172 bytes remaining: 20986928196 bytes total: 34359738368 bytes progression: 38.92 %
+transferred: 13719843530 bytes remaining: 20639894838 bytes total: 34359738368 bytes progression: 39.93 %
+transferred: 14070312861 bytes remaining: 20289425507 bytes total: 34359738368 bytes progression: 40.95 %
+transferred: 14417346219 bytes remaining: 19942392149 bytes total: 34359738368 bytes progression: 41.96 %
+transferred: 14764379576 bytes remaining: 19595358792 bytes total: 34359738368 bytes progression: 42.97 %
+transferred: 15114848908 bytes remaining: 19244889460 bytes total: 34359738368 bytes progression: 43.99 %
+transferred: 15461882265 bytes remaining: 18897856103 bytes total: 34359738368 bytes progression: 45.00 %
+transferred: 15812351596 bytes remaining: 18547386772 bytes total: 34359738368 bytes progression: 46.02 %
+transferred: 16159384954 bytes remaining: 18200353414 bytes total: 34359738368 bytes progression: 47.03 %
+transferred: 16506418311 bytes remaining: 17853320057 bytes total: 34359738368 bytes progression: 48.04 %
+transferred: 16856887643 bytes remaining: 17502850725 bytes total: 34359738368 bytes progression: 49.06 %
+transferred: 17203921000 bytes remaining: 17155817368 bytes total: 34359738368 bytes progression: 50.07 %
+transferred: 17554390332 bytes remaining: 16805348036 bytes total: 34359738368 bytes progression: 51.09 %
+transferred: 17901423689 bytes remaining: 16458314679 bytes total: 34359738368 bytes progression: 52.10 %
+transferred: 18248457047 bytes remaining: 16111281321 bytes total: 34359738368 bytes progression: 53.11 %
+transferred: 18598926378 bytes remaining: 15760811990 bytes total: 34359738368 bytes progression: 54.13 %
+transferred: 18945959736 bytes remaining: 15413778632 bytes total: 34359738368 bytes progression: 55.14 %
+transferred: 19292993093 bytes remaining: 15066745275 bytes total: 34359738368 bytes progression: 56.15 %
+transferred: 19643462424 bytes remaining: 14716275944 bytes total: 34359738368 bytes progression: 57.17 %
+transferred: 19990495782 bytes remaining: 14369242586 bytes total: 34359738368 bytes progression: 58.18 %
+transferred: 20340965113 bytes remaining: 14018773255 bytes total: 34359738368 bytes progression: 59.20 %
+transferred: 20691434445 bytes remaining: 13668303923 bytes total: 34359738368 bytes progression: 60.22 %
+transferred: 21052211698 bytes remaining: 13307526670 bytes total: 34359738368 bytes progression: 61.27 %
+transferred: 21399245055 bytes remaining: 12960493313 bytes total: 34359738368 bytes progression: 62.28 %
+transferred: 21749714386 bytes remaining: 12610023982 bytes total: 34359738368 bytes progression: 63.30 %
+transferred: 22096747744 bytes remaining: 12262990624 bytes total: 34359738368 bytes progression: 64.31 %
+transferred: 22553732264 bytes remaining: 11806006104 bytes total: 34359738368 bytes progression: 65.64 %
+transferred: 22904201596 bytes remaining: 11455536772 bytes total: 34359738368 bytes progression: 66.66 %
+transferred: 23289030665 bytes remaining: 11070707703 bytes total: 34359738368 bytes progression: 67.78 %
+transferred: 23697911552 bytes remaining: 10661826816 bytes total: 34359738368 bytes progression: 68.97 %
+transferred: 24082740622 bytes remaining: 10276997746 bytes total: 34359738368 bytes progression: 70.09 %
+transferred: 24453825796 bytes remaining: 9905912572 bytes total: 34359738368 bytes progression: 71.17 %
+transferred: 24855834735 bytes remaining: 9503903633 bytes total: 34359738368 bytes progression: 72.34 %
+transferred: 25244099778 bytes remaining: 9115638590 bytes total: 34359738368 bytes progression: 73.47 %
+transferred: 25611748979 bytes remaining: 8747989389 bytes total: 34359738368 bytes progression: 74.54 %
+transferred: 25989706101 bytes remaining: 8370032267 bytes total: 34359738368 bytes progression: 75.64 %
+transferred: 26336739459 bytes remaining: 8022998909 bytes total: 34359738368 bytes progression: 76.65 %
+transferred: 26687208790 bytes remaining: 7672529578 bytes total: 34359738368 bytes progression: 77.67 %
+transferred: 27034242147 bytes remaining: 7325496221 bytes total: 34359738368 bytes progression: 78.68 %
+transferred: 27381275505 bytes remaining: 6978462863 bytes total: 34359738368 bytes progression: 79.69 %
+transferred: 27731744836 bytes remaining: 6627993532 bytes total: 34359738368 bytes progression: 80.71 %
+transferred: 28078778194 bytes remaining: 6280960174 bytes total: 34359738368 bytes progression: 81.72 %
+transferred: 28425811551 bytes remaining: 5933926817 bytes total: 34359738368 bytes progression: 82.73 %
+transferred: 28776280883 bytes remaining: 5583457485 bytes total: 34359738368 bytes progression: 83.75 %
+transferred: 29123314240 bytes remaining: 5236424128 bytes total: 34359738368 bytes progression: 84.76 %
+transferred: 29473783572 bytes remaining: 4885954796 bytes total: 34359738368 bytes progression: 85.78 %
+transferred: 29820816929 bytes remaining: 4538921439 bytes total: 34359738368 bytes progression: 86.79 %
+transferred: 30167850287 bytes remaining: 4191888081 bytes total: 34359738368 bytes progression: 87.80 %
+transferred: 30518319618 bytes remaining: 3841418750 bytes total: 34359738368 bytes progression: 88.82 %
+transferred: 30865352975 bytes remaining: 3494385393 bytes total: 34359738368 bytes progression: 89.83 %
+transferred: 31212386333 bytes remaining: 3147352035 bytes total: 34359738368 bytes progression: 90.84 %
+transferred: 31562855664 bytes remaining: 2796882704 bytes total: 34359738368 bytes progression: 91.86 %
+transferred: 31909889022 bytes remaining: 2449849346 bytes total: 34359738368 bytes progression: 92.87 %
+transferred: 32260358353 bytes remaining: 2099380015 bytes total: 34359738368 bytes progression: 93.89 %
+transferred: 32607391711 bytes remaining: 1752346657 bytes total: 34359738368 bytes progression: 94.90 %
+transferred: 32954425068 bytes remaining: 1405313300 bytes total: 34359738368 bytes progression: 95.91 %
+transferred: 33304894400 bytes remaining: 1054843968 bytes total: 34359738368 bytes progression: 96.93 %
+transferred: 33651927757 bytes remaining: 707810611 bytes total: 34359738368 bytes progression: 97.94 %
+transferred: 33998961115 bytes remaining: 360777253 bytes total: 34359738368 bytes progression: 98.95 %
+transferred: 34349430446 bytes remaining: 10307922 bytes total: 34359738368 bytes progression: 99.97 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+/dev/nbd4 disconnected
+create full clone of drive ide0 (local:952/vm-952-disk-1.qcow2)
+Formatting '/var/lib/vz/images/501/vm-501-disk-1.qcow2', fmt=qcow2 size=34359738368 encryption=off cluster_size=65536 preallocation=metadata lazy_refcounts=off refcount_bits=16
+transferred: 0 bytes remaining: 34359738368 bytes total: 34359738368 bytes progression: 0.00 %
+transferred: 353905305 bytes remaining: 34005833063 bytes total: 34359738368 bytes progression: 1.03 %
+transferred: 831505668 bytes remaining: 33528232700 bytes total: 34359738368 bytes progression: 2.42 %
+transferred: 1181974999 bytes remaining: 33177763369 bytes total: 34359738368 bytes progression: 3.44 %
+transferred: 1529008357 bytes remaining: 32830730011 bytes total: 34359738368 bytes progression: 4.45 %
+transferred: 1876041714 bytes remaining: 32483696654 bytes total: 34359738368 bytes progression: 5.46 %
+transferred: 2226511046 bytes remaining: 32133227322 bytes total: 34359738368 bytes progression: 6.48 %
+transferred: 2573544403 bytes remaining: 31786193965 bytes total: 34359738368 bytes progression: 7.49 %
+transferred: 2924013735 bytes remaining: 31435724633 bytes total: 34359738368 bytes progression: 8.51 %
+transferred: 3271047092 bytes remaining: 31088691276 bytes total: 34359738368 bytes progression: 9.52 %
+transferred: 3618080450 bytes remaining: 30741657918 bytes total: 34359738368 bytes progression: 10.53 %
+transferred: 3968549781 bytes remaining: 30391188587 bytes total: 34359738368 bytes progression: 11.55 %
+transferred: 4315583139 bytes remaining: 30044155229 bytes total: 34359738368 bytes progression: 12.56 %
+transferred: 4666052470 bytes remaining: 29693685898 bytes total: 34359738368 bytes progression: 13.58 %
+transferred: 5013085827 bytes remaining: 29346652541 bytes total: 34359738368 bytes progression: 14.59 %
+transferred: 5360119185 bytes remaining: 28999619183 bytes total: 34359738368 bytes progression: 15.60 %
+transferred: 5710588516 bytes remaining: 28649149852 bytes total: 34359738368 bytes progression: 16.62 %
+transferred: 6057621874 bytes remaining: 28302116494 bytes total: 34359738368 bytes progression: 17.63 %
+transferred: 6404655231 bytes remaining: 27955083137 bytes total: 34359738368 bytes progression: 18.64 %
+transferred: 6755124563 bytes remaining: 27604613805 bytes total: 34359738368 bytes progression: 19.66 %
+transferred: 7102157920 bytes remaining: 27257580448 bytes total: 34359738368 bytes progression: 20.67 %
+transferred: 7452627252 bytes remaining: 26907111116 bytes total: 34359738368 bytes progression: 21.69 %
+transferred: 7799660609 bytes remaining: 26560077759 bytes total: 34359738368 bytes progression: 22.70 %
+transferred: 8146693967 bytes remaining: 26213044401 bytes total: 34359738368 bytes progression: 23.71 %
+transferred: 8497163298 bytes remaining: 25862575070 bytes total: 34359738368 bytes progression: 24.73 %
+transferred: 8844196655 bytes remaining: 25515541713 bytes total: 34359738368 bytes progression: 25.74 %
+transferred: 9191230013 bytes remaining: 25168508355 bytes total: 34359738368 bytes progression: 26.75 %
+transferred: 9541699344 bytes remaining: 24818039024 bytes total: 34359738368 bytes progression: 27.77 %
+transferred: 9888732702 bytes remaining: 24471005666 bytes total: 34359738368 bytes progression: 28.78 %
+transferred: 10239202033 bytes remaining: 24120536335 bytes total: 34359738368 bytes progression: 29.80 %
+transferred: 10586235391 bytes remaining: 23773502977 bytes total: 34359738368 bytes progression: 30.81 %
+transferred: 10933268748 bytes remaining: 23426469620 bytes total: 34359738368 bytes progression: 31.82 %
+transferred: 11283738080 bytes remaining: 23076000288 bytes total: 34359738368 bytes progression: 32.84 %
+transferred: 11630771437 bytes remaining: 22728966931 bytes total: 34359738368 bytes progression: 33.85 %
+transferred: 11977804795 bytes remaining: 22381933573 bytes total: 34359738368 bytes progression: 34.86 %
+transferred: 12328274126 bytes remaining: 22031464242 bytes total: 34359738368 bytes progression: 35.88 %
+transferred: 12675307483 bytes remaining: 21684430885 bytes total: 34359738368 bytes progression: 36.89 %
+transferred: 13025776815 bytes remaining: 21333961553 bytes total: 34359738368 bytes progression: 37.91 %
+transferred: 13372810172 bytes remaining: 20986928196 bytes total: 34359738368 bytes progression: 38.92 %
+transferred: 13719843530 bytes remaining: 20639894838 bytes total: 34359738368 bytes progression: 39.93 %
+transferred: 14070312861 bytes remaining: 20289425507 bytes total: 34359738368 bytes progression: 40.95 %
+transferred: 14417346219 bytes remaining: 19942392149 bytes total: 34359738368 bytes progression: 41.96 %
+transferred: 14764379576 bytes remaining: 19595358792 bytes total: 34359738368 bytes progression: 42.97 %
+transferred: 15114848908 bytes remaining: 19244889460 bytes total: 34359738368 bytes progression: 43.99 %
+transferred: 15461882265 bytes remaining: 18897856103 bytes total: 34359738368 bytes progression: 45.00 %
+transferred: 15812351596 bytes remaining: 18547386772 bytes total: 34359738368 bytes progression: 46.02 %
+transferred: 16159384954 bytes remaining: 18200353414 bytes total: 34359738368 bytes progression: 47.03 %
+transferred: 16506418311 bytes remaining: 17853320057 bytes total: 34359738368 bytes progression: 48.04 %
+transferred: 16856887643 bytes remaining: 17502850725 bytes total: 34359738368 bytes progression: 49.06 %
+transferred: 17203921000 bytes remaining: 17155817368 bytes total: 34359738368 bytes progression: 50.07 %
+transferred: 17554390332 bytes remaining: 16805348036 bytes total: 34359738368 bytes progression: 51.09 %
+transferred: 17901423689 bytes remaining: 16458314679 bytes total: 34359738368 bytes progression: 52.10 %
+transferred: 18248457047 bytes remaining: 16111281321 bytes total: 34359738368 bytes progression: 53.11 %
+transferred: 18598926378 bytes remaining: 15760811990 bytes total: 34359738368 bytes progression: 54.13 %
+transferred: 18945959736 bytes remaining: 15413778632 bytes total: 34359738368 bytes progression: 55.14 %
+transferred: 19292993093 bytes remaining: 15066745275 bytes total: 34359738368 bytes progression: 56.15 %
+transferred: 19643462424 bytes remaining: 14716275944 bytes total: 34359738368 bytes progression: 57.17 %
+transferred: 19990495782 bytes remaining: 14369242586 bytes total: 34359738368 bytes progression: 58.18 %
+transferred: 20340965113 bytes remaining: 14018773255 bytes total: 34359738368 bytes progression: 59.20 %
+transferred: 20691434445 bytes remaining: 13668303923 bytes total: 34359738368 bytes progression: 60.22 %
+transferred: 21052211698 bytes remaining: 13307526670 bytes total: 34359738368 bytes progression: 61.27 %
+transferred: 21399245055 bytes remaining: 12960493313 bytes total: 34359738368 bytes progression: 62.28 %
+transferred: 21749714386 bytes remaining: 12610023982 bytes total: 34359738368 bytes progression: 63.30 %
+transferred: 22096747744 bytes remaining: 12262990624 bytes total: 34359738368 bytes progression: 64.31 %
+transferred: 22553732264 bytes remaining: 11806006104 bytes total: 34359738368 bytes progression: 65.64 %
+transferred: 22904201596 bytes remaining: 11455536772 bytes total: 34359738368 bytes progression: 66.66 %
+transferred: 23289030665 bytes remaining: 11070707703 bytes total: 34359738368 bytes progression: 67.78 %
+transferred: 23697911552 bytes remaining: 10661826816 bytes total: 34359738368 bytes progression: 68.97 %
+transferred: 24082740622 bytes remaining: 10276997746 bytes total: 34359738368 bytes progression: 70.09 %
+transferred: 24453825796 bytes remaining: 9905912572 bytes total: 34359738368 bytes progression: 71.17 %
+transferred: 24855834735 bytes remaining: 9503903633 bytes total: 34359738368 bytes progression: 72.34 %
+transferred: 25244099778 bytes remaining: 9115638590 bytes total: 34359738368 bytes progression: 73.47 %
+transferred: 25611748979 bytes remaining: 8747989389 bytes total: 34359738368 bytes progression: 74.54 %
+transferred: 25989706101 bytes remaining: 8370032267 bytes total: 34359738368 bytes progression: 75.64 %
+transferred: 26336739459 bytes remaining: 8022998909 bytes total: 34359738368 bytes progression: 76.65 %
+transferred: 26687208790 bytes remaining: 7672529578 bytes total: 34359738368 bytes progression: 77.67 %
+transferred: 27034242147 bytes remaining: 7325496221 bytes total: 34359738368 bytes progression: 78.68 %
+transferred: 27381275505 bytes remaining: 6978462863 bytes total: 34359738368 bytes progression: 79.69 %
+transferred: 27731744836 bytes remaining: 6627993532 bytes total: 34359738368 bytes progression: 80.71 %
+transferred: 28078778194 bytes remaining: 6280960174 bytes total: 34359738368 bytes progression: 81.72 %
+transferred: 28425811551 bytes remaining: 5933926817 bytes total: 34359738368 bytes progression: 82.73 %
+transferred: 28776280883 bytes remaining: 5583457485 bytes total: 34359738368 bytes progression: 83.75 %
+transferred: 29123314240 bytes remaining: 5236424128 bytes total: 34359738368 bytes progression: 84.76 %
+transferred: 29473783572 bytes remaining: 4885954796 bytes total: 34359738368 bytes progression: 85.78 %
+transferred: 29820816929 bytes remaining: 4538921439 bytes total: 34359738368 bytes progression: 86.79 %
+transferred: 30167850287 bytes remaining: 4191888081 bytes total: 34359738368 bytes progression: 87.80 %
+transferred: 30518319618 bytes remaining: 3841418750 bytes total: 34359738368 bytes progression: 88.82 %
+transferred: 30865352975 bytes remaining: 3494385393 bytes total: 34359738368 bytes progression: 89.83 %
+transferred: 31212386333 bytes remaining: 3147352035 bytes total: 34359738368 bytes progression: 90.84 %
+transferred: 31562855664 bytes remaining: 2796882704 bytes total: 34359738368 bytes progression: 91.86 %
+transferred: 31909889022 bytes remaining: 2449849346 bytes total: 34359738368 bytes progression: 92.87 %
+transferred: 32260358353 bytes remaining: 2099380015 bytes total: 34359738368 bytes progression: 93.89 %
+transferred: 32607391711 bytes remaining: 1752346657 bytes total: 34359738368 bytes progression: 94.90 %
+transferred: 32954425068 bytes remaining: 1405313300 bytes total: 34359738368 bytes progression: 95.91 %
+transferred: 33304894400 bytes remaining: 1054843968 bytes total: 34359738368 bytes progression: 96.93 %
+transferred: 33651927757 bytes remaining: 707810611 bytes total: 34359738368 bytes progression: 97.94 %
+transferred: 33998961115 bytes remaining: 360777253 bytes total: 34359738368 bytes progression: 98.95 %
+transferred: 34349430446 bytes remaining: 10307922 bytes total: 34359738368 bytes progression: 99.97 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+/dev/nbd5 disconnected
+create full clone of drive ide0 (local:952/vm-952-disk-1.qcow2)
+Formatting '/var/lib/vz/images/601/vm-601-disk-1.qcow2', fmt=qcow2 size=34359738368 encryption=off cluster_size=65536 preallocation=metadata lazy_refcounts=off refcount_bits=16
+transferred: 0 bytes remaining: 34359738368 bytes total: 34359738368 bytes progression: 0.00 %
+transferred: 353905305 bytes remaining: 34005833063 bytes total: 34359738368 bytes progression: 1.03 %
+transferred: 831505668 bytes remaining: 33528232700 bytes total: 34359738368 bytes progression: 2.42 %
+transferred: 1181974999 bytes remaining: 33177763369 bytes total: 34359738368 bytes progression: 3.44 %
+transferred: 1529008357 bytes remaining: 32830730011 bytes total: 34359738368 bytes progression: 4.45 %
+transferred: 1876041714 bytes remaining: 32483696654 bytes total: 34359738368 bytes progression: 5.46 %
+transferred: 2226511046 bytes remaining: 32133227322 bytes total: 34359738368 bytes progression: 6.48 %
+transferred: 2573544403 bytes remaining: 31786193965 bytes total: 34359738368 bytes progression: 7.49 %
+transferred: 2924013735 bytes remaining: 31435724633 bytes total: 34359738368 bytes progression: 8.51 %
+transferred: 3271047092 bytes remaining: 31088691276 bytes total: 34359738368 bytes progression: 9.52 %
+transferred: 3618080450 bytes remaining: 30741657918 bytes total: 34359738368 bytes progression: 10.53 %
+transferred: 3968549781 bytes remaining: 30391188587 bytes total: 34359738368 bytes progression: 11.55 %
+transferred: 4315583139 bytes remaining: 30044155229 bytes total: 34359738368 bytes progression: 12.56 %
+transferred: 4666052470 bytes remaining: 29693685898 bytes total: 34359738368 bytes progression: 13.58 %
+transferred: 5013085827 bytes remaining: 29346652541 bytes total: 34359738368 bytes progression: 14.59 %
+transferred: 5360119185 bytes remaining: 28999619183 bytes total: 34359738368 bytes progression: 15.60 %
+transferred: 5710588516 bytes remaining: 28649149852 bytes total: 34359738368 bytes progression: 16.62 %
+transferred: 6057621874 bytes remaining: 28302116494 bytes total: 34359738368 bytes progression: 17.63 %
+transferred: 6404655231 bytes remaining: 27955083137 bytes total: 34359738368 bytes progression: 18.64 %
+transferred: 6755124563 bytes remaining: 27604613805 bytes total: 34359738368 bytes progression: 19.66 %
+transferred: 7102157920 bytes remaining: 27257580448 bytes total: 34359738368 bytes progression: 20.67 %
+transferred: 7452627252 bytes remaining: 26907111116 bytes total: 34359738368 bytes progression: 21.69 %
+transferred: 7799660609 bytes remaining: 26560077759 bytes total: 34359738368 bytes progression: 22.70 %
+transferred: 8146693967 bytes remaining: 26213044401 bytes total: 34359738368 bytes progression: 23.71 %
+transferred: 8497163298 bytes remaining: 25862575070 bytes total: 34359738368 bytes progression: 24.73 %
+transferred: 8844196655 bytes remaining: 25515541713 bytes total: 34359738368 bytes progression: 25.74 %
+transferred: 9191230013 bytes remaining: 25168508355 bytes total: 34359738368 bytes progression: 26.75 %
+transferred: 9541699344 bytes remaining: 24818039024 bytes total: 34359738368 bytes progression: 27.77 %
+transferred: 9888732702 bytes remaining: 24471005666 bytes total: 34359738368 bytes progression: 28.78 %
+transferred: 10239202033 bytes remaining: 24120536335 bytes total: 34359738368 bytes progression: 29.80 %
+transferred: 10586235391 bytes remaining: 23773502977 bytes total: 34359738368 bytes progression: 30.81 %
+transferred: 10933268748 bytes remaining: 23426469620 bytes total: 34359738368 bytes progression: 31.82 %
+transferred: 11283738080 bytes remaining: 23076000288 bytes total: 34359738368 bytes progression: 32.84 %
+transferred: 11630771437 bytes remaining: 22728966931 bytes total: 34359738368 bytes progression: 33.85 %
+transferred: 11977804795 bytes remaining: 22381933573 bytes total: 34359738368 bytes progression: 34.86 %
+transferred: 12328274126 bytes remaining: 22031464242 bytes total: 34359738368 bytes progression: 35.88 %
+transferred: 12675307483 bytes remaining: 21684430885 bytes total: 34359738368 bytes progression: 36.89 %
+transferred: 13025776815 bytes remaining: 21333961553 bytes total: 34359738368 bytes progression: 37.91 %
+transferred: 13372810172 bytes remaining: 20986928196 bytes total: 34359738368 bytes progression: 38.92 %
+transferred: 13719843530 bytes remaining: 20639894838 bytes total: 34359738368 bytes progression: 39.93 %
+transferred: 14070312861 bytes remaining: 20289425507 bytes total: 34359738368 bytes progression: 40.95 %
+transferred: 14417346219 bytes remaining: 19942392149 bytes total: 34359738368 bytes progression: 41.96 %
+transferred: 14764379576 bytes remaining: 19595358792 bytes total: 34359738368 bytes progression: 42.97 %
+transferred: 15114848908 bytes remaining: 19244889460 bytes total: 34359738368 bytes progression: 43.99 %
+transferred: 15461882265 bytes remaining: 18897856103 bytes total: 34359738368 bytes progression: 45.00 %
+transferred: 15812351596 bytes remaining: 18547386772 bytes total: 34359738368 bytes progression: 46.02 %
+transferred: 16159384954 bytes remaining: 18200353414 bytes total: 34359738368 bytes progression: 47.03 %
+transferred: 16506418311 bytes remaining: 17853320057 bytes total: 34359738368 bytes progression: 48.04 %
+transferred: 16856887643 bytes remaining: 17502850725 bytes total: 34359738368 bytes progression: 49.06 %
+transferred: 17203921000 bytes remaining: 17155817368 bytes total: 34359738368 bytes progression: 50.07 %
+transferred: 17554390332 bytes remaining: 16805348036 bytes total: 34359738368 bytes progression: 51.09 %
+transferred: 17901423689 bytes remaining: 16458314679 bytes total: 34359738368 bytes progression: 52.10 %
+transferred: 18248457047 bytes remaining: 16111281321 bytes total: 34359738368 bytes progression: 53.11 %
+transferred: 18598926378 bytes remaining: 15760811990 bytes total: 34359738368 bytes progression: 54.13 %
+transferred: 18945959736 bytes remaining: 15413778632 bytes total: 34359738368 bytes progression: 55.14 %
+transferred: 19292993093 bytes remaining: 15066745275 bytes total: 34359738368 bytes progression: 56.15 %
+transferred: 19643462424 bytes remaining: 14716275944 bytes total: 34359738368 bytes progression: 57.17 %
+transferred: 19990495782 bytes remaining: 14369242586 bytes total: 34359738368 bytes progression: 58.18 %
+transferred: 20340965113 bytes remaining: 14018773255 bytes total: 34359738368 bytes progression: 59.20 %
+transferred: 20691434445 bytes remaining: 13668303923 bytes total: 34359738368 bytes progression: 60.22 %
+transferred: 21052211698 bytes remaining: 13307526670 bytes total: 34359738368 bytes progression: 61.27 %
+transferred: 21399245055 bytes remaining: 12960493313 bytes total: 34359738368 bytes progression: 62.28 %
+transferred: 21749714386 bytes remaining: 12610023982 bytes total: 34359738368 bytes progression: 63.30 %
+transferred: 22096747744 bytes remaining: 12262990624 bytes total: 34359738368 bytes progression: 64.31 %
+transferred: 22553732264 bytes remaining: 11806006104 bytes total: 34359738368 bytes progression: 65.64 %
+transferred: 22904201596 bytes remaining: 11455536772 bytes total: 34359738368 bytes progression: 66.66 %
+transferred: 23289030665 bytes remaining: 11070707703 bytes total: 34359738368 bytes progression: 67.78 %
+transferred: 23697911552 bytes remaining: 10661826816 bytes total: 34359738368 bytes progression: 68.97 %
+transferred: 24082740622 bytes remaining: 10276997746 bytes total: 34359738368 bytes progression: 70.09 %
+transferred: 24453825796 bytes remaining: 9905912572 bytes total: 34359738368 bytes progression: 71.17 %
+transferred: 24855834735 bytes remaining: 9503903633 bytes total: 34359738368 bytes progression: 72.34 %
+transferred: 25244099778 bytes remaining: 9115638590 bytes total: 34359738368 bytes progression: 73.47 %
+transferred: 25611748979 bytes remaining: 8747989389 bytes total: 34359738368 bytes progression: 74.54 %
+transferred: 25989706101 bytes remaining: 8370032267 bytes total: 34359738368 bytes progression: 75.64 %
+transferred: 26336739459 bytes remaining: 8022998909 bytes total: 34359738368 bytes progression: 76.65 %
+transferred: 26687208790 bytes remaining: 7672529578 bytes total: 34359738368 bytes progression: 77.67 %
+transferred: 27034242147 bytes remaining: 7325496221 bytes total: 34359738368 bytes progression: 78.68 %
+transferred: 27381275505 bytes remaining: 6978462863 bytes total: 34359738368 bytes progression: 79.69 %
+transferred: 27731744836 bytes remaining: 6627993532 bytes total: 34359738368 bytes progression: 80.71 %
+transferred: 28078778194 bytes remaining: 6280960174 bytes total: 34359738368 bytes progression: 81.72 %
+transferred: 28425811551 bytes remaining: 5933926817 bytes total: 34359738368 bytes progression: 82.73 %
+transferred: 28776280883 bytes remaining: 5583457485 bytes total: 34359738368 bytes progression: 83.75 %
+transferred: 29123314240 bytes remaining: 5236424128 bytes total: 34359738368 bytes progression: 84.76 %
+transferred: 29473783572 bytes remaining: 4885954796 bytes total: 34359738368 bytes progression: 85.78 %
+transferred: 29820816929 bytes remaining: 4538921439 bytes total: 34359738368 bytes progression: 86.79 %
+transferred: 30167850287 bytes remaining: 4191888081 bytes total: 34359738368 bytes progression: 87.80 %
+transferred: 30518319618 bytes remaining: 3841418750 bytes total: 34359738368 bytes progression: 88.82 %
+transferred: 30865352975 bytes remaining: 3494385393 bytes total: 34359738368 bytes progression: 89.83 %
+transferred: 31212386333 bytes remaining: 3147352035 bytes total: 34359738368 bytes progression: 90.84 %
+transferred: 31562855664 bytes remaining: 2796882704 bytes total: 34359738368 bytes progression: 91.86 %
+transferred: 31909889022 bytes remaining: 2449849346 bytes total: 34359738368 bytes progression: 92.87 %
+transferred: 32260358353 bytes remaining: 2099380015 bytes total: 34359738368 bytes progression: 93.89 %
+transferred: 32607391711 bytes remaining: 1752346657 bytes total: 34359738368 bytes progression: 94.90 %
+transferred: 32954425068 bytes remaining: 1405313300 bytes total: 34359738368 bytes progression: 95.91 %
+transferred: 33304894400 bytes remaining: 1054843968 bytes total: 34359738368 bytes progression: 96.93 %
+transferred: 33651927757 bytes remaining: 707810611 bytes total: 34359738368 bytes progression: 97.94 %
+transferred: 33998961115 bytes remaining: 360777253 bytes total: 34359738368 bytes progression: 98.95 %
+transferred: 34349430446 bytes remaining: 10307922 bytes total: 34359738368 bytes progression: 99.97 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+transferred: 34359738368 bytes remaining: 0 bytes total: 34359738368 bytes progression: 100.00 %
+/dev/nbd6 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_102"
+  Volume group "vg_102" successfully changed
+  2 logical volume(s) in volume group "vg_102" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_102" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_202"
+  Volume group "vg_202" successfully changed
+  2 logical volume(s) in volume group "vg_202" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_202" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_302"
+  Volume group "vg_302" successfully changed
+  2 logical volume(s) in volume group "vg_302" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_302" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_402"
+  Volume group "vg_402" successfully changed
+  2 logical volume(s) in volume group "vg_402" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_402" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_502"
+  Volume group "vg_502" successfully changed
+  2 logical volume(s) in volume group "vg_502" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_502" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd1p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_webscenariozfs" successfully renamed to "vg_602"
+  Volume group "vg_602" successfully changed
+  2 logical volume(s) in volume group "vg_602" now active
+Please (client or server) args
+  0 logical volume(s) in volume group "vg_602" now active
+/dev/nbd1 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_103"
+  Volume group "vg_103" successfully changed
+  2 logical volume(s) in volume group "vg_103" now active
+  0 logical volume(s) in volume group "vg_103" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_104"
+  Volume group "vg_104" successfully changed
+  2 logical volume(s) in volume group "vg_104" now active
+  0 logical volume(s) in volume group "vg_104" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_105"
+  Volume group "vg_105" successfully changed
+  2 logical volume(s) in volume group "vg_105" now active
+  0 logical volume(s) in volume group "vg_105" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_106"
+  Volume group "vg_106" successfully changed
+  2 logical volume(s) in volume group "vg_106" now active
+  0 logical volume(s) in volume group "vg_106" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_203"
+  Volume group "vg_203" successfully changed
+  2 logical volume(s) in volume group "vg_203" now active
+  0 logical volume(s) in volume group "vg_203" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_204"
+  Volume group "vg_204" successfully changed
+  2 logical volume(s) in volume group "vg_204" now active
+  0 logical volume(s) in volume group "vg_204" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_205"
+  Volume group "vg_205" successfully changed
+  2 logical volume(s) in volume group "vg_205" now active
+  0 logical volume(s) in volume group "vg_205" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_206"
+  Volume group "vg_206" successfully changed
+  2 logical volume(s) in volume group "vg_206" now active
+  0 logical volume(s) in volume group "vg_206" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_303"
+  Volume group "vg_303" successfully changed
+  2 logical volume(s) in volume group "vg_303" now active
+  0 logical volume(s) in volume group "vg_303" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_304"
+  Volume group "vg_304" successfully changed
+  2 logical volume(s) in volume group "vg_304" now active
+  0 logical volume(s) in volume group "vg_304" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_305"
+  Volume group "vg_305" successfully changed
+  2 logical volume(s) in volume group "vg_305" now active
+  0 logical volume(s) in volume group "vg_305" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_306"
+  Volume group "vg_306" successfully changed
+  2 logical volume(s) in volume group "vg_306" now active
+  0 logical volume(s) in volume group "vg_306" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_403"
+  Volume group "vg_403" successfully changed
+  2 logical volume(s) in volume group "vg_403" now active
+  0 logical volume(s) in volume group "vg_403" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_404"
+  Volume group "vg_404" successfully changed
+  2 logical volume(s) in volume group "vg_404" now active
+  0 logical volume(s) in volume group "vg_404" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_405"
+  Volume group "vg_405" successfully changed
+  2 logical volume(s) in volume group "vg_405" now active
+  0 logical volume(s) in volume group "vg_405" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_406"
+  Volume group "vg_406" successfully changed
+  2 logical volume(s) in volume group "vg_406" now active
+  0 logical volume(s) in volume group "vg_406" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_503"
+  Volume group "vg_503" successfully changed
+  2 logical volume(s) in volume group "vg_503" now active
+  0 logical volume(s) in volume group "vg_503" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_504"
+  Volume group "vg_504" successfully changed
+  2 logical volume(s) in volume group "vg_504" now active
+  0 logical volume(s) in volume group "vg_504" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_505"
+  Volume group "vg_505" successfully changed
+  2 logical volume(s) in volume group "vg_505" now active
+  0 logical volume(s) in volume group "vg_505" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_506"
+  Volume group "vg_506" successfully changed
+  2 logical volume(s) in volume group "vg_506" now active
+  0 logical volume(s) in volume group "vg_506" now active
+/dev/nbd5 disconnected
+  Physical volume "/dev/nbd2p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_603"
+  Volume group "vg_603" successfully changed
+  2 logical volume(s) in volume group "vg_603" now active
+  0 logical volume(s) in volume group "vg_603" now active
+/dev/nbd2 disconnected
+  Physical volume "/dev/nbd3p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_604"
+  Volume group "vg_604" successfully changed
+  2 logical volume(s) in volume group "vg_604" now active
+  0 logical volume(s) in volume group "vg_604" now active
+/dev/nbd3 disconnected
+  Physical volume "/dev/nbd4p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_605"
+  Volume group "vg_605" successfully changed
+  2 logical volume(s) in volume group "vg_605" now active
+  0 logical volume(s) in volume group "vg_605" now active
+/dev/nbd4 disconnected
+  Physical volume "/dev/nbd5p2" changed
+  1 physical volume changed / 0 physical volumes not changed
+  Volume group "vg_clientscenario1zfs" successfully renamed to "vg_606"
+  Volume group "vg_606" successfully changed
+  2 logical volume(s) in volume group "vg_606" now active
+  0 logical volume(s) in volume group "vg_606" now active
+/dev/nbd5 disconnected
+302
