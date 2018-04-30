@@ -5,10 +5,10 @@
 # - scenario 2 : Dos Attack
 
 # TODO: Now, template vms number are fixed
-PROXMOX_NUM=0 # initial Promox server number
-WEB_TEMP=0    # initial web server template vm number
-CLIENT_TEMP=0 # initial client pc template vm number
-VYOS_TEMP=952 # initial vyos(software router os) template vm number
+PROXMOX_NUM=0 # initial Promox server number. RANGE: 0~9
+WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
+CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
+VYOS_TEMP=952 # initial vyos(software router os) template vm number. RANGE: 100~999
 
 PROXMOX_MAX_NUM=9      # Promox server upper limit
 STUDENTS_PER_GROUP=4   # number of students in exercise per groups
