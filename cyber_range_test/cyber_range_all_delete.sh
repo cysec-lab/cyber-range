@@ -1,12 +1,11 @@
 #!/bin/bash
 
-start_time=`date +%s`
 
 PROXMOX_MAX_NUM=9
 STUDENTS_PER_GROUP=4
 GROUP_MAX_NUM=8
 
-# TODO: 現在1のみ利用
+# TODO: Now only use server number 1
 PROXMOX_NUM=1
 #read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
 #if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
@@ -16,7 +15,8 @@ PROXMOX_NUM=1
 #    PROXMOX_NUM=$proxmox_num
 #fi
 
-# TODO: WEB_NUMとCLIENT_NUM割り当てのルール設定
+# TODO: Decide to WEB_NUM and CLIENT_NUM setting rules
+#       Now, determinate same composition
 read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
 if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
@@ -32,9 +32,8 @@ else
 fi
 
 LOG_FILE="./setup.log"
-#VYOS_NUM=(511 521 531 541 551 561)
-#WEB_NUM=(512 522 532 542 552 562)
-#CLIENT_NUM=(513 514 515 516 523 524 525 526 533 534 535 536 543 544 545 546 553 554 555 556 563 564 565 566)
+
+start_time=`date +%s`
 
 # delete before vms
 for num in ${VYOS_NUM[@]} ${WEB_NUM[@]} ${CLIENT_NUM[@]}; do 
@@ -46,7 +45,7 @@ end_time=`date +%s`
 time=$((end_time - start_time))
 echo $time
 
-# ログ出力
+# output logs
 echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $LOG_FILE
 echo " time              : $time [s]" >> $LOG_FILE
 echo " group_num         : $group_num" >> $LOG_FILE

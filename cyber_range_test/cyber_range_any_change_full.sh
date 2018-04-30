@@ -3,9 +3,6 @@
 VYOS_NUM=()
 WEB_NUM=()
 CLIENT_NUM=()
-#VYOS_NUM=(511 521 531 541 551 561)
-#WEB_NUM=(512 522 532 542 552 562)
-#CLIENT_NUM=(513 514 515 516 523 524 525 526 533 534 535 536 543 544 545 546 553 554 555 556 563 564 565 566)
 
 PROXMOX_NUM=0
 WEB_TEMP=0
@@ -18,7 +15,7 @@ GROUP_MAX_NUM=8
 VG_NAME='VolGroup'
 LOG_FILE="./setup.log"
 
-# TODO: 現在1のみ利用
+# TODO: Now only use server number 1
 PROXMOX_NUM=1
 #read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
 #if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
@@ -27,10 +24,12 @@ PROXMOX_NUM=1
 #else
 #    PROXMOX_NUM=$proxmox_num
 #fi
-# 各グループのネットワークに接続しているbridge番号(=Proxmox番号)
+
+# bridge number of connectiong each group network(=Proxmox number)
 VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
 
-# TODO: WEB_NUMとCLIENT_NUM割り当てのルール設定
+# TODO: Decide to WEB_NUM and CLIENT_NUM setting rules
+#       Now, determinate same composition
 read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
 if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
@@ -55,6 +54,7 @@ else
     exit 1
 fi
 
+# time measurement start
 start_time=`date +%s`
 
 # delete before vms
@@ -64,7 +64,7 @@ done
 
 pc_type='vyos'
 for num in ${VYOS_NUM[@]}; do
-    # bridgeのルール https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
+    # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     $WORK_DIR/clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge
     $WORK_DIR/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
@@ -73,7 +73,7 @@ done
 
 pc_type='web'
 for num in ${WEB_NUM[@]}; do
-    # bridgeのルール https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
+    # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     $WORK_DIR/clone_vm.sh $num $WEB_TEMP $pc_type $group_network_bridge
@@ -87,7 +87,7 @@ done
 
 pc_type='client'
 for num in ${CLIENT_NUM[@]}; do
-    # bridgeのルール https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
+    # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     $WORK_DIR/clone_vm.sh $num $CLIENT_TEMP $pc_type $group_network_bridge
@@ -101,12 +101,13 @@ for num in ${CLIENT_NUM[@]}; do
     qm start $num &
 done
 
+# time measurement end
 end_time=`date +%s`
 
 time=$((end_time - start_time))
 echo $time
 
-# ログ出力
+# output logs
 echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $LOG_FILE
 echo " time              : $time [s]" >> $LOG_FILE
 echo " scenario          : $scenario_num" >> $LOG_FILE
