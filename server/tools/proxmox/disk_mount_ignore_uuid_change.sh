@@ -23,7 +23,10 @@ if [ ! -e $QEOW2_FILE_PATH ]; then
 fi
 
 # parted install LVM is need parted
-apt-get install parted
+result=`dpkg -l | grep parted`
+if [ ${#result} -eq 0 ]; then
+    apt-get install -y parted
+fi
 
 TENS_PLACE=${VM_NUM:1:1}
 TENS_PLACE=$((TENS_PLACE-1))

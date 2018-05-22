@@ -23,7 +23,10 @@ if [ ! -e $QEOW2_FILE_PATH ]; then
 fi
 
 # parted install LVM is need parted
-apt-get install parted
+result=`dpkg -l | grep parted`
+if [ ${#result} -eq 0 ]; then
+    apt-get install -y parted
+fi
 
 modprobe nbd max_part=16
 

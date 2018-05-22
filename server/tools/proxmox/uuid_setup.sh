@@ -26,7 +26,7 @@ fi
 # parted install LVM is need parted
 result=`dpkg -l | grep parted`
 if [ ${#result} -eq 0 ]; then
-    apt-get install parted
+    apt-get install -y parted
 fi
 
 TENS_PLACE=${VM_NUM:1:1}
