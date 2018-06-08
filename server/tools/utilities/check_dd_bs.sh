@@ -5,7 +5,7 @@
 echo "creating a file to work with"
 dd if=/dev/zero of=/var/tmp/infile count=1175000
 
-for bs in  16m 32m 64m 128m 256m 512m
+for bs in  16M 32M 64M 128M 256M 512M
 
 do
         echo "---------------------------------------"
