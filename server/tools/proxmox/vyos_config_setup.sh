@@ -16,6 +16,8 @@ GROUP_NETWORK_BRIDGE=$3
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 
+tool_dir=/root/github/cyber_range/server/tools/proxmox
+
 if [ ! -e $QEOW2_FILE_PATH ]; then
     echo "$QEOW2_FILE_PATH is not exists"
     exit 1
@@ -51,7 +53,7 @@ mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
 #vgchange -ay vg_$VM_NUM
 
 # VM clone setup
-$WORK_DIR/clone_vyos.sh $VM_NUM $VYOS_NETWORK_BRIDGE $GROUP_NETWORK_BRIDGE
+$tool_dir/clone_vyos.sh $VM_NUM $VYOS_NETWORK_BRIDGE $GROUP_NETWORK_BRIDGE
 
 # Phisical Volume umount
 umount /mnt/vm$VM_NUM

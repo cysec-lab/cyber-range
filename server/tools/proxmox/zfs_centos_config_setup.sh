@@ -11,6 +11,8 @@ if [ $# -ne 4 ]; then
     exit 1
 fi
 
+tool_dir=/root/github/cyber_range/server/tools/proxmox
+
 VM_NUM=$1
 IP_ADDRESS=$2
 PC_TYPE=$3
@@ -66,7 +68,7 @@ sleep 2
 partprobe /dev/nbd$NBD_NUM
    
 # cloneによるPV,VGのUUID副重問題の解決
-TEMP_VG_NAME=`vgdisplay | grep 'VG Name' | awk '{ print $3 }'` # vg_clientscenario1zfs
+TEMP_VG_NAME=`vgdisplay | grep 'VG Name' | grep -v 'pve' | awk '{ print $3 }'`
 pvchange --uuid /dev/nbd${NBD_NUM}p2
 vgrename $TEMP_VG_NAME $NEW_VG_NAME      # kernel panicの原因
 vgchange --uuid $NEW_VG_NAME
@@ -87,7 +89,7 @@ sync
 umount $MOUNT_DIR
 
 # Phisical Volume mount
-mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
+mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM # エラーになることがある TODO 原因究明 mount: wrong fs type, bad option, bad superblock
 
 # boot config edit fstab
 # TODO UUID change
@@ -96,8 +98,8 @@ mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
 sed -i -e "s/$TEMP_VG_NAME/$NEW_VG_NAME/g" $MOUNT_DIR/etc/fstab
 
 # VM clone setup
-$WORK_DIR/clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
-$WORK_DIR/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
+$tool_dir/clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
+$tool_dir/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
 
 # Phisical Volume umount
 sync
