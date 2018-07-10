@@ -1,8 +1,7 @@
 #!/bin/bash
-#TODO VM IPアドレス
 
 if [ $# -lt 4 ]; then
-    echo "[VM NUM] [TEMPLATE_NAME] [PC TYPE] [BRIDGE_NUMS]... need"
+    echo "[NEW VM NUM] [TEMPLATE NUM] [PC TYPE] [BRIDGE_NUMS]... need"
     echo "example:"
     echo "$0 111 719 vyos 1 123"
     exit 1
@@ -23,7 +22,7 @@ eval "$snapshot_check_cmd | grep $SNAPSHOT > /dev/null"
 # snapshot not exist
 if [ $? -ne 0 ]; then
     # create snapshot
-    zfs snapshot $SNAPSHOT
+    zfs snapshot -r $SNAPSHOT
 fi
 
 # zfs clone
@@ -32,6 +31,7 @@ zfs clone $SNAPSHOT rpool/data/vm-${CLONE_NUM}-disk-1
 # copy vm config file
 cp $TEMPLATE_CONFIG_PATH $CLONE_CONFIG_PATH
 sed -i -e "s/vm-${TEMPLATE_NUM}-disk-1/vm-${CLONE_NUM}-disk-1/g" $CLONE_CONFIG_PATH
+sed -i -e "s/local-tvm/local-zfs/g" $CLONE_CONFIG_PATH
 sed -i -e "s/^name:.*/name: ${VM_NAME}/g" $CLONE_CONFIG_PATH
 for ((i=0;i<${#BRIDGE_NUMS[@]};i++)); do
     # bridgeを変更する行のbridge名を変更した新しいルールを作成する
