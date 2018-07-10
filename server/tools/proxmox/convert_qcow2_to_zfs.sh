@@ -11,9 +11,15 @@ VM_NUM=$1
 POOL_NAME=$2
 POOL_SIZE=$3
 QCOW2_FILE_PATH=$4
+ZFS_FILE_PATH=$POOL_NAME/data/vm-${VM_NUM}-disk-1
 
-# プール内の領域を作る
-zfs create -V ${POOL_SIZE}G $POOL_NAME/data/vm-${VM_NUM}-disk-1
+# 前のデータを削除
+result=`zfs list | grep $ZFS_FILE_PATH`
+if [ ${#result} -ne 0 ]; then
+    zfs destroy -R $ZFS_FILE_PATH
+fi
+# プール内に領域を作る
+zfs create -V ${POOL_SIZE}G $ZFS_FILE_PATH
 
 # parted install LVM is need parted
 result=`dpkg -l | grep parted`
@@ -24,5 +30,6 @@ fi
 modprobe nbd max_part=16
 
 qemu-nbd -c /dev/nbd0 $QCOW2_FILE_PATH
-time dd if=/dev/nbd0 of=/dev/zvol/$POOL_NAME/data/vm-${VM_NUM}-disk-1 bs=16M
+sleep 2
+time dd if=/dev/nbd0 of=/dev/zvol/$ZFS_FILE_PATH
 qemu-nbd -d /dev/nbd0
