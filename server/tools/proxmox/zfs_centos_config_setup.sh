@@ -1,8 +1,7 @@
 #!/bin/bash
-# TODO cloneテンプレートのVG名の究明（ホスト名?）
-#      TEMPLATE_NAMEの変更
 # TODO UUID変更は本当に必要ないのかの究明
 # TODO ファイル分割
+# TODO TEMPLATE_NAMEの引数使っていないので削除
 
 if [ $# -ne 4 ]; then
     echo "[vm num] [IP Address] [PC type] [TEMPLATE_NAME] need"
@@ -26,7 +25,7 @@ NEW_VG_NAME="vg_$VM_NUM"
 
 MAX_PART=16
 
-# ZFS Cloneを待つ
+# ZFS Cloneが終わるのを待つ
 while [ ! -e $DISK_DATA_FILE ]; do
     sleep 1
 done
@@ -46,23 +45,6 @@ NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 
 modprobe nbd max_part=16
 
-
-# 排他的制御 ->
-# flockコマンド
-# TODO ロックファイル置きっぱなし
-#LOCK_FILE='/tmp/example.lock'
-#mkdir $LOCK_FILE
-
-# 参考:http://fj.hatenablog.jp/entry/2016/03/12/223319
-#(
-#    flock -w 60 || {
-#        echo "ERROR: lock timeout" 1>&2
-#        exit 1;
-#    }
-#
-# disk image mount
-# TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
-#      排他制御が必要
 qemu-nbd -c /dev/nbd$NBD_NUM -f raw $DISK_DATA_FILE # 拡張子を明示する
 sleep 2
 partprobe /dev/nbd$NBD_NUM
@@ -74,8 +56,6 @@ vgrename $TEMP_VG_NAME $NEW_VG_NAME      # kernel panicの原因
 vgchange --uuid $NEW_VG_NAME
 vgchange -ay $NEW_VG_NAME
 
-#)
-# ->排他的制御終了
 
 mkdir $MOUNT_DIR
 
@@ -89,7 +69,7 @@ sync
 umount $MOUNT_DIR
 
 # Phisical Volume mount
-mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM # エラーになることがある TODO 原因究明 mount: wrong fs type, bad option, bad superblock
+mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
 
 # boot config edit fstab
 # TODO UUID change
@@ -106,7 +86,6 @@ sync
 sync
 sync
 umount $MOUNT_DIR
-#sleep 5
 
 # cleanup
 rmdir $MOUNT_DIR
