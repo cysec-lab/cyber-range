@@ -10,7 +10,7 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox
 PROXMOX_NUM=0 # initial Promox server number. RANGE: 0~9
 WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
 CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
-VYOS_TEMP=950 # initial vyos(software router os) template vm number. RANGE: 100~999
+VYOS_TEMP=900 # initial vyos(software router os) template vm number. RANGE: 100~999
 
 PROXMOX_MAX_NUM=9      # Promox server upper limit
 STUDENTS_PER_GROUP=4   # number of students in exercise per groups
@@ -68,8 +68,8 @@ pc_type='vyos'
 for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
-    $tool_dir/clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm
-    $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
+    $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
+    $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     qm start $num &
 done
 

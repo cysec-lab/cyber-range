@@ -35,15 +35,18 @@ result=`dpkg -l | grep parted`
 if [ ${#result} -eq 0 ]; then
     apt-get install -y parted
 fi
-
-TENS_PLACE=${VM_NUM:1:1}
-#TENS_PLACE=$((TENS_PLACE-1))
-ONE_PLACE=${VM_NUM:2:1}
-ONE_PLACE=$((ONE_PLACE-1))
-NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
-
-
 modprobe nbd max_part=16
+
+HANDRED_NUM=${VM_NUM:0:1}
+HANDRED_NUM=$((HANDRED_NUM-1))
+#TEN_NUM=${VM_NUM:1:1}
+ONE_NUM=${VM_NUM:2:1}
+ONE_NUM=$((ONE_NUM-1))
+NBD_NUM=$(((HANDRED_NUM*6 + ONE_NUM) % MAX_PART))
+
+# 排他制御
+#LOCK_FILE="/tmp/nbd${NBD_NUM}.lock"
+#lockfile $LOCK_FILE
 
 qemu-nbd -c /dev/nbd$NBD_NUM -f raw $DISK_DATA_FILE # 拡張子を明示する
 sleep 2
@@ -92,3 +95,6 @@ rmdir $MOUNT_DIR
 
 vgchange -an $NEW_VG_NAME
 qemu-nbd -d /dev/nbd$NBD_NUM
+
+# 排他制御終了
+#rm -rf $LOCK_FILE
