@@ -2,7 +2,7 @@
 #TODO VM IPアドレス
 
 if [ $# -lt 4 ]; then
-    echo "[VM NUM] [TEMPLATE_NAME] [PC TYPE] [BRIDGE_NUMS]... need"
+    echo "[VM NUM] [TEMPLATE_NUM] [PC TYPE] [BRIDGE_NUMS]... need"
     echo "example:"
     echo "$0 111 719 vyos 1 123"
     exit 1
