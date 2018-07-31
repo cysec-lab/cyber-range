@@ -14,13 +14,15 @@ VM_NUM=$1
 VYOS_NETWORK_BRIDGE=$2
 GROUP_NETWORK_BRIDGE=$3
 
-QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
+MAX_PART=16
+DISK_DATA_DIR="/dev/rpool/data"
+DISK_DATA_FILE="$DISK_DATA_DIR/vm-${VM_NUM}-disk-1"
 
 tool_dir=/root/github/cyber_range/server/tools/proxmox
 
-if [ ! -e $QEOW2_FILE_PATH ]; then
-    echo "$QEOW2_FILE_PATH is not exists"
-    exit 1
+# ZFS Cloneが終わるのを待つ
+if [ ! -e $DISK_DATA_FILE ]; then
+    sleep 1
 fi
 
 # parted install LVM is need parted
@@ -28,18 +30,21 @@ result=`dpkg -l | grep parted`
 if [ ${#result} -eq 0 ]; then
     apt-get install -y parted
 fi
-
-#TENS_PLACE=${VM_NUM:1:1}
-#TENS_PLACE=$((TENS_PLACE-1))
-#ONE_PLACE=${VM_NUM:2:1}
-#ONE_PLACE=$((ONE_PLACE-1))
-#NBD_NUM=$((TENS_PLACE*4 + ONE_PLACE))
-NBD_NUM=${VM_NUM:0:1}
-
-
 modprobe nbd max_part=16
 
-qemu-nbd -c /dev/nbd$NBD_NUM $QEOW2_FILE_PATH
+HANDRED_NUM=${VM_NUM:0:1}
+HANDRED_NUM=$((HANDRED_NUM-1))
+#TENS_NUM=${VM_NUM:1:1}
+#TENS_PLACE=$((TENS_PLACE-1))
+ONE_PLACE=${VM_NUM:2:1}
+ONE_PLACE=$((ONE_PLACE-1))
+NBD_NUM=$(((HANDRED_NUM*6 + ONE_NUM) % MAX_PART))
+
+# 排他制御
+#LOCK_FILE="/tmp/nbd${NBD_NUM}.lock"
+#lockfile $LOCK_FILE
+
+qemu-nbd -c /dev/nbd$NBD_NUM -f raw $DISK_DATA_FILE
 sleep 2
 partprobe /dev/nbd$NBD_NUM
 mkdir /mnt/vm$VM_NUM
@@ -57,3 +62,5 @@ rmdir /mnt/vm$VM_NUM
 #vgchange -an vg_$VM_NUM
 qemu-nbd -d /dev/nbd$NBD_NUM
 
+# 排他制御終了
+#rm -rf $LOCK_FILE

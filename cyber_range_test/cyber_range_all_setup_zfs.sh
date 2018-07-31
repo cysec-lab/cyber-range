@@ -10,7 +10,7 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox
 PROXMOX_NUM=0 # initial Promox server number. RANGE: 0~9
 WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
 CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
-VYOS_TEMP=952 # initial vyos(software router os) template vm number. RANGE: 100~999
+VYOS_TEMP=900 # initial vyos(software router os) template vm number. RANGE: 100~999
 
 PROXMOX_MAX_NUM=9      # Promox server upper limit
 STUDENTS_PER_GROUP=4   # number of students in exercise per groups
@@ -19,7 +19,7 @@ VG_NAME='VolGroup'     # Volume Group name
 LOG_FILE="./setup.log" # log file name
 
 # TODO: Now only use server number 1
-PROXMOX_NUM=1
+PROXMOX_NUM=5
 #read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
 #if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
 #    echo 'invalid'
@@ -51,12 +51,12 @@ fi
 read -p "scenario number(1 or 2): " scenario_num
 if [ $scenario_num -eq 1 ]; then
     # scenario 1
-    WEB_TEMP=621     # template web server vm number
-    CLIENT_TEMP=620  # template client pc vm number
+    WEB_TEMP=902     # template web server vm number
+    CLIENT_TEMP=901  # template client pc vm number
 elif [ $scenario_num -eq 2 ]; then
     # scenario 2
-    WEB_TEMP=621     # template web server vm number
-    CLIENT_TEMP=922  # template client pc vm number
+    WEB_TEMP=902     # template web server vm number
+    CLIENT_TEMP=903  # template client pc vm number
 else
     echo 'invalid'
     exit 1
@@ -68,8 +68,8 @@ pc_type='vyos'
 for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
-    $tool_dir/clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm
-    $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
+    $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
+    $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     qm start $num &
 done
 
