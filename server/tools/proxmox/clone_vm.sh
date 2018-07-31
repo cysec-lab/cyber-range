@@ -1,29 +1,27 @@
 #!/bin/bash
 #TODO VM IPアドレス
 #TODO onboot yes
+# フルクローンするスクリプト
 
-if [ $# -lt 4 ]; then
-    echo "[VM NUM] [TEMPLATE_NUM] [PC TYPE] [BRIDGE_NUMS]... need"
+if [ $# -lt 5 ]; then
+    echo "[VM NUM] [TEMPLATE_NUM] [PC TYPE] [TARGET STRAGE] [BRIDGE_NUMS]... need"
     echo "example:"
     echo "$0 111 719 web 11"
     exit 1
 fi
 
-#TEMPLATE_NAME='web'
-#TEMPLATE_NUM='414'
-#CLONE_NUM='464'
-
 CLONE_NUM=$1
 TEMPLATE_NUM=$2
 PC_TYPE=$3
-BRIDGE_NUMS=(${@:4}) # BRIDGE_NUMS部分を配列で変数に代入
+TARGET_STRAGE=$4
+BRIDGE_NUMS=(${@:5}) # BRIDGE_NUMS部分を配列で変数に代入
 VM_NAME=$PC_TYPE$CLONE_NUM
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
 #IP_ADDRESS="192.168.1${CLONE_NUM:1:1}0.${CLONE_NUM:1:2}"
 #TEMPLATE_NAME=$PC_TYPE$TEMPLATE_NUM
 
 # clone
-qm clone $TEMPLATE_NUM $CLONE_NUM --name $VM_NAME --full #--format raw --full
+qm clone $TEMPLATE_NUM $CLONE_NUM --name $VM_NAME --full --storage $TARGET_STRAGE #--format raw --full
 
 # change vm config file
 for ((i=0;i<${#BRIDGE_NUMS[@]};i++)); do

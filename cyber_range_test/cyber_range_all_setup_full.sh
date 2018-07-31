@@ -12,11 +12,12 @@ WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
 CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
 VYOS_TEMP=952 # initial vyos(software router os) template vm number. RANGE: 100~999
 
-PROXMOX_MAX_NUM=9      # Promox server upper limit
-STUDENTS_PER_GROUP=4   # number of students in exercise per groups
-GROUP_MAX_NUM=8        # group upper limit per Proxmox server
-VG_NAME='VolGroup'     # Volume Group name
-LOG_FILE="./setup.log" # log file name
+PROXMOX_MAX_NUM=9         # Promox server upper limit
+STUDENTS_PER_GROUP=4      # number of students in exercise per groups
+GROUP_MAX_NUM=8           # group upper limit per Proxmox server
+TARGET_STRAGE='local-zfs' # full clone target strage
+VG_NAME='VolGroup'        # Volume Group name
+LOG_FILE="./setup.log"    # log file name
 
 # TODO: Now only use server number 1
 PROXMOX_NUM=1
@@ -69,7 +70,7 @@ pc_type='vyos'
 for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
-    $WORK_DIR/clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge
+    $WORK_DIR/clone_vm.sh $num $VYOS_TEMP $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
     $WORK_DIR/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
     qm start $num &
 done
@@ -79,7 +80,7 @@ for num in ${WEB_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
-    $WORK_DIR/clone_vm.sh $num $WEB_TEMP $pc_type $group_network_bridge
+    $WORK_DIR/clone_vm.sh $num $WEB_TEMP $pc_type $TARGET_STRAGE $group_network_bridge
     $WORK_DIR/disk_mount.sh $num $ip_address $pc_type $VG_NAME
     $WORK_DIR/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
     $WORK_DIR/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
@@ -93,7 +94,7 @@ for num in ${CLIENT_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
-    $WORK_DIR/clone_vm.sh $num $CLIENT_TEMP $pc_type $group_network_bridge
+    $WORK_DIR/clone_vm.sh $num $CLIENT_TEMP $pc_type $TARGET_STRAGE $group_network_bridge
     if [ $scenario_num -eq 1 ]; then
         $WORK_DIR/disk_mount.sh $num $ip_address $pc_type $VG_NAME
         $WORK_DIR/uuid_setup.sh $num $ip_address $pc_type $VG_NAME

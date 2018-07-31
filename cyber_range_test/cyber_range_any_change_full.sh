@@ -15,11 +15,12 @@ WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
 CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
 VYOS_TEMP=952 # initial vyos(software router os) template vm number. RANGE: 100~999
 
-PROXMOX_MAX_NUM=9      # Promox server upper limit
-STUDENTS_PER_GROUP=4   # number of students in exercise per groups
-GROUP_MAX_NUM=8        # group upper limit per Proxmox server
-VG_NAME='VolGroup'     # Volume Group name
-LOG_FILE="./setup.log" # log file name
+PROXMOX_MAX_NUM=9         # Promox server upper limit
+STUDENTS_PER_GROUP=4      # number of students in exercise per groups
+GROUP_MAX_NUM=8           # group upper limit per Proxmox server
+TARGET_STRAGE='local-zfs' # full clone target strage
+VG_NAME='VolGroup'        # Volume Group name
+LOG_FILE="./setup.log"    # log file name
 
 # TODO: Now only use server number 1
 PROXMOX_NUM=1

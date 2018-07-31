@@ -1,4 +1,5 @@
 #!/bin/bash
+# クローン後のcentos6の設定を行うスクリプト
 
 # Need new IPAddress
 if [ $# -ne 3 ]; then
