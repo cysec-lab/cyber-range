@@ -71,7 +71,8 @@ for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     $tool_dir/clone_vm.sh $num $VYOS_TEMP $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
-    $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
+    $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
+    # $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
     qm start $num &
 done
 
@@ -81,11 +82,12 @@ for num in ${WEB_NUMS[@]}; do
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     $tool_dir/clone_vm.sh $num $WEB_TEMP $pc_type $TARGET_STRAGE $group_network_bridge
-    $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
-    $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
-    $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
-    $tool_dir/nfs_setup.sh $num $ip_address $pc_type
-    $tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+    $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
+    # $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
+    # $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
+    # $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
+    # $tool_dir/nfs_setup.sh $num $ip_address $pc_type
+    # $tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
     qm start $num &
 done
 
@@ -96,11 +98,12 @@ for num in ${CLIENT_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     $tool_dir/clone_vm.sh $num $CLIENT_TEMP $pc_type $TARGET_STRAGE $group_network_bridge
     if [ $scenario_num -eq 1 ]; then
-        $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
-        $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
-        $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
-        $tool_dir/nfs_setup.sh $num $ip_address $pc_type
-        $tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
+        # $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
+        # $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
+        # $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
+        # $tool_dir/nfs_setup.sh $num $ip_address $pc_type
+        # $tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
     fi
     qm start $num &
 done
