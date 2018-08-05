@@ -2,9 +2,9 @@
 
 start_time=`date +%s`
 
-for ((i=6;i<8;i++)); do
+for ((i=8;i<28;i++)); do
 	num=$((800+i))
-	./clone_vm.sh $num 954 WindowsTemplate local-tvm 5
+	#./clone_vm.sh $num 954 WindowsTemplate local-tvm 5
 	./send_snapshot.sh $num tvmpool rpool
 done
 
