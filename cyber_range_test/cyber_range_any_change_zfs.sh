@@ -17,7 +17,7 @@ VYOS_TEMP=900 # initial vyos(software router os) template vm number. RANGE: 100~
 
 PROXMOX_MAX_NUM=9      # Promox server upper limit
 STUDENTS_PER_GROUP=4   # number of students in exercise per groups
-GROUP_MAX_NUM=8        # group upper limit per Proxmox server
+GROUP_MAX_NUM=7        # group upper limit per Proxmox server
 VG_NAME='VolGroup'     # Volume Group name
 LOG_FILE="./setup.log" # log file name
 
@@ -42,10 +42,10 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 else
-    VYOS_NUMS+=("${g_num}01") # vyos number is *01
-    WEB_NUMS+=("${g_num}02")  # web server number is *02
+    VYOS_NUMS+=("${group_num}01") # vyos number is *01
+    WEB_NUMS+=("${group_num}02")  # web server number is *02
     for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
-        CLIENT_NUMS+=("${g_num}0${i}") # client pc number are *03 ~ *09
+        CLIENT_NUMS+=("${group_num}0${i}") # client pc number are *03 ~ *09
     done
 fi
 
@@ -57,7 +57,7 @@ if [ $scenario_num -eq 1 ]; then
 elif [ $scenario_num -eq 2 ]; then
     # scenario 2
     WEB_TEMP=902    # template web server vm number
-    CLIENT_TEMP=903 # template client pc vm number
+    CLIENT_TEMP=955 # template client pc vm number
 else
     echo 'invalid'
     exit 1
@@ -95,7 +95,16 @@ for num in ${CLIENT_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
-    $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP $pc_type $group_network_bridge
+    if [ $scenario_num -eq 3 ]; then
+	mul_num=${num:0:1}
+	mul_num=$((mul_num - 1))
+	add_num=${num:2:1}
+	add_num=$((add_num - 3))
+	client_num=$((CLIENT_TEMP + STUDENTS_PER_GROUP * mul_num + add_num))
+    	$tool_dir/zfs_clone_vm.sh $num $client_num $pc_type $group_network_bridge
+    else
+    	$tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP $pc_type $group_network_bridge
+    fi
     if [ $scenario_num -eq 1 ]; then
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
     fi
