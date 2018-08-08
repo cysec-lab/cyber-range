@@ -70,9 +70,9 @@ pc_type='vyos'
 for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
-    $tool_dir/clone_vm.sh $num $VYOS_TEMP $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
+    #$tool_dir/clone_vm.sh $num $VYOS_TEMP $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
     #$tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-    #$tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
+    $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     qm start $num &
 done
