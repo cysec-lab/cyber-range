@@ -31,5 +31,5 @@ modprobe nbd max_part=16
 
 qemu-nbd -c /dev/nbd0 $QCOW2_FILE_PATH
 sleep 2
-time dd if=/dev/nbd0 of=/dev/zvol/$ZFS_FILE_PATH
+time dd if=/dev/nbd0 of=/dev/zvol/$ZFS_FILE_PATH bs=16MB
 qemu-nbd -d /dev/nbd0
