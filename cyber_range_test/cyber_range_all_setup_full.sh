@@ -20,7 +20,7 @@ VG_NAME='VolGroup'        # Volume Group name
 LOG_FILE="./setup.log"    # log file name
 
 # TODO: Now only use server number 1
-PROXMOX_NUM=5
+PROXMOX_NUM=1
 #read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
 #if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
 #    echo 'invalid'
