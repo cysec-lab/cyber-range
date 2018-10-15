@@ -38,14 +38,14 @@ VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
 #       Now, determinate same composition
-read -p "group number(2 ~ $GROUP_MAX_NUM): " group_num
+read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
 if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 fi
 
-read -p "next scenario number(1 ~ $SCENARIO_NUM): " scenario_num
-if [ $scenario_num -lt 1 ] || [ $SCENARIO_NUM -lt $scenario_num ]; then
+read -p "next scenario number(2 ~ $SCENARIO_NUM): " scenario_num
+if [ $scenario_num -lt 2 ] || [ $SCENARIO_NUM -lt $scenario_num ]; then
     echo 'invalid'
     exit 1
 else
