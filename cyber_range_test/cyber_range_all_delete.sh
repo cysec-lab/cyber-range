@@ -5,6 +5,7 @@
 
 tool_dir=/root/github/cyber_range/server/tools/proxmox # proxmox tool dir
 
+SCENARIO_NUM=4         # create scinario num.
 STUDENTS_PER_GROUP=4 # number of students in exercise per groups
 GROUP_MAX_NUM=8      # group upper limit per Proxmox server
 
@@ -15,11 +16,13 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 else
-    for g_num in `seq 1 $group_num`; do
-        VYOS_NUMS+=("${g_num}01") # vyos number is *01
-        WEB_NUMS+=("${g_num}02")  # web server number is *02
-        for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
-            CLIENT_NUMS+=("${g_num}0${i}") # client pc number are *03 ~ *09
+    for scenario_num in `seq $SCENARIO_NUM`; do
+        for g_num in `seq 1 $group_num`; do
+            VYOS_NUMS+=("${g_num}${scenario_num}1") # vyos number is *01
+            WEB_NUMS+=("${g_num}${scenario_num}2")  # web server number is *02
+            for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
+                CLIENT_NUMS+=("${g_num}${scenario_num}${i}") # client pc number are *03 ~ *09
+            done
         done
     done
 fi
