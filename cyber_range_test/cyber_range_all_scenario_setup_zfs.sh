@@ -11,8 +11,8 @@ PROXMOX_NUM=0 # initial Promox server number. RANGE: 0~9
 WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
 CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
 VYOS_TEMP=900 # initial vyos(software router os) template vm number. RANGE: 100~999
-#VYOS_TEMP=950 # initial vyos(software router os) template vm number. RANGE: 100~999
 
+SCENARIO_NUM=4         # create scinario num.
 PROXMOX_MAX_NUM=9      # Promox server upper limit
 STUDENTS_PER_GROUP=4   # number of students in exercise per groups
 GROUP_MAX_NUM=7        # group upper limit per Proxmox server
@@ -41,15 +41,19 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 else
-    for g_num in `seq 1 $group_num`; do
-        VYOS_NUMS+=("${g_num}01") # vyos number is *01
-        WEB_NUMS+=("${g_num}02")  # web server number is *02
-        for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
-            CLIENT_NUMS+=("${g_num}0${i}") # client pc number are *03 ~ *09
+    # TODO: Choise each scenario num. Now, create same scenario's environments
+    for scenario_num in `seq $SCENARIO_NUM`; do
+        for g_num in `seq 1 $group_num`; do
+            VYOS_NUMS+=("${g_num}${scenario_num}1") # vyos number is *01
+            WEB_NUMS+=("${g_num}${scenario_num}2")  # web server number is *02
+            for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
+                CLIENT_NUMS+=("${g_num}${scenario_num}${i}") # client pc number are *03 ~ *09
+            done
         done
     done
 fi
 
+# TODO: Choise each scenario num. Now, create same scenario's environments
 read -p "scenario number(1 or 2): " scenario_num
 if [ $scenario_num -eq 1 ]; then
     # scenario 1
@@ -76,7 +80,11 @@ for num in ${VYOS_NUMS[@]}; do
     $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
-    qm start $num &
+
+    # first scenario's vm starts
+    if [ ${num:1:1} -eq '1' ]; then
+        qm start $num &
+    fi
 done
 
 pc_type='web'
@@ -88,7 +96,11 @@ for num in ${WEB_NUMS[@]}; do
     $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP $pc_type $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
     $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
-    qm start $num
+
+    # first scenario's vm starts
+    if [ ${num:1:1} -eq '1' ]; then
+        qm start $num &
+    fi
 done
 
 pc_type='client'
@@ -111,7 +123,11 @@ for num in ${CLIENT_NUMS[@]}; do
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME #change cloned vm's config file
     fi
     $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
-    qm start $num
+
+    # first scenario's vm starts
+    if [ ${num:1:1} -eq '1' ]; then
+        qm start $num &
+    fi
 done
 
 end_time=`date +%s`
