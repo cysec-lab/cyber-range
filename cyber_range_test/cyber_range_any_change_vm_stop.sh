@@ -76,8 +76,8 @@ start_time=`date +%s`
 # stop vms
 for num in ${VYOS_NUMS[@]} ${WEB_NUMS[@]} ${CLIENT_NUMS[@]}; do
     stop_num=$((num - 10))
-    qm stop $stop_num &
-    qm start $num &
+    qm stop $stop_num
+    qm start $num
 done
 
 #pc_type='vyos'

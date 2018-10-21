@@ -42,7 +42,7 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     exit 1
 else
     # TODO: Choise each scenario num. Now, create same scenario's environments
-    for scenario_num in `seq $SCENARIO_NUM`; do
+    for scenario_num in `seq 0 $((SCENARIO_NUM - 1))`; do
         for g_num in `seq 1 $group_num`; do
             VYOS_NUMS+=("${g_num}${scenario_num}1") # vyos number is *01
             WEB_NUMS+=("${g_num}${scenario_num}2")  # web server number is *02
@@ -82,7 +82,7 @@ for num in ${VYOS_NUMS[@]}; do
     $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 
     # first scenario's vm starts
-    if [ ${num:1:1} -eq '1' ]; then
+    if [ ${num:1:1} -eq '0' ]; then
         qm start $num &
     fi
 done
@@ -98,7 +98,7 @@ for num in ${WEB_NUMS[@]}; do
     $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 
     # first scenario's vm starts
-    if [ ${num:1:1} -eq '1' ]; then
+    if [ ${num:1:1} -eq '0' ]; then
         qm start $num &
     fi
 done
@@ -125,7 +125,7 @@ for num in ${CLIENT_NUMS[@]}; do
     $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 
     # first scenario's vm starts
-    if [ ${num:1:1} -eq '1' ]; then
+    if [ ${num:1:1} -eq '0' ]; then
         qm start $num &
     fi
 done

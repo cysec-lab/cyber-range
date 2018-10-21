@@ -16,7 +16,7 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 else
-    for scenario_num in `seq $SCENARIO_NUM`; do
+    for scenario_num in `seq 0 $((SCENARIO_NUM - 1))`; do
         for g_num in `seq 1 $group_num`; do
             VYOS_NUMS+=("${g_num}${scenario_num}1") # vyos number is *01
             WEB_NUMS+=("${g_num}${scenario_num}2")  # web server number is *02
