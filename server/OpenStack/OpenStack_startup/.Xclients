@@ -1,7 +1,0 @@
-#!/bin/bash
-CSESSION="$(type -p cinnamon-session)"
-if [[ ! -z "$CSESSION" ]]; then
-	exec $CSESSION
-fi
-# fallback to default
-/etc/X11/xinit/Xclients
