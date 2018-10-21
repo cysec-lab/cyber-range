@@ -16,7 +16,7 @@ CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
 VYOS_TEMP=950 # initial vyos(software router os) template vm number. RANGE: 100~999
 
 PROXMOX_MAX_NUM=9         # Promox server upper limit
-STUDENTS_PER_GROUP=1      # number of students in exercise per groups
+STUDENTS_PER_GROUP=4      # number of students in exercise per groups
 GROUP_MAX_NUM=7           # group upper limit per Proxmox server
 TARGET_STRAGE='local-zfs' # full clone target strage
 VG_NAME='VolGroup'        # Volume Group name

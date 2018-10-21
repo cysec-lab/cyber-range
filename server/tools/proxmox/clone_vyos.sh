@@ -1,6 +1,6 @@
 #!/bin/bash
-#TODO: テンプレートVMを指定する
 # クローン後のvyosの設定を行うスクリプト
+#TODO: テンプレートVMを指定する
 
 
 if [ $# -ne 3 ]; then
@@ -33,10 +33,10 @@ MOUNT_DIR="/mnt/vm$VM_NUM"
 
 CONFIG_FILE="$MOUNT_DIR/boot/1.1.7/live-rw/config/config.boot"
 
+# TODO: アドレスの決めうちなくす
 sed -i -e "s/192.168.100.221/$Proxmox_side_IP_ADDRESS/g" $CONFIG_FILE
 sed -i -e "s/192.168.110/$VyOS_side_NETWORK/g" $CONFIG_FILE
 sed -i -e "s/192.168.100/${Proxmox_side_IP_ADDRESS%.*}/g" $CONFIG_FILE
 
-sed -i -e "0,/hw-id/s/hw-id.*/hw-id ${VYOS_NETWORK_BRIDGE}/g" $CONFIG_FILE
-#sed -i -e "0,/hw-id/!{0,/hw-id/s/hw-id.*/hw-id ${GROUP_NETRORK_MAC_ADDRESS}/}" $CONFIG_FILE
-awk '/hw-id/{c++;if(c==2){sub("hw-id.*","hw-id $GROUP_NETRORK_MAC_ADDRESS");c==0}}1' $CONFIG_FILE >& /dev/null
+sed -i -e "0,/hw-id/s/hw-id.*/hw-id ${VYOS_NETRORK_MAC_ADDRESS}/g" $CONFIG_FILE # 1行目の一致
+sed -i -e "0,/hw-id/!{N;/hw-id/s/hw-id.*/hw-id ${GROUP_NETRORK_MAC_ADDRESS}/g}" $CONFIG_FILE # 2行目の一致
