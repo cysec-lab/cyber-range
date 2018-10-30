@@ -7,7 +7,6 @@
 tool_dir=/root/github/cyber_range/server/tools/proxmox
 
 # TODO: Now, template vms number are fixed
-PROXMOX_NUM=0 # initial Promox server number. RANGE: 0~9
 WEB_TEMP=0    # initial web server template vm number. RANGE: 100~999
 CLIENT_TEMP=0 # initial client pc template vm number. RANGE: 100~999
 VYOS_TEMP=900 # initial vyos(software router os) template vm number. RANGE: 100~999
@@ -21,7 +20,6 @@ VG_NAME='VolGroup'     # Volume Group name
 LOG_FILE="./setup.log" # log file name
 
 # TODO: Now only use server number 1
-PROXMOX_NUM=1
 #read -p "proxmox number(0 ~ $PROXMOX_MAX_NUM): " proxmox_num
 #if [ $proxmox -lt 0 ] || [ $PROXMOX_MAX_NUM -lt $proxmox_num ]; then
 #    echo 'invalid'
