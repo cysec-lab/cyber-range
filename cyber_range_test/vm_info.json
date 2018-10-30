@@ -1,0 +1,44 @@
+{
+    "_comment": {
+        "_comment": "数値をキー指定出来ないのでscenaro_numsはhashでなく配列になっている",
+        "zfs": "zfsクローン用のオブジェクト",
+        "full": "fullクローン用のオブジェクト",
+        "scenario_nums": "シナリオごとのVM設定配列",
+        "_scenario_num": "parse時に使わないが編集時に見やすいように追加",
+        "VYOS_TEMP_NUM": "VYOSクローン時のテンプレートVM",
+        "CLIENT_TEMP_NUM": "CLIENTクローン時のテンプレートVM",
+        "WEB_TEMP_NUM": "WEBクローン時のテンプレートVM"
+    },
+    "zfs": {
+        "scenario_nums": [
+            {
+                "_scenario_num": 1,
+                "VYOS_TEMP_NUM": 900,
+                "CLIENT_TEMP_NUM": 901,
+                "WEB_TEMP_NUM": 902
+            },
+            {
+                "_scenario_num": 2,
+                "VYOS_TEMP_NUM": 900,
+                "CLIENT_TEMP_NUM": 955,
+                "WEB_TEMP_NUM": 902
+            }
+        ]
+    },
+    "full": {
+        "scenario_nums": [
+            {
+                "_scenario_num": 1,
+                "VYOS_TEMP_NUM": 950,
+                "CLIENT_TEMP_NUM": 951,
+                "WEB_TEMP_NUM": 952
+            },
+            {
+                "_scenario_num": 2,
+                "VYOS_TEMP_NUM": 950,
+                "CLIENT_TEMP_NUM": 955,
+                "WEB_TEMP_NUM": 952
+            }
+        ]
+    }
+}

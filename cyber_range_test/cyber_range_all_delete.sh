@@ -9,25 +9,28 @@ SCENARIO_NUM=4         # create scinario num.
 STUDENTS_PER_GROUP=4 # number of students in exercise per groups
 GROUP_MAX_NUM=8      # group upper limit per Proxmox server
 
+LOG_FILE="./setup.log"
+
+# Get JSON data
+json_vm_data=`cat vm_info.json`
+json_scenario_data=`cat scenario_info.json`
+day=`echo $json_scenario_data | jq '.day'`
+group_num=`echo $json_scenario_data | jq '.group_num'`
+student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
+scenario_nums=`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[].scenario_num"`
+
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
-#       Now, determinate same composition
-read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
-if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
-    echo 'invalid'
-    exit 1
-else
-    for scenario_num in `seq 0 $((SCENARIO_NUM - 1))`; do
-        for g_num in `seq 1 $group_num`; do
-            VYOS_NUMS+=("${g_num}${scenario_num}1") # vyos number is *01
-            WEB_NUMS+=("${g_num}${scenario_num}2")  # web server number is *02
-            for i in `seq 3 $((2 + $STUDENTS_PER_GROUP))`; do
-                CLIENT_NUMS+=("${g_num}${scenario_num}${i}") # client pc number are *03 ~ *09
-            done
+serial_num=0 # 0から始まる通し番号
+for _ in $scenario_nums; do
+    for g_num in `seq 1 $group_num`; do
+        VYOS_NUMS+=("${g_num}${serial_num}1") # vyos number is *01
+        WEB_NUMS+=("${g_num}${serial_num}2")  # web server number is *02
+        for i in `seq 3 $((2 + $student_per_group))`; do
+            CLIENT_NUMS+=("${g_num}${serial_num}${i}") # client pc number are *03 ~ *09
         done
     done
-fi
-
-LOG_FILE="./setup.log"
+    let "serial_num=serial_num+1" # increment
+done
 
 start_time=`date +%s`
 
