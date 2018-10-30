@@ -4,11 +4,6 @@
 #   if select 5 delete 1~5 group
 
 tool_dir=/root/github/cyber_range/server/tools/proxmox # proxmox tool dir
-
-SCENARIO_NUM=4         # create scinario num.
-STUDENTS_PER_GROUP=4 # number of students in exercise per groups
-GROUP_MAX_NUM=8      # group upper limit per Proxmox server
-
 LOG_FILE="./setup.log"
 
 # Get JSON data
@@ -20,16 +15,16 @@ student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 scenario_nums=`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[].scenario_num"`
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
-serial_num=0 # 0から始まる通し番号
+loop_num=0 # 0から始まる通し番号
 for _ in $scenario_nums; do
     for g_num in `seq 1 $group_num`; do
-        VYOS_NUMS+=("${g_num}${serial_num}1") # vyos number is *01
-        WEB_NUMS+=("${g_num}${serial_num}2")  # web server number is *02
+        VYOS_NUMS+=("${g_num}${loop_num}1") # vyos number is *01
+        WEB_NUMS+=("${g_num}${loop_num}2")  # web server number is *02
         for i in `seq 3 $((2 + $student_per_group))`; do
-            CLIENT_NUMS+=("${g_num}${serial_num}${i}") # client pc number are *03 ~ *09
+            CLIENT_NUMS+=("${g_num}${loop_num}${i}") # client pc number are *03 ~ *09
         done
     done
-    let "serial_num=serial_num+1" # increment
+    let "loop_num=loop_num+1" # increment
 done
 
 start_time=`date +%s`
