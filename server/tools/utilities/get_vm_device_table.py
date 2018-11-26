@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 # coding: UTF-8
 
+# iostat -dmxt 1の結果におけるdevice名とvmを紐付ける
+# zfsのデータはzd608のようにdevice名からvmが推測できない
+# /dev/rpool/data のリンクによって管理されている
+
 import os
 import subprocess
 
 home_dir = os.getenv('HOME')
 
 rpool_device_dir = '/dev/rpool/data'
-input_file = home_dir + '/io_data_zfs.txt'
-output_file = home_dir + '/io_data_zfs_convert.txt'
+input_file = home_dir + '/io_data_full.txt'
+output_file = home_dir + '/io_data_full_convert.txt'
 
 device_table = {}
 
