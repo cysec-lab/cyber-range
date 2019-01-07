@@ -11,8 +11,8 @@ import subprocess
 home_dir = os.getenv('HOME')
 
 rpool_device_dir = '/dev/rpool/data'
-input_file = home_dir + '/io_data_full.txt'
-output_file = home_dir + '/io_data_full_convert.txt'
+input_file = home_dir + '/io_data_zfs.txt'
+output_file = home_dir + '/io_data_zfs_convert.txt'
 
 device_table = {}
 

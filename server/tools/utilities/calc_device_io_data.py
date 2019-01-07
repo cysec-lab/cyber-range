@@ -18,13 +18,24 @@ data_info = ['device', 'rrqm/s', 'wrqm/s', 'r/s', 'w/s', 'rMB/s', 'wMB/s', 'avgr
 device_table = OrderedDict()
 new_line_count = 0
 
+# TODO: time情報がdata[1:]個存在している. 1つにまとめる
+class CalData:
+    sum_ = 0
+    time_ = 0
+
+    def __init__(self, num):
+        self.sum_ = num
+        self.time_ = 1
+
+
 def init_device_table_data(data):
-    device_table[data[0]] = [float(d) for d in data[1:]]
+    device_table[data[0]] = [CalData(float(d)) for d in data[1:]]
 
 def add_device_table_data(data):
     device_name = data[0]
     for idx, num in enumerate(data[1:]):
-        device_table[device_name][idx] += float(num)
+        device_table[device_name][idx].sum_ += float(num)
+        device_table[device_name][idx].time_ += 1
 
 with open(input_file, 'r', encoding='utf-8') as input_f:
     for line in input_f:
@@ -47,6 +58,7 @@ with open(input_file, 'r', encoding='utf-8') as input_f:
         else:
             init_device_table_data(line_split)
 
+# 別に必要ない情報何秒分のデータを取ったかを表示
 time = new_line_count - 3 # 不要な最初2回の改行と最後の改行1回分を無視する
 print("時間" + str(time) + '秒')
 
@@ -57,7 +69,7 @@ with open(output_file, 'w', encoding='utf-8') as output_f:
 
     # 数字データの書き込み
     for device_name, device_data in device_table.items():
-        shape_data = ["{0:.2f}".format(d/time) for d in device_data]
+        shape_data = ["{0:.2f}".format(d.sum_/d.time_) for d in device_data]
         output_f.write(device_name + "\t" + "\t".join(shape_data) + "\n")
         #print(device_name, shape_data)
 
@@ -70,7 +82,7 @@ with open(csv_file, 'w', encoding='utf-8') as output_f:
 
     # 数字データの書き込み
     for device_name, device_data in device_table.items():
-        shape_data = ["{0:.2f}".format(d/time) for d in device_data]
+        shape_data = ["{0:.2f}".format(d.sum_/d.time_) for d in device_data]
         shape_data.insert(0, device_name)
         writer.writerow(shape_data)
 
