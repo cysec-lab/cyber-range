@@ -22,7 +22,7 @@ mkdir -p $dummy_directory
 start_time=`date +%s`
 
 # ダミーデータの作成
-for ((i = 0; i < $SIZE; i++)); do
+for ((i = 0; i < $NUM; i++)); do
     dd if=/dev/zero of=$dummy_directory/dummy${i} bs=${SIZE}k count=1
 done
 
