@@ -3,16 +3,28 @@
 
 # デバイスごとの毎秒のデータ推移グラフ
 
+import sys
 import os
 import subprocess
 import csv
 from collections import OrderedDict
 from datetime import datetime
 
+argvs = sys.argv
+if (len(argvs) != 2):
+    print('Usage: # python3 %s [clone type]' % argvs[0])
+    print('Example: # python3 %s zfs' % argvs[0])
+    quit()
+
+clone_type = argvs[1]
+if clone_type != 'full' and clone_type != 'zfs':
+    print('clone type is full or zfs')
+    quit()
+
 now_time = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 home_dir = os.getenv('HOME')
-output_dir = home_dir + '/data/full/'+ now_time
+output_dir = home_dir + '/data/' + clone_type + '/'+ now_time
 txt_dir = output_dir + '/txt'
 csv_dir = output_dir + '/csv'
 
@@ -21,9 +33,9 @@ os.makedirs(output_dir)
 os.mkdir(txt_dir)
 os.mkdir(csv_dir)
 
-input_file = home_dir + '/io_data_full_convert.txt'
-output_file = txt_dir + '/io_data_full_average'
-csv_file = csv_dir + '/io_data_full'
+input_file = home_dir + '/io_data_' + clone_type + '_convert.txt'
+output_file = txt_dir + '/io_data_' + clone_type + '_average'
+csv_file = csv_dir + '/io_data_' + clone_type
 
 # iostat -dmxt 1 の結果
 data_info = ['device', 'rrqm/s', 'wrqm/s', 'r/s', 'w/s', 'rMB/s', 'wMB/s', 'avgrq-sz', 'avgqu-sz', 'await', 'r_await', 'w_await', 'svctm', '%util']

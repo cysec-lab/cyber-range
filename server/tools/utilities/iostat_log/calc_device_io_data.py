@@ -1,16 +1,28 @@
 #!/usr/bin/env python3
 # coding: UTF-8
 
+import sys
 import os
 import subprocess
 import csv
 from collections import OrderedDict
 
+argvs = sys.argv
+if (len(argvs) != 2):
+    print('Usage: # python3 %s [clone type]' % argvs[0])
+    print('Example: # python3 %s zfs' % argvs[0])
+    quit()
+
+clone_type = argvs[1]
+if clone_type != 'full' and clone_type != 'zfs':
+    print('clone type is full or zfs')
+    quit()
+
 home_dir = os.getenv('HOME')
 
-input_file = home_dir + '/io_data_full_convert.txt'
-output_file = home_dir + '/io_data_full_average.txt'
-csv_file = home_dir + '/io_data_full.csv'
+input_file = home_dir + '/io_data_' + clone_type +'_convert.txt'
+output_file = home_dir + '/io_data_' + clone_type +'_average.txt'
+csv_file = home_dir + '/io_data_' + clone_type + '.csv'
 
 # iostat -dmxt 1 の結果
 data_info = ['device', 'rrqm/s', 'wrqm/s', 'r/s', 'w/s', 'rMB/s', 'wMB/s', 'avgrq-sz', 'avgqu-sz', 'await', 'r_await', 'w_await', 'svctm', '%util']
