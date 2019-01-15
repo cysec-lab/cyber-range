@@ -28,7 +28,7 @@ CONF_PATH="/etc/pve/qemu-server/${VM_NUM}.conf"
 #  esac
 #done < ${RULEFILE}
 
-NET0=`cat $CONF_PATH | grep "net0"`
+NET0=`cat $CONF_PATH | grep -m 1 "net0"`
 e1000=${NET0%,*}
 HWADDR=${e1000#*e1000=}
 sed -i -e "s/ATTR{address}==\".*\",/ATTR{address}==\"${HWADDR,,}\",/g" $RULEFILE
