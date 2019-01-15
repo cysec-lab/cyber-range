@@ -23,10 +23,15 @@ if not os.path.isfile(input_file):
     quit()
 
 # ファイル読み込み
-df = pd.read_csv(input_file, encoding="utf-8", names=['files', 'time'])
+#df_zfs = pd.read_csv(input_file, encoding="utf-8", names=['files', 'time'])
+df_full = pd.read_csv(input_file, encoding="utf-8", names=['files', 'time'])
+
+# データをプロット
+#plt.plot(df_zfs['files'], df_zfs['time'], label="zfs")
+plt.plot(df_full['files'], df_full['time'], label="full") # TODO: クローン時間差ゲタを履かす
 
 # プロットの設定
-plt.plot(df['files'], df['time'])
+plt.legend() # 凡例をグラフにプロット
 plt.title('ZFSクローンとFULLクローンのモデル化')
 plt.xlabel(x_label)
 plt.ylabel(y_label)
@@ -34,7 +39,7 @@ plt.xlim(left=0)
 plt.ylim(bottom=0)
 
 # ファイル出力と表示
-output_file = input_file.replace('csv', 'png')
+output_file = input_file.replace('csv', 'png') # TODO: ファイル名を考える
 plt.savefig(output_file)
 plt.show()
 
