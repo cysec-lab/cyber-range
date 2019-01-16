@@ -65,9 +65,10 @@ for num in ${WEB_NUMS[@]}; do
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     $tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $pc_type $TARGET_STRAGE $group_network_bridge
-    if [ "$TARGET_STRAGE" = 'zfs-local' ]; then
+    if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
     else
+        $tool_dir/change_format.sh $num
         $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
         $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
         $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
@@ -94,9 +95,10 @@ for num in ${CLIENT_NUMS[@]}; do
         $tool_dir/clone_vm.sh $num $CLIENT_TEMP_NUM $pc_type $TARGET_STRAGE $group_network_bridge
     fi
     if [ $scenario_num -eq 1 ]; then
-        if [ "$TARGET_STRAGE" = 'zfs-local' ]; then
+        if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
             $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
         else
+            $tool_dir/change_format.sh $num
             $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
             $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
             $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME

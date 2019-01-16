@@ -18,11 +18,17 @@ VG_NAME="vg_$VM_NUM"
 
 tool_dir=/root/github/cyber_range/server/tools/proxmox
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
+RAW_FILE_PATH=`echo $QEOW2_FILE_PATH | sed 's/qcow2/raw/g'`
+CONFIG_FILE_PATH="/etc/pve/qemu-server/${VM_NUM}.conf"
 MAX_PART=16
 
 if [ ! -e $QEOW2_FILE_PATH ]; then
-    echo "file is not exists"
-    exit 1
+    if [ ! -e $RAW_FILE_PATH ]; then
+        echo "Image file dose not exist"
+        exit 1
+    fi
+    $tool_dir/convert_raw_to_qcow2.sh $RAW_FILE_PATH
+    sed -ie "s/raw/qcow2/g" $CONFIG_FILE_PATH
 fi
 
 # parted install LVM is need parted
