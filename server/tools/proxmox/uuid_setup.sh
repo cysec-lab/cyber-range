@@ -15,6 +15,8 @@ IP_ADDRESS=$2
 PC_TYPE=$3
 TEMPLATE_NAME=$4
 
+VG_NAME=vg_$VM_NUM
+
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 MAX_PART=16
 
@@ -61,12 +63,12 @@ modprobe nbd max_part=$MAX_PART
    
 # cloneによるPV,VGのUUID副重問題の解決
 pvchange --uuid /dev/nbd${NBD_NUM}p2
-vgrename $TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
-vgchange --uuid vg_$VM_NUM
+vgrename $TEMPLATE_NAME $VG_NAME      # kernel panicの原因
+vgchange --uuid $VG_NAME
 
 
 #vgchange -ay vg_$TEMPLATE_NAME
-##vgchange -ay vg_$VM_NUM
+##vgchange -ay $VG_NAME
 #
 ##)
 ## ->排他的制御終了
@@ -82,11 +84,11 @@ vgchange --uuid vg_$VM_NUM
 #
 ## Phisical Volume mount
 ##mount /dev/vg_$TEMPLATE_NAME/lv_root /mnt/vm$VM_NUM
-#mount /dev/vg_$VM_NUM/lv_root /mnt/vm$VM_NUM
+#mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
 #
 ## boot config edit fstab
 ## TODO UUID change
-##VG_UUID=`vgdisplay vg_$VM_NUM | grep 'VG UUID' | awk '{print $3}'`
+##VG_UUID=`vgdisplay $VG_NAME | grep 'VG UUID' | awk '{print $3}'`
 ##sed -i -e "s/UUID=\w{6}-\w{4}-\w{4}-\w{4}......\t/UUID=$VG_UUID\t/g" /mnt/vm$VM_NUM/etc/fstab
 #sed -i -e "s/$TEMPLATE_NAME/$VM_NUM/g" /mnt/vm$VM_NUM/etc/fstab
 #
@@ -99,6 +101,6 @@ vgchange --uuid vg_$VM_NUM
 ## cleanup
 #rmdir /mnt/vm$VM_NUM
 ##vgchange -an vg_$TEMPLATE_NAME
-#vgchange -an vg_$VM_NUM
+#vgchange -an $VG_NAME
 #qemu-nbd -d /dev/nbd$NBD_NUM
 #
