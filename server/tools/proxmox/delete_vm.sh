@@ -7,9 +7,15 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-file="/etc/pve/qemu-server/${1}.conf"
+vm=$1
+
+file="/etc/pve/qemu-server/${vm}.conf"
 if [ -e $file ]; then
-    qm stop $1
-    qm destroy $1
-    echo "$1 VM delete success"
+    qm stop $vm
+    qm destroy $vm
+    while [ `echo $?` != 0 ]; do
+        qm unlock  $vm
+        qm destroy $vm
+    done
+    echo "$vm VM delete success"
 fi
