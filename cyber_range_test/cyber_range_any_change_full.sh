@@ -45,18 +45,18 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     exit 1
 else
     # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
-    VYOS_NUMS+=("${group_num}01") # vyos number is *01
-    WEB_NUMS+=("${group_num}02")  # web server number is *02
+    VYOS_NUMS+=("${group_num}11") # vyos number is *01
+    WEB_NUMS+=("${group_num}12")  # web server number is *02
     for i in `seq 3 $((2 + $student_per_group))`; do
-        CLIENT_NUMS+=("${group_num}0${i}") # client pc number are *03 ~ *09
+        CLIENT_NUMS+=("${group_num}1${i}") # client pc number are *03 ~ *09
     done
 fi
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
-VYOS_NUMS+=("${group_num}01") # vyos number is *01
-WEB_NUMS+=("${group_num}02")  # web server number is *02
+VYOS_NUMS+=("${group_num}11") # vyos number is *01
+WEB_NUMS+=("${group_num}12")  # web server number is *02
 for i in `seq 3 $((2 + $student_per_group))`; do
-    CLIENT_NUMS+=("${group_num}0${i}") # client pc number are *03 ~ *09
+    CLIENT_NUMS+=("${group_num}1${i}") # client pc number are *03 ~ *09
 done
 
 # time measurement start
@@ -71,9 +71,11 @@ pc_type='vyos'
 for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
+    snapshot_name="vm${num}_cloned_snapshot"
     $tool_dir/clone_vm.sh $num $VYOS_TEMP_NUM $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
     $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     #$tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
+    $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
 
@@ -82,6 +84,7 @@ for num in ${WEB_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
+    snapshot_name="vm${num}_cloned_snapshot"
     $tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $pc_type $TARGET_STRAGE $group_network_bridge
     $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
     #$tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $pc_type $group_network_bridge
@@ -90,6 +93,7 @@ for num in ${WEB_NUMS[@]}; do
     #$tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
     #$tool_dir/nfs_setup.sh $num $ip_address $pc_type
     #$tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+    $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
 
@@ -98,6 +102,7 @@ for num in ${CLIENT_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
+    snapshot_name="vm${num}_cloned_snapshot"
     if [ $scenario_num -eq 2 ]; then
 	mul_num=${num:0:1}
 	mul_num=$((mul_num - 1))
@@ -116,6 +121,7 @@ for num in ${CLIENT_NUMS[@]}; do
         #$tool_dir/nfs_setup.sh $num $ip_address $pc_type
         #$tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
     fi
+    $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
 

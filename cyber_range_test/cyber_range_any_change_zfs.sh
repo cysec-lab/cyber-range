@@ -33,10 +33,10 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     exit 1
 else
     # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
-    VYOS_NUMS+=("${group_num}01") # vyos number is *01
-    WEB_NUMS+=("${group_num}02")  # web server number is *02
+    VYOS_NUMS+=("${group_num}11") # vyos number is *01
+    WEB_NUMS+=("${group_num}12")  # web server number is *02
     for i in `seq 3 $((2 + $student_per_group))`; do
-        CLIENT_NUMS+=("${group_num}0${i}") # client pc number are *03 ~ *09
+        CLIENT_NUMS+=("${group_num}1${i}") # client pc number are *03 ~ *09
     done
 fi
 

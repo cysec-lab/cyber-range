@@ -37,10 +37,10 @@ fi
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
 for g_num in `seq 1 $group_num`; do
-    VYOS_NUMS+=("${g_num}01") # vyos number is *01
-    WEB_NUMS+=("${g_num}02")  # web server number is *02
+    VYOS_NUMS+=("${g_num}11") # vyos number is *01
+    WEB_NUMS+=("${g_num}12")  # web server number is *02
     for i in `seq 3 $((2 + $student_per_group))`; do
-        CLIENT_NUMS+=("${g_num}0${i}") # client pc number are *03 ~ *09
+        CLIENT_NUMS+=("${g_num}1${i}") # client pc number are *03 ~ *09
     done
 done
 
@@ -55,7 +55,7 @@ for num in ${VYOS_NUMS[@]}; do
     #$tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP_NUM $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-    $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
+    $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
 
@@ -67,7 +67,7 @@ for num in ${WEB_NUMS[@]}; do
     snapshot_name="vm${num}_cloned_snapshot"
     $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP_NUM $pc_type $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
-    $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
+    $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num
 done
 
@@ -78,11 +78,12 @@ for num in ${CLIENT_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
     snapshot_name="vm${num}_cloned_snapshot"
     if [ $scenario_num -eq 3 ]; then
-	mul_num=${num:0:1}
-	mul_num=$((mul_num - 1))
-	add_num=${num:2:1}
-	add_num=$((add_num - 3))
-	client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
+	#mul_num=${num:0:1}
+	#mul_num=$((mul_num - 1))
+	#add_num=${num:2:1}
+	#add_num=$((add_num - 3))
+	#client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
+        client_num=$CLIENT_TEMP_NUM
     	$tool_dir/zfs_clone_vm.sh $num $client_num $pc_type $group_network_bridge
     else
         $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP_NUM $pc_type $group_network_bridge
@@ -90,7 +91,7 @@ for num in ${CLIENT_NUMS[@]}; do
     if [ $scenario_num -eq 1 ]; then
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME #change cloned vm's config file
     fi
-    $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
+    $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num
 done
 

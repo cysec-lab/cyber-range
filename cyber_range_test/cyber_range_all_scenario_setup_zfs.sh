@@ -23,14 +23,14 @@ scenario_nums=`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[
 VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
-loop_num=0 # 0から始まる通し番号
+loop_num=1 # 1から始まる通し番号
 for scenario_num in $scenario_nums; do
     # クローン用のVM番号配列を生成
     for g_num in `seq 1 $group_num`; do
-        VYOS_NUMS+=("${g_num}${loop_num}1") # vyos number is *01
-        WEB_NUMS+=("${g_num}${loop_num}2")  # web server number is *02
+        VYOS_NUMS+=("${g_num}${loop_num}1") # vyos number is **1
+        WEB_NUMS+=("${g_num}${loop_num}2")  # web server number is **2
         for i in `seq 3 $((2 + $student_per_group))`; do
-            CLIENT_NUMS+=("${g_num}${loop_num}${i}") # client pc number are *03 ~ *09
+            CLIENT_NUMS+=("${g_num}${loop_num}${i}") # client pc number are **3 ~ **9
         done
     done
 
@@ -66,7 +66,7 @@ for scenario_num in $scenario_nums; do
         $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
     
         # first scenario's vm starts
-        if [ ${num:1:1} -eq '0' ]; then
+        if [ ${num:1:1} -eq '1' ]; then
             qm start $num &
         fi
     done
@@ -82,7 +82,7 @@ for scenario_num in $scenario_nums; do
         $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 
         # first scenario's vm starts
-        if [ ${num:1:1} -eq '0' ]; then
+        if [ ${num:1:1} -eq '1' ]; then
             qm start $num &
         fi
     done
@@ -109,7 +109,7 @@ for scenario_num in $scenario_nums; do
         $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 
         # first scenario's vm starts
-        if [ ${num:1:1} -eq '0' ]; then
+        if [ ${num:1:1} -eq '1' ]; then
             qm start $num &
         fi
     done
