@@ -3,7 +3,7 @@
 echo ***user***
 cat /etc/passwd
 
-echo *** openssl***
+echo ***openssl***
 rpm -qa | grep openssl
 
 echo ***OS***
