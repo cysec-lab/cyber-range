@@ -6,8 +6,8 @@ if [ $# -ne 5 ]; then
     exit
 fi
 
-VMS=(103)
-#VMS=(103 203 303 403 503 603)
+VMS=(103) # 単体計測
+#VMS=(103 203 303 403 503 603) # 全体計測
 
 IFS=$'\n' # スペースを区切り文字としないようにする
 
@@ -20,32 +20,31 @@ START_DATE=$5
 current_dir='/root/github/cyber_range/server/tools/utilities/dummy_data_log/data/loop'
 
 dir="${current_dir}/${START_DATE}/${MODE}_${INTERVAL}_${CLONE_TYPE}_${LOOP_TIMES}/"
-#mkdir -p $dir
+mkdir -p $dir
 
 for vm in ${VMS[@]}; do
     ssh -o StrictHostKeyChecking=no root@192.168.11${vm:0:1}.3 "/root/measure_dummy_data.sh $MODE $INTERVAL $CLONE_TYPE" &
 done
 
-echo 'sleep fire script'
-#start_time=`date +%s`
-#while [ "`ps aux | grep 'StrictHostKeyChecking=no' | grep -v 'grep'`" != '' ]; do
-#    end_time=`date +%s`
-#    time=$((end_time - start_time))
-#    if [ $time -gt 10000 ]; then
-#        # 死んでいないプロセスを強制的に削除
-#        run_ssh_processes=($(ps aux | grep 'StrictHostKeyChecking=no' | grep -v 'grep'))
-#        for run_ssh_process in ${run_ssh_processes[@]}; do
-#            process_id=`echo $run_ssh_process | awk '{print $2}'`
-#            kill -9 $process_id
-#            echo "kill process_id $process_id"
-#        done
-#    fi
-#done
-#
-#for ((i = 1; i <= ${#VMS[@]}; i++)); do
-#    scp -o StrictHostKeyChecking=no 192.168.11${i}.3:/root/mea\*.txt $dir
-#    for file in `\find $dir -maxdepth 1 -type f -name "*.txt"`; do
-#        new_file="${file%.*}_${i}.log"
-#        mv $file $new_file
-#    done
-#done
+start_time=`date +%s`
+while [ "`ps aux | grep 'StrictHostKeyChecking=no' | grep -v 'grep'`" != '' ]; do
+    end_time=`date +%s`
+    time=$((end_time - start_time))
+    if [ $time -gt 10000 ]; then
+        # 死んでいないプロセスを強制的に削除
+        run_ssh_processes=($(ps aux | grep 'StrictHostKeyChecking=no' | grep -v 'grep'))
+        for run_ssh_process in ${run_ssh_processes[@]}; do
+            process_id=`echo $run_ssh_process | awk '{print $2}'`
+            kill -9 $process_id
+            echo "kill process_id $process_id"
+        done
+    fi
+done
+
+for ((i = 1; i <= ${#VMS[@]}; i++)); do
+    scp -o StrictHostKeyChecking=no 192.168.11${i}.3:/root/mea\*.txt $dir
+    for file in `\find $dir -maxdepth 1 -type f -name "*.txt"`; do
+        new_file="${file%.*}_${i}.log"
+        mv $file $new_file
+    done
+done
