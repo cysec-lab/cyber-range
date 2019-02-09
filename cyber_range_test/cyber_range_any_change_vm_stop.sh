@@ -1,6 +1,5 @@
 #!/bin/bash
 # create cyber_range environment
-# - clone type : zfs
 # - scenario 1 : Ransomeware
 # - scenario 2 : Dos Attack
 
@@ -19,7 +18,7 @@ json_scenario_data=`cat scenario_info.json`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 
 read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num
-if [ $group_num -le 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
+if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     echo 'invalid'
     exit 1
 fi
@@ -44,7 +43,7 @@ start_time=`date +%s`
 for num in ${VYOS_NUMS[@]} ${WEB_NUMS[@]} ${CLIENT_NUMS[@]}; do
     stop_num=$((num - 10))
     qm stop $stop_num
-    qm start $num
+    qm start $num &
 done
 
 # time measurement end
