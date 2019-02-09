@@ -1,4 +1,5 @@
 #!/bin/bash
+#TODO: もっと柔軟性をもたせる
 
 if [ $# -ne 2 ]; then
     echo "need [PC type] [VM num]"

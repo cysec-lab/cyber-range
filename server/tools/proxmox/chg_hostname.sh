@@ -1,9 +1,10 @@
 #!/bin/sh
+#TODO: installのところに同じものがある？
 
 # Hostnameの引数が必要
 if [ $# -ne 1 ]; then
   echo "Need Hostname"
-  echo "./chg_hostname.sh Hostname"
+  echo "$0 Hostname"
   exit 1
 fi
 

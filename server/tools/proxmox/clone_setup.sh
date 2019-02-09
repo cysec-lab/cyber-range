@@ -4,7 +4,7 @@
 # Need new IPAddress
 if [ $# -ne 3 ]; then
   echo "Need new [IPAddress] and [Hostname] [VM num]"
-  echo "./clone.sh [aaa.bbb.ccc.ddd] [hostname] [111]"
+  echo "$0 [aaa.bbb.ccc.ddd] [hostname] [111]"
   exit 1
 fi
 

@@ -3,7 +3,7 @@
 if [ $# -ne 1 ]; then
 	echo "need VM num"
 	echo "example:"
-	echo "./add_serialconsole.sh 500"
+	echo "$0 500"
 	exit 1
 fi
 

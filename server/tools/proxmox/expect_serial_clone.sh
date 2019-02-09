@@ -1,9 +1,10 @@
 #!/bin/bash
+#TODO: 動作検証
 
 if [ $# -ne 3 ]; then
     echo "serial console login [VM num] [VM IP] [HOSTNAME] need"
     echo "example:"
-    echo "./expect_serial_login.sh 500 192.168.110.xxx hostname"
+    echo "$0 500 192.168.110.xxx hostname"
     exit 1
 fi
 
