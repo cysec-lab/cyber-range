@@ -5,11 +5,14 @@ import sys
 import os
 import csv
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-x_label = 'ファイル数[個]'
-y_label = '時間[秒]'
+title     = 'ZFSクローンとFULLクローンのモデル化'
+x_label   = 'ファイル数[個]'
+y_label   = '時間[秒]'
+diff_time = 38 # ZFSクローンとFULLクローンの時間差[s]
 
 argvs = sys.argv
 if (len(argvs) != 3):
@@ -27,13 +30,16 @@ if not os.path.isfile(zfs_file) or not os.path.isfile(full_file):
 df_zfs  = pd.read_csv(zfs_file, encoding="utf-8", names=['files', 'time'])
 df_full = pd.read_csv(full_file, encoding="utf-8", names=['files', 'time'])
 
+# クローン時間の差分ゲタをはかす
+df_full = df_full + np.array([0, diff_time])
+
 # データをプロット
 plt.plot(df_zfs['files'], df_zfs['time'], label="zfs")
-plt.plot(df_full['files'], df_full['time'], label="full") # TODO: クローン時間差ゲタを履かす
+plt.plot(df_full['files'], df_full['time'], label="full")
 
 # プロットの設定
 plt.legend() # 凡例をグラフにプロット
-plt.title('ZFSクローンとFULLクローンのモデル化')
+plt.title(title)
 plt.xlabel(x_label)
 plt.ylabel(y_label)
 plt.xlim(left=0)
@@ -42,7 +48,8 @@ plt.ylim(bottom=0)
 # ファイル出力と表示
 output_dir, output_file  = os.path.split(zfs_file)
 output_dir = output_dir.replace('zfs', '')
-output_file = output_file.replace('zfs_', '').replace('csv', 'png')
+#output_file = output_file.replace('zfs_', '').replace('csv', 'png')                                # ゲタを履かせない結果のファイル名
+output_file = output_file.replace('zfs_', '').replace('data', 'data_inflate').replace('csv', 'png') # ゲタを履かせた結果のファイル名
 plt.savefig(output_dir + output_file)
 plt.show()
 
