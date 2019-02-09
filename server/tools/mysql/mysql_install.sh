@@ -1,5 +1,8 @@
 #!/bin/sh
 # can't use [] character
+# TODO: 以下の行で止まる
+#       expect \"Remove test database and access to it?\"
+
 
 yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
 yum -y install mysql-server
