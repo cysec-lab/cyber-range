@@ -17,6 +17,5 @@ if [ ! -e "$1" ]; then
 fi
 
 for (( i = 0; i < $times; i++)); do
-    #bash $run_script
-    echo $run_script
+    bash $run_script
 done

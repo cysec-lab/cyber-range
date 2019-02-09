@@ -2,18 +2,23 @@
 
 tool_dir=/root/github/cyber_range/server/tools/proxmox
 
-ZFS_TEMPLATE_VMS=(965 966 967 968 969 975 976 977 978 979)
-FULL_TEMPLATE_VMS=(980 981 982 983 984 985 986 987 988 989)
+#ZFS_TEMPLATE_VMS=(967 968 969 977 978 979)
+#ZFS_TEMPLATE_VMS=(980)
+FULL_TEMPLATE_VMS=(965)
 
-MODE=('r' 'w')
+#MODE=('r' 'w')
+MODE=('r')
+#MODE=('w')
 
 file='./vm_info.json'
-zfs_before_vm=965
-full_before_vm=980
+zfs_before_vm=977
+full_before_vm=987
 
-SLEEP_TIME=60 # sleep する時間，適当に考えてる
+#SLEEP_TIME=60 # sleep する時間，適当に考えてる
+SLEEP_TIME=6 # sleep する時間，適当に考えてる
 
 MEASURE_SCRIPT='/root/github/cyber_range/server/tools/utilities/dummy_data_log/fire_measure_dummy_data.sh'
+
 
 # スナップショットの削除
 #for zfs_vm in ${ZFS_TEMPLATE_VMS[@]}; do
@@ -50,45 +55,63 @@ MEASURE_SCRIPT='/root/github/cyber_range/server/tools/utilities/dummy_data_log/f
 #done
 
 # ダミーデータ環境構築
-for (( i = 0; i < 5; i++ )); do
+bash ./cyber_range_all_delete.sh
+#for (( i = 0; i < 500; i++ )); do
+    start_date=`date "+%Y%m%d_%H%M%S"`
     for mode in ${MODE[@]}; do
         j=0
         for zfs_vm in ${ZFS_TEMPLATE_VMS[@]}; do
-            full_vm=${FULL_TEMPLATE_VMS[$j]]}
 
             # vm_info.jsonを編集
-            sed -ie "s/$zfs_before_vm/$zfs_vm/g" $file
-            sed -ie "s/$full_before_vm/$full_vm/g" $file
+            #sed -i -e "s/$zfs_before_vm/$zfs_vm/g" $file
 
             ## run zfsスクリプト
             sysctl -w vm.drop_caches=3
+            #bash ./cyber_range_any_change_zfs.sh
             bash ./cyber_range_all_setup_zfs.sh
             echo "sleep ${SLEEP_TIME}s"
             sleep $SLEEP_TIME
-            $MEASURE_SCRIPT $mode 1 zfs $j
-            sysctl -w vm.drop_caches=3
-            bash ./cyber_range_all_delete.sh
-            
+            bash $MEASURE_SCRIPT $mode 1 zfs $j $start_date
+            #sleep $SLEEP_TIME
+            #sleep $SLEEP_TIME
+            #sleep $SLEEP_TIME
+            #sysctl -w vm.drop_caches=3
+            #bash ./cyber_range_all_delete.sh
+            #
+            ## before vmの更新
+            #zfs_before_vm=$zfs_vm
+
+            #j=$(( j + 1 ))
+        done
+        j=0
+        for full_vm in ${FULL_TEMPLATE_VMS[@]}; do
+
+            # vm_info.jsonを編集
+            #sed -i -e "s/$full_before_vm/$full_vm/g" $file
+
             # run fullスクリプト
             sysctl -w vm.drop_caches=3
+            #bash ./cyber_range_any_change_full.sh
             bash ./cyber_range_all_setup_full.sh
             echo "sleep ${SLEEP_TIME}s"
             sleep $SLEEP_TIME
-            $MEASURE_SCRIPT $mode 1 full $j
-            sysctl -w vm.drop_caches=3
-            bash ./cyber_range_all_delete.sh
+            bash $MEASURE_SCRIPT $mode 1 full $j $start_date
+            #sleep $SLEEP_TIME
+            #sleep $SLEEP_TIME
+            #sleep $SLEEP_TIME
+            #sysctl -w vm.drop_caches=3
+            #bash ./cyber_range_all_delete.sh
         
-            # before vmの更新
-            zfs_before_vm=$zfs_vm
-            full_before_vm=$full_vm
+            ## before vmの更新
+            #full_before_vm=$full_vm
 
-            j=$(( j + 1 ))
+            #j=$(( j + 1 ))
         done
     done
-done
+#done
 # vm_info.jsonを編集 初期状態に戻す
-sed -ie "s/$zfs_before_vm/${ZFS_TEMPLATE_VMS[0]}/g" $file
-sed -ie "s/$full_before_vm/${FULL_TEMPLATE_VMS[0]}/g" $file
+#sed -i -e "s/$zfs_before_vm/${ZFS_TEMPLATE_VMS[0]}/g" $file
+#sed -i -e "s/$full_before_vm/${FULL_TEMPLATE_VMS[0]}/g" $file
 
 #i=0
 #pc_type='web'
