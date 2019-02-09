@@ -1,5 +1,4 @@
 #!/bin/bash
-# TODO UUID変更は本当に必要ないのかの究明
 # TODO ファイル分割
 # TODO TEMPLATE_NAMEの引数使っていないので削除
 

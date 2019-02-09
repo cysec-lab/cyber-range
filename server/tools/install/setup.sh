@@ -28,9 +28,6 @@ chkconfig yum-cron on
 ./add_dns.sh 8.8.8.8
 ./add_dns.sh 8.8.4.4
 
-# serial console
-#./serial_console.sh
-
 # change hostname
 ./chg_hostname.sh $3
 

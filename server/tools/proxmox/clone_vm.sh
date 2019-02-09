@@ -1,6 +1,7 @@
 #!/bin/bash
 #TODO VM IPアドレス
-#TODO onboot yes
+#TODO onboot yes : yes設定にしないとProxmoxを再起動した際に自動起動してくれないVyOSはProxmox起動時に起動してほしい
+#TODO スナップショットの作成
 # フルクローンするスクリプト
 
 if [ $# -lt 5 ]; then
@@ -31,16 +32,3 @@ for ((i=0;i<${#BRIDGE_NUMS[@]};i++)); do
     # clone時にconfファイルにparentとして以前のデータが残ることがあるが前のデータを残すために最初にマッチした行のみ変更を加える
     sed -i -e "0,/^net${i}/s/^net${i}.*bridge=.*/$new_rule/g" $CLONE_CONFIG_PATH
 done
-
-#./disk_mount.sh $CLONE_NUM $IP_ADDRESS $PC_TYPE $TEMPLATE_NAME
-
-# start vm
-#qm start $CLONE_NUM
-
-
-# serial console connection setup
-#qm set $CLONE_NUM -serial0 socket
-
-
-# after clone setup
-#./expect_serial_clone.sh $CLONE_NUM 192.168.130.${CLONE_NUM:1:2} $TEMPLATE_NAME$CLONE_NUM
