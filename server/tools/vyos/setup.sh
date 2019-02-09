@@ -2,7 +2,7 @@
 
 if [ $# -ne 2 ]; then
     echo "need eth0 eth1 IP address"
-    echo "./setup.sh [eth0 Address] [eth1 Address]"
+    echo "$0 [eth0 Address] [eth1 Address]"
     exit 1
 fi
 eth0=$1 # コンフィグレーションモードに入る前に引数を別の変数に代入して使用
@@ -42,6 +42,7 @@ save
 
 #### オペレーション
 ### setup myself
+### TODO: 自動化したい
 # install image
 ## Would you like to continue? (Yes/No) [Yes]: [return]
 ## Partition (Auto/Parted/Skip) [Auto]: [return] 

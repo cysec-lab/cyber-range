@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO: 6-10にも対応
 
 yum -y install wget
 

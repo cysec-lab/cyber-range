@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO: 引数で情報渡す
 
 expect -c "
 set timeout 5

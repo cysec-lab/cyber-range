@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO: もう少し考える
 
 if [ $# -ne 1 ]; then
     echo "[PC name] need  (client or server)"
