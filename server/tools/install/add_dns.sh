@@ -3,7 +3,7 @@
 # Hostnameの引数が必要
 if [ $# -ne 1 ]; then
   echo "Need add DNS-IP-Address"
-  echo "./add_dns aaa.bbb.ccc.ddd"
+  echo "$0 aaa.bbb.ccc.ddd"
   exit 1
 fi
 

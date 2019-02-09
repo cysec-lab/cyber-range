@@ -4,7 +4,7 @@
 if [ $# -ne 1 ]; then
   echo "eth0のIPアドレスの引数が1個だけ必要です"
   echo "example:"
-  echo "./chg_eth0 aaa.bbb.ccc.ddd"
+  echo "$0 aaa.bbb.ccc.ddd"
   exit 1
 fi
 

@@ -4,7 +4,7 @@
 if [ $# -ne 2 ]; then
   echo "何番目のDNSホストか、DNSのIPアドレスの2個の引数が必要です"
   echo "example:"
-  echo "./chg_dns.sh 1 aaa.bbb.ccc.ddd"
+  echo "$0 1 aaa.bbb.ccc.ddd"
   exit 1
 fi
 

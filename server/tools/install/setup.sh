@@ -3,7 +3,7 @@
 # Need IPAddress & DNSServerAddress & Hostname
 if [ $# -ne 3 ]; then
   echo "Need IPAddress & DNSServerAddress & Hostname"
-  echo "./setup.sh aaa.bbb.ccc.ddd xxx.xxx.xxx.xxx hostname"
+  echo "$0 aaa.bbb.ccc.ddd xxx.xxx.xxx.xxx hostname"
   exit 1
 fi
 

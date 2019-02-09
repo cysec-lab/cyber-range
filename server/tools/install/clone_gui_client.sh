@@ -3,7 +3,7 @@
 # Need new IPAddress
 if [ $# -ne 2 ]; then
   echo "Need new IPAddress and Hostname"
-  echo "./clone.sh [aaa.bbb.ccc.ddd] [hostname]"
+  echo "$0 [aaa.bbb.ccc.ddd] [hostname]"
   exit 1
 fi
 
