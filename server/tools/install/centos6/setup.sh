@@ -10,6 +10,10 @@ fi
 yum -y update
 yum -y install vim
 
+# SELinux off
+setenforce 0
+sed -ie 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+
 # install third-party
 ./third_party.sh
 
