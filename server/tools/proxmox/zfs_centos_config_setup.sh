@@ -1,11 +1,10 @@
 #!/bin/bash
 # TODO ファイル分割
-# TODO TEMPLATE_NAMEの引数使っていないので削除
 
-if [ $# -ne 4 ]; then
-    echo "[vm num] [IP Address] [PC type] [TEMPLATE_NAME] need"
+if [ $# -ne 3 ]; then
+    echo "[vm num] [IP Address] [hostname] need"
     echo "example:"
-    echo "$0 111 192.168.110.11 client"
+    echo "$0 111 192.168.110.11 centos6-i386"
     exit 1
 fi
 
@@ -13,9 +12,7 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox
 
 VM_NUM=$1
 IP_ADDRESS=$2
-PC_TYPE=$3
-TEMPLATE_NAME=$4
-VG_NAME="vg_$VM_NUM"
+HOSTNAME=$3
 
 DISK_DATA_DIR="/dev/rpool/data"
 DISK_DATA_FILE="$DISK_DATA_DIR/vm-${VM_NUM}-disk-1"
@@ -71,7 +68,7 @@ sync
 umount $MOUNT_DIR
 
 # Phisical Volume mount
-mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
+mount /dev/$NEW_VG_NAME/lv_root /mnt/vm$VM_NUM
 
 # boot config edit fstab
 # TODO UUID change
@@ -80,8 +77,8 @@ mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
 sed -i -e "s/$TEMP_VG_NAME/$NEW_VG_NAME/g" $MOUNT_DIR/etc/fstab
 
 # VM clone setup
-$tool_dir/clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
-$tool_dir/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
+$tool_dir/clone.sh $VM_NUM $IP_ADDRESS $HOSTNAME
+#$tool_dir/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
 
 # Phisical Volume umount
 sync
