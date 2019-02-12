@@ -8,7 +8,6 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox
 
 CLONE_TYPE='zfs'       # clone type
 TARGET_STRAGE='local-zfs' # full clone target strage
-VG_NAME='VolGroup'     # Volume Group name
 LOG_FILE="./setup.log" # log file name
 
 # Get JSON data
@@ -78,7 +77,7 @@ for scenario_num in $scenario_nums; do
         ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
         snapshot_name="vm${num}_cloned_snapshot"
         $tool_dir/zfs_clone_vm.sh $num ${WEB_TEMP_NUMS[$scenario_num]} $pc_type $group_network_bridge # clone vm by zfs clone
-        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
+        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $pc_type$num # change cloned vm's config files
         $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 
         # first scenario's vm starts
@@ -104,7 +103,7 @@ for scenario_num in $scenario_nums; do
         	$tool_dir/zfs_clone_vm.sh $num ${CLIENT_TEMP_NUMS[$scenario_num]} $pc_type $group_network_bridge
         fi
         if [ $scenario_num -eq 1 ]; then
-            $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME #change cloned vm's config file
+            $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $pc_type$num #change cloned vm's config file
         fi
         $tool_dir/create_snapshot.vm $num $snapshot_name # create snapshot
 

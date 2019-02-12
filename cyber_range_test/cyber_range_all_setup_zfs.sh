@@ -12,7 +12,6 @@ VYOS_TEMP_NUM=0 # initial vyos(software router os) template vm number. RANGE: 10
 
 CLONE_TYPE='zfs'          # clone type
 TARGET_STRAGE='local-zfs' # full clone target strage
-VG_NAME='VolGroup'        # Volume Group name
 LOG_FILE="./setup.log"    # log file name
 
 # Get JSON data
@@ -66,7 +65,7 @@ for num in ${WEB_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
     snapshot_name="vm${num}_cloned_snapshot"
     $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP_NUM $pc_type $group_network_bridge # clone vm by zfs clone
-    $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
+    $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type$num  # change cloned vm's config files
     $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num
 done
@@ -89,7 +88,7 @@ for num in ${CLIENT_NUMS[@]}; do
         $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP_NUM $pc_type $group_network_bridge
     fi
     if [ $scenario_num -eq 1 ]; then
-        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME #change cloned vm's config file
+        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type$num #change cloned vm's config file
     fi
     $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num
