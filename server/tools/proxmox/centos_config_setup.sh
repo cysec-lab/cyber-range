@@ -3,15 +3,15 @@
 #       rawイメージのときはQCOW2に変更させたい
 
 if [ $# -ne 3 ]; then
-    echo "[VM num] [IP Address] [PC type] need"
+    echo "[VM num] [IP Address] [HOSTNAME] need"
     echo "example:"
-    echo "$0 111 192.168.110.11 client"
+    echo "$0 111 192.168.110.11 centos6-i386"
     exit 1
 fi
 
 VM_NUM=$1
 IP_ADDRESS=$2
-PC_TYPE=$3
+HOSTNAME=$3
 
 QCOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 RAW_FILE_PATH=`echo $QCOW2_FILE_PATH | sed 's/qcow2/raw/g'`
@@ -73,7 +73,7 @@ mount /dev/$NEW_VG_NAME/lv_root $MOUNT_DIR
 sed -i -e "s/$OLD_VG_NAME/$NEW_VG_NAME/g" $MOUNT_DIR/etc/fstab
 
 # クローンされたVMをサイバーレンジに使えるように設定変更する(IPアドレスなど)
-$tool_dir/clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
+$tool_dir/clone.sh $VM_NUM $IP_ADDRESS $HOSTNAME
 #./nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE # nfsを利用する場合に実行(現在利用していない)
 sync
 sync

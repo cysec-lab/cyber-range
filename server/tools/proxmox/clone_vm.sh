@@ -5,7 +5,7 @@
 # フルクローンするスクリプト
 
 if [ $# -lt 5 ]; then
-    echo "[VM NUM] [TEMPLATE_NUM] [PC TYPE] [TARGET STRAGE] [BRIDGE_NUMS]... need"
+    echo "[VM NUM] [TEMPLATE_NUM] [VM NAME] [TARGET STRAGE] [BRIDGE_NUMS]... need"
     echo "example:"
     echo "$0 111 719 web 11"
     exit 1
@@ -13,10 +13,9 @@ fi
 
 CLONE_NUM=$1
 TEMPLATE_NUM=$2
-PC_TYPE=$3
+VM_NAME=$3
 TARGET_STRAGE=$4
 BRIDGE_NUMS=(${@:5}) # BRIDGE_NUMS部分を配列で変数に代入
-VM_NAME=$PC_TYPE$CLONE_NUM
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
 #IP_ADDRESS="192.168.1${CLONE_NUM:1:1}0.${CLONE_NUM:1:2}"
 #TEMPLATE_NAME=$PC_TYPE$TEMPLATE_NUM

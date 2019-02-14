@@ -1,17 +1,16 @@
 #!/bin/bash
 
 if [ $# -lt 4 ]; then
-    echo "[NEW VM NUM] [TEMPLATE NUM] [PC TYPE] [BRIDGE_NUMS]... need"
+    echo "[NEW VM NUM] [TEMPLATE NUM] [VM_NAME] [BRIDGE_NUMS]... need"
     echo "example:"
-    echo "$0 111 719 vyos 1 123"
+    echo "$0 111 719 vyos111 1 123"
     exit 1
 fi
 
 CLONE_NUM=$1
 TEMPLATE_NUM=$2
-PC_TYPE=$3
+VM_NAME=$3
 BRIDGE_NUMS=(${@:4}) # BRIDGE_NUMS部分を配列で変数に代入
-VM_NAME=$PC_TYPE$CLONE_NUM
 TEMPLATE_CONFIG_PATH=/etc/pve/qemu-server/${TEMPLATE_NUM}.conf
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
 SNAPSHOT=rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot
