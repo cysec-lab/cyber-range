@@ -82,7 +82,6 @@ for num in ${CLIENT_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
-    new_vg_name="vg_${num}"
     snapshot_name="vm${num}_cloned_snapshot"
     if [ $scenario_num -eq 2 ]; then
         # Windowsのクローンではテンプレート元を変更させる必要がある

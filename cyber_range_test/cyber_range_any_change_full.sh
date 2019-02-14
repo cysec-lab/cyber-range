@@ -15,9 +15,8 @@ CLIENT_TEMP_NUM=0 # initial client pc template vm number. RANGE: 100~999
 VYOS_TEMP_NUM=0   # initial vyos(software router os) template vm number. RANGE: 100~999
 
 CLONE_TYPE='full'         # clone type
-GROUP_MAX_NUM=7        # group upper limit per Proxmox server
-TARGET_STRAGE='local-zfs' # full clone target strage
-VG_NAME='VolGroup'        # Volume Group name
+GROUP_MAX_NUM=7           # group upper limit per Proxmox server
+TARGET_STRAGE='local'     # full clone target strage
 LOG_FILE="./setup.log"    # log file name
 
 # Get JSON data
@@ -70,11 +69,14 @@ done
 pc_type='vyos'
 for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
-    group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
+    group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
     snapshot_name="vm${num}_cloned_snapshot"
     $tool_dir/clone_vm.sh $num $VYOS_TEMP_NUM $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
-    $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-    #$tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
+    if [ "$TARGET_STRAGE" = 'zfs-local' ]; then
+        $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
+    else
+        $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
+    fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
@@ -86,13 +88,12 @@ for num in ${WEB_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     snapshot_name="vm${num}_cloned_snapshot"
     $tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $pc_type $TARGET_STRAGE $group_network_bridge
-    $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
-    #$tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $pc_type $group_network_bridge
-    #$tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
-    #$tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
-    #$tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
-    #$tool_dir/nfs_setup.sh $num $ip_address $pc_type
-    #$tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+    if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
+        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
+    else
+        $tool_dir/change_format.sh $num
+        $tool_dir/centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
+    fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
@@ -104,22 +105,24 @@ for num in ${CLIENT_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     snapshot_name="vm${num}_cloned_snapshot"
     if [ $scenario_num -eq 2 ]; then
-	mul_num=${num:0:1}
-	mul_num=$((mul_num - 1))
-	add_num=${num:2:1}
-	add_num=$((add_num - 3))
-	client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
+        # Windowsのクローンではテンプレート元を変更させる必要がある
+	#mul_num=${num:0:1}
+	#mul_num=$((mul_num - 1))
+	#add_num=${num:2:1}
+	#add_num=$((add_num - 3))
+	#client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
+        client_num=$CLIENT_TEMP_NUM
     	$tool_dir/clone_vm.sh $num $client_num $pc_type $TARGET_STRAGE $group_network_bridge
     else
         $tool_dir/clone_vm.sh $num $CLIENT_TEMP_NUM $pc_type $TARGET_STRAGE $group_network_bridge
     fi
     if [ $scenario_num -eq 1 ]; then
-        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
-        #$tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
-        #$tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
-        #$tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
-        #$tool_dir/nfs_setup.sh $num $ip_address $pc_type
-        #$tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+        if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
+            $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
+        else
+            $tool_dir/change_format.sh $num
+            $tool_dir/centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
+        fi
     fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &

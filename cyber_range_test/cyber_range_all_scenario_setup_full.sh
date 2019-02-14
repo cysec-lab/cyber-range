@@ -8,7 +8,6 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox
 
 CLONE_TYPE='full'      # clone type
 TARGET_STRAGE='local'  # full clone target strage
-VG_NAME='VolGroup'     # Volume Group name
 LOG_FILE="./setup.log" # log file name
 
 # Get JSON data
@@ -81,14 +80,10 @@ for scenario_num in $scenario_nums; do
         snapshot_name="vm${num}_cloned_snapshot"
         $tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $pc_type $TARGET_STRAGE $group_network_bridge
         if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
-            $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
+            $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
         else
             $tool_dir/change_format.sh $num
-            $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
-            $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
-            $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
-            $tool_dir/nfs_setup.sh $num $ip_address $pc_type
-            $tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+            $tool_dir/centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
         fi
         $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
         # first scenario's vm starts
@@ -116,14 +111,10 @@ for scenario_num in $scenario_nums; do
         fi
         if [ $scenario_num -eq 1 ]; then
             if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
-                $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type $VG_NAME # change cloned vm's config files
+                $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
             else
                 $tool_dir/change_format.sh $num
-                $tool_dir/disk_mount.sh $num $ip_address $pc_type $VG_NAME
-                $tool_dir/uuid_setup.sh $num $ip_address $pc_type $VG_NAME
-                $tool_dir/centos_config_setup.sh $num $ip_address $pc_type $VG_NAME
-                $tool_dir/nfs_setup.sh $num $ip_address $pc_type
-                $tool_dir/disk_umount.sh $num $ip_address $pc_type $VG_NAME
+                $tool_dir/centos_config_setup.sh $num $ip_address $pc_type # change cloned vm's config files
             fi
         fi
         $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
