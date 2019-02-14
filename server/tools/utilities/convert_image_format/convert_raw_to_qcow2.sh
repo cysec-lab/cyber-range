@@ -23,3 +23,6 @@ fi
 
 qemu-img convert -f raw -O qcow2 $RAW_FILE_PATH $QCOW2_FILE_PATH
 rm $RAW_FILE_PATH
+
+# TODO: /etc/pve/qemu-server/101.conf のrawをqcow2に変えたい
+# sed -ie "s/raw/qcow2/g" $CONFIG_FILE_PATH
