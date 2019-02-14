@@ -57,7 +57,6 @@ for scenario_num in $scenario_nums; do
     for num in ${vyos_nums[@]}; do
         # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
         group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
-        ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
         snapshot_name="vm${num}_cloned_snapshot"
         $tool_dir/clone_vm.sh $num $VYOS_TEMP_NUM $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
         if [ "$TARGET_STRAGE" = 'zfs-local' ]; then

@@ -50,9 +50,8 @@ for num in ${VYOS_NUMS[@]}; do
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
     snapshot_name="vm${num}_cloned_snapshot"
-    #$tool_dir/clone_vm.sh $num $VYOS_TEMP_NUM $pc_type $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
-    #$tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-    $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP_NUM $pc_type $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
+    _hostname="$pc_type$num"
+    $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP_NUM $_hostname $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num &
@@ -64,8 +63,9 @@ for num in ${WEB_NUMS[@]}; do
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group network bridge number
     ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
     snapshot_name="vm${num}_cloned_snapshot"
-    $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP_NUM $pc_type $group_network_bridge # clone vm by zfs clone
-    $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type$num  # change cloned vm's config files
+    _hostname="$pc_type$num"
+    $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP_NUM $_hostname $group_network_bridge # clone vm by zfs clone
+    $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname  # change cloned vm's config files
     $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num
 done
@@ -76,6 +76,7 @@ for num in ${CLIENT_NUMS[@]}; do
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group network bridge number
     ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
     snapshot_name="vm${num}_cloned_snapshot"
+    _hostname="$pc_type$num"
     if [ $scenario_num -eq 3 ]; then
 	#mul_num=${num:0:1}
 	#mul_num=$((mul_num - 1))
@@ -83,12 +84,12 @@ for num in ${CLIENT_NUMS[@]}; do
 	#add_num=$((add_num - 3))
 	#client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
         client_num=$CLIENT_TEMP_NUM
-    	$tool_dir/zfs_clone_vm.sh $num $client_num $pc_type $group_network_bridge
+        $tool_dir/zfs_clone_vm.sh $num $client_num $_hostname $group_network_bridge
     else
-        $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP_NUM $pc_type $group_network_bridge
+        $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP_NUM $_hostname $group_network_bridge
     fi
     if [ $scenario_num -eq 1 ]; then
-        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $pc_type$num #change cloned vm's config file
+        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname #change cloned vm's config file
     fi
     $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
     qm start $num
