@@ -1,19 +1,13 @@
 #!/bin/bash
-# TODO cloneテンプレートのVG名の究明（ホスト名?）
-#      TEMPLATE_NAMEの変更
-# TODO UUID変更は本当に必要ないのかの究明
 
-if [ $# -ne 4 ]; then
-    echo "[vm num] [IP Address] [PC type] [TEMPLATE_NAME] need"
+if [ $# -ne 1 ]; then
+    echo "[vm num] need"
     echo "example:"
-    echo "$0 111 192.168.110.11 client"
+    echo "$0 111"
     exit 1
 fi
 
 VM_NUM=$1
-IP_ADDRESS=$2
-PC_TYPE=$3
-TEMPLATE_NAME=$4
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 MAX_PART=16

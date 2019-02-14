@@ -1,21 +1,15 @@
 #!/bin/bash
-# TODO cloneテンプレートのVG名の究明（ホスト名?）
-#      TEMPLATE_NAMEの変更
-# TODO UUID変更は本当に必要ないのかの究明
 
-if [ $# -ne 4 ]; then
-    echo "[vm num] [IP Address] [PC type] [TEMPLATE_NAME] need"
+if [ $# -ne 3 ]; then
+    echo "[VM num] [old VG name] [new VG name] need"
     echo "example:"
-    echo "$0 111 192.168.110.11 client"
+    echo "$0 111 VolGroup vg_111"
     exit 1
 fi
 
 VM_NUM=$1
-IP_ADDRESS=$2
-PC_TYPE=$3
-TEMPLATE_NAME=$4
-
-VG_NAME=vg_$VM_NUM
+OLD_VG_NAME=$2
+NEW_VG_NAME=$3
 
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 MAX_PART=16
@@ -63,8 +57,8 @@ modprobe nbd max_part=$MAX_PART
    
 # cloneによるPV,VGのUUID副重問題の解決
 pvchange --uuid /dev/nbd${NBD_NUM}p2
-vgrename $TEMPLATE_NAME $VG_NAME      # kernel panicの原因
-vgchange --uuid $VG_NAME
+vgrename $OLD_VG_NAME $NEW_VG_NAME      # kernel panicの原因
+vgchange --uuid $NEW_VG_NAME
 
 
 #vgchange -ay vg_$TEMPLATE_NAME

@@ -1,20 +1,17 @@
 #!/bin/bash
-# TODO cloneテンプレートのVG名の究明（ホスト名?）
-#      TEMPLATE_NAMEの変更
-# TODO UUID変更は本当に必要ないのかの究明
 
-if [ $# -ne 4 ]; then
-    echo "[vm num] [IP Address] [PC type] [TEMPLATE_NAME] need"
+if [ $# -ne 5 ]; then
+    echo "[VM num] [IP Address] [PC type] [OLD VG name] [NEW VG name] need"
     echo "example:"
-    echo "$0 111 192.168.110.11 client"
+    echo "$0 111 192.168.110.11 client VolGroup vg_111"
     exit 1
 fi
 
 VM_NUM=$1
 IP_ADDRESS=$2
 PC_TYPE=$3
-TEMPLATE_NAME=$4
-VG_NAME="vg_$VM_NUM"
+OLD_VG_NAME=$4
+NEW_VG_NAME=$5
 
 tool_dir=/root/github/cyber_range/server/tools/proxmox
 QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
@@ -72,7 +69,7 @@ NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 #vgrename vg_$TEMPLATE_NAME vg_$VM_NUM      # kernel panicの原因
 #vgchange --uuid vg_$VM_NUM
 ##vgchange -ay vg_$TEMPLATE_NAME
-vgchange -ay $VG_NAME
+vgchange -ay $NEW_VG_NAME
 
 #)
 # ->排他的制御終了
@@ -81,21 +78,20 @@ mkdir /mnt/vm$VM_NUM
 
 # boot config edit grub
 mount /dev/nbd${NBD_NUM}p1 /mnt/vm$VM_NUM
-sed -i -e "s/$TEMPLATE_NAME/$VG_NAME/g" /mnt/vm$VM_NUM/grub/grub.conf
+sed -i -e "s/$OLD_VG_NAME/$NEW_VG_NAME/g" /mnt/vm$VM_NUM/grub/grub.conf
 sync
 sync
 sync
 umount /mnt/vm$VM_NUM
 
 # Phisical Volume mount
-#mount /dev/vg_$TEMPLATE_NAME/lv_root /mnt/vm$VM_NUM
-mount /dev/$VG_NAME/lv_root /mnt/vm$VM_NUM
+mount /dev/$NEW_VG_NAME/lv_root /mnt/vm$VM_NUM
 
 # boot config edit fstab
 # TODO UUID change
 #VG_UUID=`vgdisplay vg_$VM_NUM | grep 'VG UUID' | awk '{print $3}'`
 #sed -i -e "s/UUID=\w{6}-\w{4}-\w{4}-\w{4}......\t/UUID=$VG_UUID\t/g" /mnt/vm$VM_NUM/etc/fstab
-sed -i -e "s/$TEMPLATE_NAME/$VG_NAME/g" /mnt/vm$VM_NUM/etc/fstab
+sed -i -e "s/$OLD_VG_NAME/$NEW_VG_NAME/g" /mnt/vm$VM_NUM/etc/fstab
 
 # VM clone setup
 $tool_dir/clone.sh $VM_NUM $IP_ADDRESS $PC_TYPE$VM_NUM
