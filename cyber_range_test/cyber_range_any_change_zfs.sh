@@ -96,7 +96,7 @@ for num in ${CLIENT_NUMS[@]}; do
 	add_num=${num:2:1}
 	add_num=$((add_num - 3))
 	client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
-    	$tool_dir/zfs_clone_vm.sh $num $client_num $_hostname $group_network_bridge
+        $tool_dir/zfs_clone_vm.sh $num $client_num $_hostname $group_network_bridge
     else
         $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP_NUM $_hostname $group_network_bridge
     fi
