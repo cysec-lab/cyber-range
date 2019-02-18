@@ -7,6 +7,7 @@ WEB_NUMS=()    # web server nums array
 CLIENT_NUMS=() # client pc nums array
 
 GROUP_MAX_NUM=7        # group upper limit per Proxmox server
+SCENARIO_MAX_NUM=6
 
 # Get JSON data
 json_scenario_data=`cat scenario_info.json`
@@ -24,8 +25,8 @@ if [ $group_num -lt 1 ] || [ $GROUP_MAX_NUM -lt $group_num ]; then
     exit 1
 fi
 
-read -p "next scenario number(1 ~ $SCENARIO_MAX_NUM): " scenario_num
-if [ $scenario_num -le 1 ] || [ $SCENARIO_MAX_NUM -lt $scenario_num ]; then
+read -p "scenario number(1 ~ $SCENARIO_MAX_NUM): " scenario_num
+if [ $scenario_num -lt 1 ] || [ $SCENARIO_MAX_NUM -lt $scenario_num ]; then
     echo 'invalid'
     exit 1
 else
@@ -43,14 +44,8 @@ start_time=`date +%s`
 # roll_back vms
 for num in ${VYOS_NUMS[@]} ${WEB_NUMS[@]} ${CLIENT_NUMS[@]}; do
     snapshot_name="vm${num}_cloned_snapshot"
-    qm stop $num &
-    result=`cat /etc/pve/qemu-server/111.conf | grep 'ide0:' | grep 'zfs'`
-    if [ ${#result} -eq 0 ]; then
-        # QEMU
-        $tool_dir/rollback_snapshot.sh $num $snapshot_name # rollback snapshot
-    else
-        $tool_dir/rollback_snapshot.sh $num $snapshot_name # rollback snapshot
-    fi
+    qm stop $num
+    $tool_dir/rollback_snapshot.sh $num $snapshot_name # rollback snapshot
     qm start $num
 done
 
