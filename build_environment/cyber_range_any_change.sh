@@ -31,9 +31,9 @@ VYOS_TEMP_NUM=0 # initial vyos(software router os) template vm number. RANGE: 10
 
 
 # Get JSON data
-json_vm_data=`cat vm_info.json`
-json_scenario_data=`cat scenario_info.json`
-json_conf_data=`cat config_info.json`
+json_vm_data=`cat json_files/vm_info.json`
+json_scenario_data=`cat json_files/scenario_info.json`
+json_conf_data=`cat json_files/config_info.json`
 day=`echo $json_scenario_data | jq '.day'`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 scenario_nums=(`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[].scenario_num"`)

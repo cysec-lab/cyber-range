@@ -1,0 +1,57 @@
+{
+    "_comment": {
+        "day": "シナリオ実施日",
+        "group_num": "演習のグループ数",
+        "student_per_group": "1グループの生徒数",
+        "days": "シナリオの組み合わせ日付",
+        "scenario_nums": "日ごとのscenario_numとclone_typeが入った配列",
+        "scenario_num": "シナリオの数字"
+    },
+    "day": 1,
+    "group_num": 1,
+    "student_per_group": 1,
+    "days": [
+        {
+            "_comment": "day1",
+            "scenario_nums": [
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                },
+                {
+                    "scenario_num": 1,
+                    "clone_type": "full"
+                },
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                },
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                }
+            ]
+        },
+        {
+            "_comment": "day2",
+            "scenario_nums": [
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                },
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                },
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                },
+                {
+                    "scenario_num": 1,
+                    "clone_type": "zfs"
+                }
+            ]
+        }
+    ]
+}

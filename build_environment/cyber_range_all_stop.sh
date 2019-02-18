@@ -7,8 +7,8 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox # proxmox tool dir
 LOG_FILE="./setup.log"
 
 # Get JSON data
-json_vm_data=`cat vm_info.json`
-json_scenario_data=`cat scenario_info.json`
+json_vm_data=`cat json_files/vm_info.json`
+json_scenario_data=`cat json_files/scenario_info.json`
 day=`echo $json_scenario_data | jq '.day'`
 group_num=`echo $json_scenario_data | jq '.group_num'`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`

@@ -14,7 +14,7 @@ GROUP_MAX_NUM=7        # group upper limit per Proxmox server
 LOG_FILE="./setup.log" # log file name
 
 # Get JSON data
-json_scenario_data=`cat scenario_info.json`
+json_scenario_data=`cat json_files/scenario_info.json`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 
 read -p "group number(1 ~ $GROUP_MAX_NUM): " group_num

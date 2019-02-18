@@ -10,8 +10,8 @@ GROUP_MAX_NUM=7        # group upper limit per Proxmox server
 SCENARIO_MAX_NUM=6
 
 # Get JSON data
-json_scenario_data=`cat scenario_info.json`
-json_conf_data=`cat config_info.json`
+json_scenario_data=`cat json_files/scenario_info.json`
+json_conf_data=`cat json_files/config_info.json`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 vm_config_dir=`echo $json_conf_data | jq '.vm_config_dir'`
 git_home_get_command=`echo $json_conf_data | jq '.git_home_get_command' | sed 's/"//g'`
