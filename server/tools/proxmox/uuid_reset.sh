@@ -12,7 +12,6 @@ NBD_NUM=$1
 OLD_VG_NAME=$2
 NEW_VG_NAME=$3
 
-
 # cloneによるPV,VGのUUID重複問題の解決
 pvchange --uuid /dev/nbd${NBD_NUM}p2
 vgrename $OLD_VG_NAME $NEW_VG_NAME   # kernel panicの原因

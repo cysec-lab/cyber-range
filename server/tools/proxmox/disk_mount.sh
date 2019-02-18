@@ -44,12 +44,10 @@ modprobe nbd max_part=$MAX_PART
 
 if [[ "$MOUNT_FILE_PATH" =~ 'rpool' ]]; then
     # ZFSクローンの場合
-    echo 'zfs mount'
     qemu-nbd -c /dev/nbd$NBD_NUM -f raw $MOUNT_FILE_PATH # 拡張子を明示する
 else
     # FULLクローンの場合
     qemu-nbd -c /dev/nbd$NBD_NUM $MOUNT_FILE_PATH
-    echo 'full mount'
 fi
 sleep 2
 partprobe /dev/nbd$NBD_NUM

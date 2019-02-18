@@ -34,50 +34,43 @@ NBD_NUM=$(((HANDRED_NUM*6 + ONE_NUM) % MAX_PART))
 # ディスクイメージのマウント
 $tool_dir/disk_mount.sh $NBD_NUM $DISK_DATA_FILE
 
-# cloneによるPV,VGのUUID副重問題の解決
+# 変更すべきテンプレートVMのVG nameを取得
 OLD_VG_NAME=`vgdisplay | grep 'VG Name' | grep -v 'pve' | awk '{ print $3 }'`
 NEW_VG_NAME="vg_$VM_NUM"
-pvchange --uuid /dev/nbd${NBD_NUM}p2
-vgrename $OLD_VG_NAME $NEW_VG_NAME      # kernel panicの原因
-vgchange --uuid $NEW_VG_NAME
-vgchange -ay $NEW_VG_NAME
 
+# VG nameの変更とUUID重複問題の解決
+$tool_dir/uuid_reset.sh $NBD_NUM $OLD_VG_NAME $NEW_VG_NAME
 
+# マウント用のディレクトリ作成
 mkdir $MOUNT_DIR
 
-# boot config edit grub
-#mount $DATA_DIR/vm-${VM_NUM}-disk-1-part1 $MOUNT_DIR 左でもできた
+vgchange -ay $NEW_VG_NAME
+
+# grubに記述されているVG nameを修正
 mount /dev/nbd${NBD_NUM}p1 $MOUNT_DIR
+#mount $DISK_DATA_DIR/vm-${VM_NUM}-disk-1-part1 $MOUNT_DIR 左でもできた
 sed -i -e "s/$OLD_VG_NAME/$NEW_VG_NAME/g" $MOUNT_DIR/grub/grub.conf
 sync
 sync
 sync
 umount $MOUNT_DIR
 
-# Phisical Volume mount
-mount /dev/$NEW_VG_NAME/lv_root /mnt/vm$VM_NUM
+# 設定ファイルが記述されている領域をマウント
+mount /dev/$NEW_VG_NAME/lv_root $MOUNT_DIR
 
-# boot config edit fstab
-# TODO UUID change
-#VG_UUID=`vgdisplay vg_$VM_NUM | grep 'VG UUID' | awk '{print $3}'`
-#sed -i -e "s/UUID=\w{6}-\w{4}-\w{4}-\w{4}......\t/UUID=$VG_UUID\t/g" /mnt/vm$VM_NUM/etc/fstab
+# fstabに記述されているVG nameを修正
 sed -i -e "s/$OLD_VG_NAME/$NEW_VG_NAME/g" $MOUNT_DIR/etc/fstab
 
-# VM clone setup
+# クローンされたVMをサイバーレンジに使えるように設定変更する(IPアドレスなど)
 $tool_dir/clone.sh $VM_NUM $IP_ADDRESS $HOSTNAME
-#$tool_dir/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE
-
-# Phisical Volume umount
+#$tool_dir/nfs_setup.sh $VM_NUM $IP_ADDRESS $PC_TYPE # nfsを利用する場合に実行(現在利用していない)
 sync
 sync
 sync
 umount $MOUNT_DIR
 
-# cleanup
+# ディスクイメージのアンマウント
+$tool_dir/disk_umount.sh $NBD_NUM $NEW_VG_NAME
+
+# マウント用のディレクトリ削除
 rmdir $MOUNT_DIR
-
-vgchange -an $NEW_VG_NAME
-qemu-nbd -d /dev/nbd$NBD_NUM
-
-# 排他制御終了
-#rm -rf $LOCK_FILE
