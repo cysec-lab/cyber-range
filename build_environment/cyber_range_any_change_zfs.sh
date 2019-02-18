@@ -66,7 +66,7 @@ for num in ${VYOS_NUMS[@]}; do
     _hostname="$pc_type$num"
     $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP_NUM $_hostname $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
     $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-    $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
+    $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
 
@@ -79,7 +79,7 @@ for num in ${WEB_NUMS[@]}; do
     _hostname="$pc_type$num"
     $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP_NUM $_hostname $group_network_bridge
     $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname
-    $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
+    $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num
 done
 
@@ -103,7 +103,7 @@ for num in ${CLIENT_NUMS[@]}; do
     if [ $scenario_num -eq 1 ]; then
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname
     fi
-    $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
+    $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num
 done
 

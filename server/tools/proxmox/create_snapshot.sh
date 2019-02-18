@@ -10,4 +10,11 @@ fi
 VMID=$1
 SNAPNAME=$2
 
-qm snapshot $VMID $SNAPNAME
+result=`cat /etc/pve/qemu-server/${VMID}.conf | grep 'ide0:' | grep 'zfs'`
+if [ ${#result} -ne 0 ]; then
+    # ZFS
+    zfs snapshot rpool/data/vm-${VMID}-disk-1@$SNAPNAME
+else
+    # QEMU
+    qm snapshot $VMID $SNAPNAME
+fi

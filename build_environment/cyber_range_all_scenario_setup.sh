@@ -65,12 +65,11 @@ for scenario_num in $scenario_nums; do
         if [ "$clone_type" = 'zfs' ]; then
             $tool_dir/zfs_clone_vm.sh $num ${VYOS_TEMP_NUMS[$loop_num]} $_hostname $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
             $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-            $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
         else
             $tool_dir/clone_vm.sh $num ${VYOS_TEMP_NUMS[$loop_num]} $_hostname $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
             $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
-            $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
         fi
+        $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     
         # first scenario's vm starts
         if [ ${num:1:1} -eq '1' ]; then
@@ -88,12 +87,11 @@ for scenario_num in $scenario_nums; do
         if [ "$clone_type" = 'zfs' ]; then
             $tool_dir/zfs_clone_vm.sh $num ${WEB_TEMP_NUMS[$loop_num]} $_hostname $group_network_bridge # clone vm by zfs clone
             $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
-            $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
         else
             $tool_dir/clone_vm.sh $num ${WEB_TEMP_NUMS[$loop_num]} $_hostname $TARGET_STRAGE $group_network_bridge
             $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
-            $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
         fi
+        $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
 
         # first scenario's vm starts
         if [ ${num:1:1} -eq '1' ]; then
@@ -122,7 +120,6 @@ for scenario_num in $scenario_nums; do
             if [ $scenario_num -eq 1 ]; then
                 $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname #change cloned vm's config file
             fi
-            $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
         else
             if [ $scenario_num -eq 2 ]; then
                 #mul_num=${num:0:1}
@@ -138,8 +135,8 @@ for scenario_num in $scenario_nums; do
             if [ $scenario_num -eq 1 ]; then
                 $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
             fi
-            $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
         fi
+        $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
 
         # first scenario's vm starts
         if [ ${num:1:1} -eq '1' ]; then
