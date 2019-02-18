@@ -17,6 +17,12 @@ if [ ! -e $MOUNT_FILE_PATH ]; then
     exit 1
 fi
 
+# parted install LVM is need parted
+result=`dpkg -l | grep parted`
+if [ ${#result} -eq 0 ]; then
+    apt-get install -y parted
+fi
+
 modprobe nbd max_part=$MAX_PART
 
 # 排他的制御 ->
@@ -35,6 +41,15 @@ modprobe nbd max_part=$MAX_PART
 # disk image mount
 # TODO 同時mountしてしまうとUUID重複で操作が出来なくなる
 #      排他制御が必要
-qemu-nbd -c /dev/nbd$NBD_NUM $MOUNT_FILE_PATH
+
+if [[ "$MOUNT_FILE_PATH" =~ 'rpool' ]]; then
+    # ZFSクローンの場合
+    echo 'zfs mount'
+    qemu-nbd -c /dev/nbd$NBD_NUM -f raw $MOUNT_FILE_PATH # 拡張子を明示する
+else
+    # FULLクローンの場合
+    qemu-nbd -c /dev/nbd$NBD_NUM $MOUNT_FILE_PATH
+    echo 'full mount'
+fi
 sleep 2
 partprobe /dev/nbd$NBD_NUM

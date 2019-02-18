@@ -1,6 +1,4 @@
 #!/bin/bash
-# TODO: change_format.sh
-#       rawイメージのときはQCOW2に変更させたい
 
 if [ $# -ne 3 ]; then
     echo "[VM num] [IP Address] [HOSTNAME] need"
@@ -26,15 +24,8 @@ if [ ! -e $QCOW2_FILE_PATH ]; then
         echo "Image file dose not exist"
         exit 1
     fi
-    # TODO: utils以下に移動
-    $tool_dir/convert_raw_to_qcow2.sh $RAW_FILE_PATH
+    /root/github/cyber_range/service/utilities/convert_raw_to_qcow2.sh $RAW_FILE_PATH
     sed -ie "s/raw/qcow2/g" $CONFIG_FILE_PATH
-fi
-
-# parted install LVM is need parted
-result=`dpkg -l | grep parted`
-if [ ${#result} -eq 0 ]; then
-    apt-get install -y parted
 fi
 
 TENS_PLACE=${VM_NUM:1:1}
