@@ -90,7 +90,6 @@ for scenario_num in $scenario_nums; do
             $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
         else
             $tool_dir/clone_vm.sh $num ${WEB_TEMP_NUMS[$loop_num]} $_hostname $TARGET_STRAGE $group_network_bridge
-            $tool_dir/change_format.sh $num
             $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
             $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
         fi
@@ -136,7 +135,6 @@ for scenario_num in $scenario_nums; do
             	$tool_dir/clone_vm.sh $num ${CLIENT_TEMP_NUMS[$loop_num]} $_hostname $TARGET_STRAGE $group_network_bridge
             fi
             if [ $scenario_num -eq 1 ]; then
-                $tool_dir/change_format.sh $num
                 $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
             fi
             $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot

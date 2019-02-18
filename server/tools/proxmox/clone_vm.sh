@@ -1,13 +1,12 @@
 #!/bin/bash
 #TODO VM IPアドレス
 #TODO onboot yes : yes設定にしないとProxmoxを再起動した際に自動起動してくれないVyOSはProxmox起動時に起動してほしい
-#TODO スナップショットの作成
 # フルクローンするスクリプト
 
 if [ $# -lt 5 ]; then
     echo "[VM NUM] [TEMPLATE_NUM] [VM NAME] [TARGET STRAGE] [BRIDGE_NUMS]... need"
     echo "example:"
-    echo "$0 111 719 web 11"
+    echo "$0 111 719 web111 111"
     exit 1
 fi
 
@@ -16,12 +15,16 @@ TEMPLATE_NUM=$2
 VM_NAME=$3
 TARGET_STRAGE=$4
 BRIDGE_NUMS=(${@:5}) # BRIDGE_NUMS部分を配列で変数に代入
+
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
-#IP_ADDRESS="192.168.1${CLONE_NUM:1:1}0.${CLONE_NUM:1:2}"
-#TEMPLATE_NAME=$PC_TYPE$TEMPLATE_NUM
+
+tool_dir=/root/github/cyber_range/server/tools/proxmox
 
 # clone
 qm clone $TEMPLATE_NUM $CLONE_NUM --name $VM_NAME --full --storage $TARGET_STRAGE #--format raw --full
+
+# フォーマットチェック+rawの場合はqcow2に変更
+$tool_dir/chg_format.sh $CLONE_NUM
 
 # change vm config file
 for ((i=0;i<${#BRIDGE_NUMS[@]};i++)); do

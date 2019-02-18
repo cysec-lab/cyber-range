@@ -72,7 +72,6 @@ for num in ${WEB_NUMS[@]}; do
     if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
     else
-        $tool_dir/change_format.sh $num
         $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
     fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
@@ -102,7 +101,6 @@ for num in ${CLIENT_NUMS[@]}; do
         if [ "$TARGET_STRAGE" = 'local-zfs' ]; then
             $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
         else
-            $tool_dir/change_format.sh $num
             $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
         fi
     fi
