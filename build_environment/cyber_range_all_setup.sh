@@ -66,11 +66,10 @@ for num in ${VYOS_NUMS[@]}; do
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     snapshot_name="vm${num}_cloned_snapshot"
     _hostname="$pc_type$num"
+    $tool_dir/clone_vm.sh $clone_type $num $VYOS_TEMP_NUM $_hostname $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm
     if [ "$clone_type" = 'zfs' ]; then
-        $tool_dir/zfs_clone_vm.sh $num $VYOS_TEMP_NUM $_hostname $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
         $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
     else
-        $tool_dir/clone_vm.sh $num $VYOS_TEMP_NUM $_hostname $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge
         $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
     fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
@@ -84,11 +83,10 @@ for num in ${WEB_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     snapshot_name="vm${num}_cloned_snapshot"
     _hostname="$pc_type$num"
+    $tool_dir/clone_vm.sh $clone_type $num $WEB_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
     if [ "$clone_type" = 'zfs' ]; then
-        $tool_dir/zfs_clone_vm.sh $num $WEB_TEMP_NUM $_hostname $group_network_bridge # clone vm by zfs clone
         $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname  # change cloned vm's config files
     else
-        $tool_dir/clone_vm.sh $num $WEB_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge
         $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
     fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
@@ -110,9 +108,9 @@ for num in ${CLIENT_NUMS[@]}; do
             #add_num=$((add_num - 3))
             #client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
             client_num=$CLIENT_TEMP_NUM
-            $tool_dir/zfs_clone_vm.sh $num $client_num $_hostname $group_network_bridge
+            $tool_dir/clone_vm.sh $clone_type $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
         else
-            $tool_dir/zfs_clone_vm.sh $num $CLIENT_TEMP_NUM $_hostname $group_network_bridge
+            $tool_dir/clone_vm.sh $clone_type $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
         fi
         if [ $scenario_num -eq 1 ]; then
             $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname #change cloned vm's config file
@@ -126,9 +124,9 @@ for num in ${CLIENT_NUMS[@]}; do
             #add_num=$((add_num - 3))
             #client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
             client_num=$CLIENT_TEMP_NUM
-            $tool_dir/clone_vm.sh $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge
+            $tool_dir/clone_vm.sh $clone_type $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
         else
-            $tool_dir/clone_vm.sh $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge
+            $tool_dir/clone_vm.sh $clone_type $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
         fi
         if [ $scenario_num -eq 1 ]; then
             $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
