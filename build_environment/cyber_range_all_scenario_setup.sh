@@ -63,11 +63,7 @@ for scenario_num in $scenario_nums; do
         snapshot_name="vm${num}_cloned_snapshot"
         _hostname="$pc_type$num"
         $tool_dir/clone_vm.sh $clone_type $num ${VYOS_TEMP_NUMS[$loop_num]} $_hostname $TARGET_STRAGE $VYOS_NETWORK_BRIDGE $group_network_bridge # vm clone
-        if [ "$clone_type" = 'zfs' ]; then
-            $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
-        else
-            $tool_dir/vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge
-        fi
+        $tool_dir/vyos_config_setup.sh $clone_type $num $VYOS_NETWORK_BRIDGE $group_network_bridge # change cloned vm's config files
         $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     
         # first scenario's vm starts
