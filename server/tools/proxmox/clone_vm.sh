@@ -23,7 +23,7 @@ tool_dir=/root/github/cyber_range/server/tools/proxmox
 # clone
 qm clone $TEMPLATE_NUM $CLONE_NUM --name $VM_NAME --full --storage $TARGET_STRAGE #--format raw --full
 
-# フォーマットチェック+rawの場合はqcow2に変更
+# ファイルの有無とフォーマットチェック+rawの場合はqcow2に変更
 $tool_dir/chg_format.sh $CLONE_NUM
 
 # change vm config file
