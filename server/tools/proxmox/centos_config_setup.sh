@@ -1,16 +1,19 @@
 #!/bin/bash
 
-if [ $# -ne 3 ]; then
-    echo "[VM num] [IP Address] [HOSTNAME] need"
+if [ $# -ne 4 ]; then
+    echo "[Clone type] [VM num] [IP Address] [HOSTNAME] need"
     echo "example:"
-    echo "$0 111 192.168.110.11 centos6-i386"
+    echo "$0 zfs 111 192.168.110.11 centos6-i386"
     exit 1
 fi
 
-VM_NUM=$1
-IP_ADDRESS=$2
-HOSTNAME=$3
+CLONE_TYPE=$1
+VM_NUM=$2
+IP_ADDRESS=$3
+HOSTNAME=$4
 
+DISK_DATA_DIR="/dev/rpool/data"
+DISK_DATA_FILE="$DISK_DATA_DIR/vm-${VM_NUM}-disk-1"
 QCOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 RAW_FILE_PATH=`echo $QCOW2_FILE_PATH | sed 's/qcow2/raw/g'`
 CONFIG_FILE_PATH="/etc/pve/qemu-server/${VM_NUM}.conf"
@@ -19,8 +22,18 @@ MOUNT_DIR="/mnt/vm$VM_NUM"
 tool_dir=/root/github/cyber_range/server/tools/proxmox
 MAX_PART=16
 
-# ファイルの有無とフォーマットチェック+rawの場合はqcow2に変更
-$tool_dir/chg_format.sh $VM_NUM
+if [ "$CLONE_TYPE" = 'zfs' ]; then
+    # ZFS Cloneが終わるのを待つ
+    while [ ! -e $DISK_DATA_FILE ]; do
+        sleep 1
+    done
+elif [ "$CLONE_TYPE" = 'full' ]; then
+    # ファイルの有無とフォーマットチェック+rawの場合はqcow2に変更
+    $tool_dir/chg_format.sh $VM_NUM
+else
+    echo 'clone type is zfs or full'
+    exit 1
+fi
 
 TENS_PLACE=${VM_NUM:1:1}
 #TENS_PLACE=$((TENS_PLACE-1))
@@ -29,7 +42,11 @@ ONE_PLACE=$((ONE_PLACE-1))
 NBD_NUM=$(((TENS_PLACE*4 + ONE_PLACE) % MAX_PART))
 
 # ディスクイメージのマウント
-$tool_dir/disk_mount.sh $NBD_NUM $QCOW2_FILE_PATH
+if [ "$CLONE_TYPE" = 'zfs' ]; then
+    $tool_dir/disk_mount.sh $NBD_NUM $DISK_DATA_FILE
+else
+    $tool_dir/disk_mount.sh $NBD_NUM $QCOW2_FILE_PATH
+fi
 
 # 変更すべきテンプレートVMのVG nameを取得
 OLD_VG_NAME=`vgdisplay | grep 'VG Name' | grep -v 'pve' | awk '{ print $3 }'`

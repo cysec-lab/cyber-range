@@ -80,11 +80,7 @@ for num in ${WEB_NUMS[@]}; do
     snapshot_name="vm${num}_cloned_snapshot"
     _hostname="$pc_type$num"
     $tool_dir/clone_vm.sh $clone_type $num $WEB_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
-    if [ "$clone_type" = 'zfs' ]; then
-        $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname  # change cloned vm's config files
-    else
-        $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
-    fi
+    $tool_dir/centos_config_setup.sh $clone_type $num $ip_address $_hostname # change cloned vm's config files
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
@@ -96,37 +92,20 @@ for num in ${CLIENT_NUMS[@]}; do
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     snapshot_name="vm${num}_cloned_snapshot"
     _hostname="$pc_type$num"
-    if [ "$clone_type" = 'zfs' ]; then
-        if [ $scenario_num -eq 3 ]; then
-            #mul_num=${num:0:1}
-            #mul_num=$((mul_num - 1))
-            #add_num=${num:2:1}
-            #add_num=$((add_num - 3))
-            #client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
-            client_num=$CLIENT_TEMP_NUM
-            $tool_dir/clone_vm.sh $clone_type $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
-        else
-            $tool_dir/clone_vm.sh $clone_type $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
-        fi
-        if [ $scenario_num -eq 1 ]; then
-            $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname #change cloned vm's config file
-        fi
+    if [ $scenario_num -eq 2 ]; then
+        # Windowsのクローンではテンプレート元を変更させる必要がある
+        #mul_num=${num:0:1}
+        #mul_num=$((mul_num - 1))
+        #add_num=${num:2:1}
+        #add_num=$((add_num - 3))
+        #client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
+        client_num=$CLIENT_TEMP_NUM
+        $tool_dir/clone_vm.sh $clone_type $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
     else
-        if [ $scenario_num -eq 2 ]; then
-            # Windowsのクローンではテンプレート元を変更させる必要がある
-            #mul_num=${num:0:1}
-            #mul_num=$((mul_num - 1))
-            #add_num=${num:2:1}
-            #add_num=$((add_num - 3))
-            #client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
-            client_num=$CLIENT_TEMP_NUM
-            $tool_dir/clone_vm.sh $clone_type $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
-        else
-            $tool_dir/clone_vm.sh $clone_type $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
-        fi
-        if [ $scenario_num -eq 1 ]; then
-            $tool_dir/centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
-        fi
+        $tool_dir/clone_vm.sh $clone_type $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
+    fi
+    if [ $scenario_num -eq 1 ]; then
+        $tool_dir/centos_config_setup.sh $clone_type $num $ip_address $_hostname #change cloned vm's config file
     fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
