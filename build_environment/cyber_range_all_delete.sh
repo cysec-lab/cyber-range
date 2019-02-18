@@ -42,10 +42,12 @@ time=$((end_time - start_time))
 echo $time
 
 # output logs
-echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $build_log_file
-echo " time              : $time [s]" >> $build_log_file
-echo " group_num         : $group_num" >> $build_log_file
-echo " router_vms:       : ${VYOS_NUMS[@]}" >> $build_log_file
-echo " server_vms:       : ${WEB_NUMS[@]}" >> $build_log_file
-echo " client_vms:       : ${CLIENT_NUMS[@]}" >> $build_log_file
-echo >> $build_log_file
+cat << EOL >> $build_log_file
+[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*
+ time              : $time [s]
+ group_num         : $group_num
+ router_vms:       : ${VYOS_NUMS[@]}
+ server_vms:       : ${WEB_NUMS[@]}
+ client_vms:       : ${CLIENT_NUMS[@]}
+
+EOL

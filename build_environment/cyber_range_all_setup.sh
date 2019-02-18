@@ -37,7 +37,6 @@ build_log_file=$git_home`echo $json_conf_data | jq '.build_log_file' | sed 's/"/
 # bridge number of connecting each group network(=Proxmox number)
 VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
 
-
 read -p "scenario number(1 or 2): " scenario_num
 if [ $scenario_num -eq 1 ] || [ $scenario_num -eq 2 ]; then
     scenario_data=`echo $json_vm_data | jq ".${clone_type}.scenario_nums[$((scenario_num - 1))]"`
@@ -148,15 +147,17 @@ time=$((end_time - start_time))
 echo $time
 
 # output logs
-echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $build_log_file
-echo " time              : $time [s]" >> $build_log_file
-echo " scenario          : $scenario_num" >> $build_log_file
-echo " group_num         : $group_num" >> $build_log_file
-echo " clone_type        : $clone_type" >> $build_log_file
-echo " router_template_vm: $VYOS_TEMP_NUM" >> $build_log_file
-echo " router_vms:       : ${VYOS_NUMS[@]}" >> $build_log_file
-echo " server_template_vm: $WEB_TEMP_NUM" >> $build_log_file
-echo " server_vms:       : ${WEB_NUMS[@]}" >> $build_log_file
-echo " client_template_vm: $CLIENT_TEMP_NUM" >> $build_log_file
-echo " client_vms:       : ${CLIENT_NUMS[@]}" >> $build_log_file
-echo >> $build_log_file
+cat << EOL >> $build_log_file
+[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*
+ time              : $time [s]
+ scenario          : $scenario_num
+ group_num         : $group_num
+ clone_type        : $clone_type
+ router_template_vm: $VYOS_TEMP_NUM
+ router_vms:       : ${VYOS_NUMS[@]}
+ server_template_vm: $WEB_TEMP_NUM
+ server_vms:       : ${WEB_NUMS[@]}
+ client_template_vm: $CLIENT_TEMP_NUM
+ client_vms:       : ${CLIENT_NUMS[@]}
+
+EOL

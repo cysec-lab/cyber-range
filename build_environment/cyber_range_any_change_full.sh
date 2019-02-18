@@ -136,14 +136,16 @@ time=$((end_time - start_time))
 echo $time
 
 # output logs
-echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $LOG_FILE
-echo " time              : $time [s]" >> $LOG_FILE
-echo " scenario          : $scenario_num" >> $LOG_FILE
-echo " group_num         : $group_num" >> $LOG_FILE
-echo " router_template_vm: $VYOS_TEMP_NUM" >> $LOG_FILE
-echo " router_vms:       : ${VYOS_NUMS[@]}" >> $LOG_FILE
-echo " server_template_vm: $WEB_TEMP_NUM" >> $LOG_FILE
-echo " server_vms:       : ${WEB_NUMS[@]}" >> $LOG_FILE
-echo " client_template_vm: $CLIENT_TEMP_NUM" >> $LOG_FILE
-echo " client_vms:       : ${CLIENT_NUMS[@]}" >> $LOG_FILE
-echo >> $LOG_FILE
+cat << EOL >> $LOG_FILE
+[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*
+ time              : $time [s]
+ scenario          : $scenario_num
+ group_num         : $group_num
+ router_template_vm: $VYOS_TEMP_NUM
+ router_vms:       : ${VYOS_NUMS[@]}
+ server_template_vm: $WEB_TEMP_NUM
+ server_vms:       : ${WEB_NUMS[@]}
+ client_template_vm: $CLIENT_TEMP_NUM
+ client_vms:       : ${CLIENT_NUMS[@]}
+
+EOL

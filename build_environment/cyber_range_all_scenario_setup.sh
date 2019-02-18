@@ -155,15 +155,17 @@ time=$((end_time - start_time))
 echo $time
 
 # output logs
-echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $build_log_file
-echo " time               : $time [s]" >> $build_log_file
-echo " group_num          : $group_num" >> $build_log_file
-echo " scenario_nums      : ${scenario_num[@]}" >> $build_log_file
-echo " clone_types        : ${clone_types[@]}" >> $build_log_file
-echo " router_template_vms: ${VYOS_TEMP_NUMS[@]}" >> $build_log_file
-echo " router_vms:        : ${VYOS_NUMS[@]}" >> $build_log_file
-echo " server_template_vms: ${WEB_TEMP_NUMS[@]}" >> $build_log_file
-echo " server_vms:        : ${WEB_NUMS[@]}" >> $build_log_file
-echo " client_template_vms: ${CLIENT_TEMP_NUMS[@]}" >> $build_log_file
-echo " client_vms:        : ${CLIENT_NUMS[@]}" >> $build_log_file
-echo >> $build_log_file
+cat << EOL >> $build_log_file
+[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*
+ time               : $time [s]
+ group_num          : $group_num
+ scenario_nums      : ${scenario_num[@]}
+ clone_types        : ${clone_types[@]}
+ router_template_vms: ${VYOS_TEMP_NUMS[@]}
+ router_vms:        : ${VYOS_NUMS[@]}
+ server_template_vms: ${WEB_TEMP_NUMS[@]}
+ server_vms:        : ${WEB_NUMS[@]}
+ client_template_vms: ${CLIENT_TEMP_NUMS[@]}
+ client_vms:        : ${CLIENT_NUMS[@]}
+
+EOL
