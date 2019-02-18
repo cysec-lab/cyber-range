@@ -3,20 +3,21 @@
 # - scenario 1 : Ransomeware
 # - scenario 2 : Dos Attack
 
-tool_dir=/root/github/cyber_range/server/tools/proxmox
-
 TARGET_STRAGE='local'  # full clone target strage
-LOG_FILE="./setup.log" # log file name
 
 # Get JSON data
 json_vm_data=`cat vm_info.json`
 json_scenario_data=`cat scenario_info.json`
+json_conf_data=`cat config_info.json`
 day=`echo $json_scenario_data | jq '.day'`
 group_num=`echo $json_scenario_data | jq '.group_num'`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 scenario_nums=`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[].scenario_num"`
 clone_types=(`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[].clone_type" | sed 's/"//g'`)
-
+git_home_get_command=`echo $json_conf_data | jq '.git_home_get_command' | sed 's/"//g'`
+git_home=`$git_home_get_command`
+tool_dir=$git_home`echo $json_conf_data | jq '.tool_dir' | sed 's/"//g'`
+build_log_file=$git_home`echo $json_conf_data | jq '.build_log_file' | sed 's/"//g'`
 
 # bridge number of connecting each group network(=Proxmox number)
 VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
@@ -61,7 +62,7 @@ for scenario_num in $scenario_nums; do
         group_network_bridge="1${PROXMOX_NUM}${num:0:1}" # decide group netwrok bridge number
         snapshot_name="vm${num}_cloned_snapshot"
         _hostname="$pc_type$num"
-        if [ "${clone_type}" = 'zfs' ]; then
+        if [ "$clone_type" = 'zfs' ]; then
             $tool_dir/zfs_clone_vm.sh $num ${VYOS_TEMP_NUMS[$loop_num]} $_hostname $VYOS_NETWORK_BRIDGE $group_network_bridge # clone vm by zfs clone
             $tool_dir/zfs_vyos_config_setup.sh $num $VYOS_NETWORK_BRIDGE $group_network_bridge            # change cloned vm's config files
             $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
@@ -84,7 +85,7 @@ for scenario_num in $scenario_nums; do
         ip_address="192.168.${group_network_bridge}.${num:2:1}" # new vm's ip address
         snapshot_name="vm${num}_cloned_snapshot"
         _hostname="$pc_type$num"
-        if [ "${clone_type}" = 'zfs' ]; then
+        if [ "$clone_type" = 'zfs' ]; then
             $tool_dir/zfs_clone_vm.sh $num ${WEB_TEMP_NUMS[$loop_num]} $_hostname $group_network_bridge # clone vm by zfs clone
             $tool_dir/zfs_centos_config_setup.sh $num $ip_address $_hostname # change cloned vm's config files
             $tool_dir/create_snapshot_zfs.sh $num $snapshot_name # create snapshot
@@ -154,14 +155,15 @@ time=$((end_time - start_time))
 echo $time
 
 # output logs
-echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $LOG_FILE
-echo " time               : $time [s]" >> $LOG_FILE
-echo " group_num          : $group_num" >> $LOG_FILE
-echo " scenario_nums      : ${scenario_num[@]}" >> $LOG_FILE
-echo " router_template_vms: ${VYOS_TEMP_NUMS[@]}" >> $LOG_FILE
-echo " router_vms:        : ${VYOS_NUMS[@]}" >> $LOG_FILE
-echo " server_template_vms: ${WEB_TEMP_NUMS[@]}" >> $LOG_FILE
-echo " server_vms:        : ${WEB_NUMS[@]}" >> $LOG_FILE
-echo " client_template_vms: ${CLIENT_TEMP_NUMS[@]}" >> $LOG_FILE
-echo " client_vms:        : ${CLIENT_NUMS[@]}" >> $LOG_FILE
-echo >> $LOG_FILE
+echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $build_log_file
+echo " time               : $time [s]" >> $build_log_file
+echo " group_num          : $group_num" >> $build_log_file
+echo " scenario_nums      : ${scenario_num[@]}" >> $build_log_file
+echo " clone_types        : ${clone_types[@]}" >> $build_log_file
+echo " router_template_vms: ${VYOS_TEMP_NUMS[@]}" >> $build_log_file
+echo " router_vms:        : ${VYOS_NUMS[@]}" >> $build_log_file
+echo " server_template_vms: ${WEB_TEMP_NUMS[@]}" >> $build_log_file
+echo " server_vms:        : ${WEB_NUMS[@]}" >> $build_log_file
+echo " client_template_vms: ${CLIENT_TEMP_NUMS[@]}" >> $build_log_file
+echo " client_vms:        : ${CLIENT_NUMS[@]}" >> $build_log_file
+echo >> $build_log_file

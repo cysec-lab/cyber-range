@@ -1,0 +1,18 @@
+{
+    "_comment": {
+        "vm_config_dir": "各VM情報のconfigファイルが置いてあるディレクトリ 100.conf",
+        "vm_image_dir": "QEMUを用いた場合のVMイメージデータが置いてあるディレクトリ 100/vm-100-disk-1.qcow2",
+        "zfs_vm_image_dir": "ZFSを用いた場合のVMイメージデータへのリンクが張ってあるディレクトリ vm-111-disk-1",
+        "build_log_file": "環境構築スクリプトの実行時に出力されるログファイル",
+        "tool_dir": "環境構築時に用いられるツール類がおいてあるディレクトリ",
+        "util_dir": "実用的なツール類がおいてあるディレクトリ(環境構築と直接関係のないスクリプト類)",
+        "git_home_get_command": "Gitレポジトリのホームディレクトリを取得するコマンド"
+    },
+    "vm_config_dir": "/etc/pve/qemu-server",
+    "vm_image_dir": "/var/lib/vz/images",
+    "zfs_vm_image_dir": "/dev/rpool/data",
+    "build_log_file": "/build_environment/setup.log",
+    "tool_dir": "/server/tools/proxmox",
+    "util_dir": "/server/tools/utilities/convert_image_format",
+    "git_home_get_command": "git rev-parse --show-toplevel"
+}

@@ -3,16 +3,18 @@
 # - select delete group number range
 #   if select 5 delete 1~5 group
 
-tool_dir=/root/github/cyber_range/server/tools/proxmox # proxmox tool dir
-LOG_FILE="./setup.log"
-
 # Get JSON data
 json_vm_data=`cat vm_info.json`
 json_scenario_data=`cat scenario_info.json`
+json_conf_data=`cat config_info.json`
 day=`echo $json_scenario_data | jq '.day'`
 group_num=`echo $json_scenario_data | jq '.group_num'`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 scenario_nums=`echo $json_scenario_data | jq ".days[$((day - 1))].scenario_nums[].scenario_num"`
+git_home_get_command=`echo $json_conf_data | jq '.git_home_get_command' | sed 's/"//g'`
+git_home=`$git_home_get_command`
+tool_dir=$git_home`echo $json_conf_data | jq '.tool_dir' | sed 's/"//g'`
+build_log_file=$git_home`echo $json_conf_data | jq '.build_log_file' | sed 's/"//g'`
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
 loop_num=1 # 1から始まる通し番号
@@ -40,10 +42,10 @@ time=$((end_time - start_time))
 echo $time
 
 # output logs
-echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $LOG_FILE
-echo " time              : $time [s]" >> $LOG_FILE
-echo " group_num         : $group_num" >> $LOG_FILE
-echo " router_vms:       : ${VYOS_NUMS[@]}" >> $LOG_FILE
-echo " server_vms:       : ${WEB_NUMS[@]}" >> $LOG_FILE
-echo " client_vms:       : ${CLIENT_NUMS[@]}" >> $LOG_FILE
-echo >> $LOG_FILE
+echo "[`date "+%Y/%m/%d %H:%M:%S"`] $0 $*" >> $build_log_file
+echo " time              : $time [s]" >> $build_log_file
+echo " group_num         : $group_num" >> $build_log_file
+echo " router_vms:       : ${VYOS_NUMS[@]}" >> $build_log_file
+echo " server_vms:       : ${WEB_NUMS[@]}" >> $build_log_file
+echo " client_vms:       : ${CLIENT_NUMS[@]}" >> $build_log_file
+echo >> $build_log_file
