@@ -1,5 +1,4 @@
 #!/bin/bash
-# TODO ファイル分割
 
 if [ $# -ne 3 ]; then
     echo "[vm num] [IP Address] [hostname] need"
