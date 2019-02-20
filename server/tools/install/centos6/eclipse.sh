@@ -18,7 +18,7 @@ eclipse_tar_file="eclipse-jee-$eclipse_version-R-linux-gtk${linux_version}.tar.g
 wget http://ftp.fau.de/eclipse/technology/epp/downloads/release/$eclipse_version/R/$eclipse_tar_file
 
 tar xfz $eclipse_tar_file -C /opt/
-ls /opt/eclipse/
+rm $eclipse_tar_file
 ln -s /opt/eclipse/eclipse /usr/local/bin/eclipse
 ls -al /usr/local/bin/eclipse
 
