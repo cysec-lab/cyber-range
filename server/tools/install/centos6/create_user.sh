@@ -10,7 +10,6 @@ fi
 
 USER_NAME=$1
 
-
 useradd $USER_NAME
 
 yum -y install expect
