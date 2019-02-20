@@ -8,7 +8,7 @@ if [ $# -ne 3 ]; then
 fi
 
 yum -y update
-yum -y install vim bind-utils traceroute
+yum -y install vim git wget bind-utils traceroute
 
 # SELinux off
 setenforce 0
