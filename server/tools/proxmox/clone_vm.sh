@@ -1,6 +1,6 @@
 #!/bin/bash
-#TODO onboot yes : yes設定にしないとProxmoxを再起動した際に自動起動してくれないVyOSはProxmox起動時に起動してほしい
 # ZFS FULLクローン両方に対応したスクリプト
+#TODO onboot yes : yes設定にしないとProxmoxを再起動した際に自動起動してくれないVyOSはProxmox起動時に起動してほしい
 
 if [ $# -lt 6 ]; then
     echo "[CLONE TYPE] [VM NUM] [TEMPLATE_NUM] [VM NAME] [TARGET STRAGE] [BRIDGE_NUMS]... need"
@@ -46,8 +46,12 @@ elif [ "$CLONE_TYPE" = 'full' ]; then
     # QEMU
     qm clone $TEMPLATE_NUM $CLONE_NUM --name $VM_NAME --full --storage $TARGET_STRAGE #--format raw --full
     
-    # ファイルの有無とフォーマットチェック+rawの場合はqcow2に変更
-    $tool_dir/chg_format.sh $CLONE_NUM
+    # localストレージの場合はqcow2に変更する
+    # local-zfsストレージはrawファイルのまま．rollbackはzfsで行うため問題ない
+    if [ "$TARGET_STRAGE" = 'local' ]; then
+        # ファイルの有無とフォーマットチェック+rawの場合はqcow2に変更
+        $tool_dir/chg_format.sh $CLONE_NUM
+    fi
 else
     echo 'clone type is zfs or full'
     exit 1
