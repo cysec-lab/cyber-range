@@ -10,13 +10,13 @@ fi
 
 status=$1
 
+command='sysctl -w kernel.randomize_va_space='
+
 if [ "$status" = 'on' ]; then
-    value=2
+    ${command}2
 elif [ "$status" = 'off' ]; then
-    value=0
+    ${command}0
 else
     echo 'invalid args'
     exit 1
 fi
-
-echo "kernel.randomize_va_space = $value" > /etc/sysctl.d/01-disable-aslr.conf
