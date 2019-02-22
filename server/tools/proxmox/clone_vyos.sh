@@ -1,7 +1,5 @@
 #!/bin/bash
 # クローン後のvyosの設定を行うスクリプト
-#TODO: テンプレートVMを指定する
-
 
 if [ $# -ne 3 ]; then
   echo "Need new [VM num] [VYOS_NETWORK_BRIDGE] [GROUP_NETWORK_BRIDGE]"
