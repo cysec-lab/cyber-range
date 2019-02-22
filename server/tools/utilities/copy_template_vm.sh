@@ -26,13 +26,6 @@ if !([ "$STRAGE_NAME" = 'local' ] || [ "$STRAGE_NAME" = 'local-zfs' ] || [ "$STR
     exit 1
 fi
 
-# VM番号チェック
-result=`qm status $VM_NUM | grep 'does not exist'`
-if [ ${#result} -ne 0 ]; then
-    echo "番号 $VM_NUM のVMは存在していません"
-    exit 1
-fi
-
 # 設定ファイルチェック
 if [ -e "$DIST_CONF_FILE" ]; then
     echo "すでに $DIST_CONF_FILE の設定ファイルが存在しています"
@@ -48,22 +41,22 @@ cp $SOURCE_CONF_FILE $DIST_CONF_FILE
 if [ "$STRAGE_NAME" = 'local' ]; then
     # 設定ファイルの修正
     result=`cat $DIST_CONF_FILE | grep -e "^ide0" | grep -e "local:$VM_NUM"`
-    if [ ${#result} -ne 0 ]; then
+    if [ ${#result} -eq 0 ]; then
         # local-zfs -> localに設定変更
-        sed -ie "s/-zfs:/:${VM_NUM}\//g" $DIST_CONF_FILE
-        sed -ie "s/disk-1/disk-1.qcow2/g" $DIST_CONF_FILE
-        sed -ie "/^scsihw:/d" $DIST_CONF_FILE
+        sed -i -e "s/-zfs:/:${VM_NUM}\//g" $DIST_CONF_FILE
+        sed -i -e "s/disk-1/disk-1.qcow2/g" $DIST_CONF_FILE
+        sed -i -e "/^scsihw:/d" $DIST_CONF_FILE
     fi
     # イメージのコピー
     cp -rf $SOURCE_DIR/$QCOW2_DIR/$VM_NUM $DIST_DIR/$QCOW2_DIR/
 else
     # 設定ファイルの修正
     result=`cat $DIST_CONF_FILE | grep -e "^ide0" | grep -e "local-zfs"`
-    if [ ${#result} -ne 0 ]; then
+    if [ ${#result} -eq 0 ]; then
         # local -> local-zfsに設定変更
-        sed -ie "s/:$VM_NUM\//-zfs:/g" $DIST_CONF_FILE
-        sed -ie "s/disk-1.qcow2/disk-1/g" $DIST_CONF_FILE
-        sed -ie "/^ostype:/a scsihw: virtio-scsi-pci" $DIST_CONF_FILE
+        sed -i -e "s/:$VM_NUM\//-zfs:/g" $DIST_CONF_FILE
+        sed -i -e "s/disk-1.qcow2/disk-1/g" $DIST_CONF_FILE
+        sed -i -e "/^ostype:/a scsihw: virtio-scsi-pci" $DIST_CONF_FILE
     fi
     # イメージのコピー
     $convert_tool_dir/convert_qcow2_to_zfs.sh $VM_NUM rpool 32 $SOURCE_DIR/$QCOW2_DIR/$VM_NUM
