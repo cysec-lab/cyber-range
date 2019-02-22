@@ -13,8 +13,8 @@ QEOW2_FILE_PATH="/var/lib/vz/images/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2"
 RAW_FILE_PATH=`echo $QEOW2_FILE_PATH | sed 's/qcow2/raw/g'`
 CONFIG_FILE_PATH="/etc/pve/qemu-server/${VM_NUM}.conf"
 
-tool_dir=/root/github/cyber_range/server/tools/proxmox
-util_dir=/root/github/cyber_range/server/tools/utilities/convert_image_format
+tool_dir=/root/github/cyber-range/server/tools/proxmox
+util_dir=/root/github/cyber-range/server/tools/utilities/convert_image_format
 
 if [ ! -e $QEOW2_FILE_PATH ]; then
     if [ ! -e $RAW_FILE_PATH ]; then

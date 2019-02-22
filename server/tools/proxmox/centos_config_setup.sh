@@ -19,7 +19,7 @@ RAW_FILE_PATH=`echo $QCOW2_FILE_PATH | sed 's/qcow2/raw/g'`
 CONFIG_FILE_PATH="/etc/pve/qemu-server/${VM_NUM}.conf"
 MOUNT_DIR="/mnt/vm$VM_NUM"
 
-tool_dir=/root/github/cyber_range/server/tools/proxmox
+tool_dir=/root/github/cyber-range/server/tools/proxmox
 MAX_PART=16
 
 if [ "$CLONE_TYPE" = 'zfs' ]; then

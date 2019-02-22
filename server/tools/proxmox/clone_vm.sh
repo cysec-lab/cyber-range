@@ -20,7 +20,7 @@ TEMPLATE_CONFIG_PATH=/etc/pve/qemu-server/${TEMPLATE_NUM}.conf
 CLONE_CONFIG_PATH=/etc/pve/qemu-server/${CLONE_NUM}.conf
 SNAPSHOT=rpool/data/vm-${TEMPLATE_NUM}-disk-1@${TEMPLATE_NUM}_snapshot
 
-tool_dir=/root/github/cyber_range/server/tools/proxmox
+tool_dir=/root/github/cyber-range/server/tools/proxmox
 
 # VMのクローン
 if [ "$CLONE_TYPE" = 'zfs' ]; then
