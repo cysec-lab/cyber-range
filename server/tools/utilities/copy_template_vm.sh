@@ -12,8 +12,8 @@ VM_NUM=$2
 SOURCE_DIR=$3
 DIST_DIR=$4
 
-QCOW2_DIR=var/lib/vz/images/
-CONF_PATH=etc/pve/qemu-server/
+QCOW2_DIR=var/lib/vz/images
+CONF_PATH=etc/pve/qemu-server
 
 convert_tool_dir=/root/github/cyber-range/server/tools/utilities/convert_image_format
 
@@ -59,5 +59,5 @@ else
         sed -i -e "/^ostype:/a scsihw: virtio-scsi-pci" $DIST_CONF_FILE
     fi
     # イメージのコピー
-    $convert_tool_dir/convert_qcow2_to_zfs.sh $VM_NUM rpool 32 $SOURCE_DIR/$QCOW2_DIR/$VM_NUM
+    $convert_tool_dir/convert_qcow2_to_zfs.sh $VM_NUM rpool 32 $SOURCE_DIR/$QCOW2_DIR/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2
 fi
