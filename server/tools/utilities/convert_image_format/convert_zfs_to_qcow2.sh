@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 3 ]; then
-    echo "[vm num] [Pool Name] [Dist file full path] need"
+    echo "[vm num] [Pool Name] [Dist images dir] need"
     echo "example:"
     echo "$0 100 rpool /var/lib/vz/images"
     exit 1
@@ -20,11 +20,10 @@ if [ -e $DIST_FILE_PATH ]; then
 fi
 
 # ディレクトリがなければ作成する
-# TODO 上手くいっていない
-#if [ -e ${DIST_FILE_PATH##/} ]; then
-#    mkdir ${DIST_FILE_PATH##/}
-#fi
+if [ ! -e ${DIST_FILE_PATH%/*} ]; then
+    mkdir -p ${DIST_FILE_PATH%/*}
+fi
 
 time dd if=$ZFS_FILE_PATH of=${DIST_FILE_PATH}.raw
-qemu-img convert -f raw -O qcow2 ${DIST_FILE_PATH}.raw ${DIST_FILE_PATH}.qcow2
+time qemu-img convert -f raw -O qcow2 ${DIST_FILE_PATH}.raw ${DIST_FILE_PATH}.qcow2
 rm ${DIST_FILE_PATH}.raw
