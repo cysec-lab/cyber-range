@@ -62,3 +62,15 @@ else
     VM_SIZE=`grep 'size=' $SOURCE_CONF_FILE | awk -F 'size=' '{print $2}' | rev | cut -c 2- | rev`
     $convert_tool_dir/convert_qcow2_to_zfs.sh $VM_NUM rpool $VM_SIZE $SOURCE_DIR/$QCOW2_DIR/$VM_NUM/vm-${VM_NUM}-disk-1.qcow2
 fi
+
+# MACアドレスの修正
+# ブリッジ番号の取得
+BRIDGE_NUMS=(`grep -e "^net" $DIST_CONF_FILE | awk -F 'vmbr' '{print $2}'`)
+# コピーしたVMのMACアドレスを変更
+for ((i=0;i<${#BRIDGE_NUMS[@]};i++)); do
+    # 新たなMACアドレスを生成
+    mac_address=`dd if=/dev/urandom bs=1024 count=1 2>/dev/null|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/' | tr '[a-z]' '[A-Z]'`
+    new_net_info="net${i}: e1000=${mac_address},bridge=vmbr${BRIDGE_NUMS[i]}"
+    # clone時にconfファイルにparentとして以前のデータが残ることがあるが前のデータを残すために最初にマッチした行のみ変更を加える
+    sed -i -e "0,/^net${i}/s/^net${i}.*/$new_net_info/g" $DIST_CONF_FILE
+done
