@@ -43,7 +43,6 @@ if [ "$STRAGE_NAME" = 'local' ]; then
     result=`cat $DIST_CONF_FILE | grep -e "^ide0" | grep -e "local:$VM_NUM"`
     if [ ${#result} -eq 0 ]; then
         # local-zfs -> localに設定変更
-	sed -i -e "s/scsi0:/ide0:/g" $DIST_CONF_FILE
         sed -i -e "s/-zfs:/:${VM_NUM}\//g" $DIST_CONF_FILE
         sed -i -e "s/disk-1/disk-1.qcow2/g" $DIST_CONF_FILE
         sed -i -e "/^scsihw:/d" $DIST_CONF_FILE
@@ -55,7 +54,6 @@ else
     result=`cat $DIST_CONF_FILE | grep -e "^ide0" | grep -e "local-zfs"`
     if [ ${#result} -eq 0 ]; then
         # local -> local-zfsに設定変更
-	sed -i -e "s/ide0:/scsi0:/g" $DIST_CONF_FILE
         sed -i -e "s/:$VM_NUM\//-zfs:/g" $DIST_CONF_FILE
         sed -i -e "s/disk-1.qcow2/disk-1/g" $DIST_CONF_FILE
         sed -i -e "/^ostype:/a scsihw: virtio-scsi-pci" $DIST_CONF_FILE
