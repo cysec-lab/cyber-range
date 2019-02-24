@@ -1,11 +1,10 @@
 #!/bin/bash
 # ZFS FULLクローン両方に対応したスクリプト
-#TODO onboot yes : yes設定にしないとProxmoxを再起動した際に自動起動してくれないVyOSはProxmox起動時に起動してほしい
 
 if [ $# -lt 6 ]; then
     echo "[CLONE TYPE] [VM NUM] [TEMPLATE_NUM] [VM NAME] [TARGET STRAGE] [BRIDGE_NUMS]... need"
     echo "example:"
-    echo "$0 zfs 111 719 web111 111"
+    echo "$0 zfs 111 719 web111 local-zfs 111"
     exit 1
 fi
 
@@ -57,17 +56,16 @@ else
     exit 1
 fi
 
-
 # クローンしたVMの設定を変更
 for ((i=0;i<${#BRIDGE_NUMS[@]};i++)); do
     if [ "$CLONE_TYPE" = 'zfs' ]; then
-        # ZFSクローンではmac addressが変更されないので、新たなmac addressを作成し置き換える
+        # ZFSクローンではMACアドレスがが変更されないので、新たなMACアドレスを作成し置き換える
         mac_address=`dd if=/dev/urandom bs=1024 count=1 2>/dev/null|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/' | tr '[a-z]' '[A-Z]'`
         new_rule="net${i}: e1000=${mac_address},bridge=vmbr${BRIDGE_NUMS[i]}"
         # clone時にconfファイルにparentとして以前のデータが残ることがあるが前のデータを残すために最初にマッチした行のみ変更を加える
         sed -i -e "0,/^net${i}/s/^net${i}.*/$new_rule/g" $CLONE_CONFIG_PATH
     else
-        # bridgeを変更する行のbridge名を変更した新しいルールを作成する
+        # bridge名を変更した新しいルールで置き換える
         # 正規表現でbridgeの前のe1000の情報を保持できず二段階で処理をしている
         new_rule=`grep "net${i}:" $CLONE_CONFIG_PATH | head -n 1 | sed -e "s/bridge=.*/bridge=vmbr${BRIDGE_NUMS[i]}/g"`
         # clone時にconfファイルにparentとして以前のデータが残ることがあるが前のデータを残すために最初にマッチした行のみ変更を加える
