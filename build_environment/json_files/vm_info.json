@@ -13,14 +13,23 @@
         "scenario_nums": [
             {
                 "_scenario_num": 1,
+                "_scenario_info": "Ransomware",
                 "VYOS_TEMP_NUM": 900,
-                "CLIENT_TEMP_NUM": 905,
+                "CLIENT_TEMP_NUM": 901,
                 "WEB_TEMP_NUM": 902
             },
             {
                 "_scenario_num": 2,
+                "_scenario_info": "AppGoat",
                 "VYOS_TEMP_NUM": 900,
-                "CLIENT_TEMP_NUM": 955,
+                "CLIENT_TEMP_NUM": 800,
+                "WEB_TEMP_NUM": 902
+            },
+            {
+                "_scenario_num": 3,
+                "_scenario_info": "ASLR",
+                "VYOS_TEMP_NUM": 900,
+                "CLIENT_TEMP_NUM": 905,
                 "WEB_TEMP_NUM": 902
             }
         ]
@@ -29,12 +38,21 @@
         "scenario_nums": [
             {
                 "_scenario_num": 1,
+                "_scenario_info": "Ransomware",
                 "VYOS_TEMP_NUM": 950,
                 "CLIENT_TEMP_NUM": 951,
                 "WEB_TEMP_NUM": 952
             },
             {
                 "_scenario_num": 2,
+                "_scenario_info": "AppGoat",
+                "VYOS_TEMP_NUM": 950,
+                "CLIENT_TEMP_NUM": 955,
+                "WEB_TEMP_NUM": 952
+            },
+            {
+                "_scenario_num": 3,
+                "_scenario_info": "ASLR",
                 "VYOS_TEMP_NUM": 950,
                 "CLIENT_TEMP_NUM": 955,
                 "WEB_TEMP_NUM": 952

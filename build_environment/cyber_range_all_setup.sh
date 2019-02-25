@@ -27,25 +27,28 @@ VYOS_TEMP_NUM=0   # initial vyos(software router os) template vm number. RANGE: 
 json_vm_data=`cat json_files/vm_info.json`
 json_scenario_data=`cat json_files/scenario_info.json`
 json_conf_data=`cat json_files/config_info.json`
+scenario_nums=(`echo $json_vm_data | jq ".${clone_type}.scenario_nums[]._scenario_num"`)
+SCENARIO_MAX_NUM=${#scenario_nums[@]}
 group_num=`echo $json_scenario_data | jq '.group_num'`
 student_per_group=`echo $json_scenario_data | jq '.student_per_group'`
 git_home_get_command=`echo $json_conf_data | jq '.git_home_get_command' | sed 's/"//g'`
 git_home=`$git_home_get_command`
 tool_dir=$git_home`echo $json_conf_data | jq '.tool_dir' | sed 's/"//g'`
 build_log_file=$git_home`echo $json_conf_data | jq '.build_log_file' | sed 's/"//g'`
+CONF_DIR=`echo $json_conf_data | jq '.vm_config_dir' | sed 's/"//g'`
 
 # bridge number of connecting each group network(=Proxmox number)
 VYOS_NETWORK_BRIDGE=$PROXMOX_NUM
 
-read -p "scenario number(1 or 2): " scenario_num
-if [ $scenario_num -eq 1 ] || [ $scenario_num -eq 2 ]; then
+read -p "scenario number(1 ~ $SCENARIO_MAX_NUM): " scenario_num
+if [ $scenario_num -lt 1 ] || [ $SCENARIO_MAX_NUM -lt $scenario_num ]; then
+    echo 'invalid'
+    exit 1
+else
     scenario_data=`echo $json_vm_data | jq ".${clone_type}.scenario_nums[$((scenario_num - 1))]"`
     VYOS_TEMP_NUM=`echo $scenario_data | jq '.VYOS_TEMP_NUM'`
     CLIENT_TEMP_NUM=`echo $scenario_data | jq '.CLIENT_TEMP_NUM'`
     WEB_TEMP_NUM=`echo $scenario_data | jq '.WEB_TEMP_NUM'`
-else
-    echo 'invalid'
-    exit 1
 fi
 
 # TODO: Decide to WEB_NUMS and CLIENT_NUMS setting rules
@@ -61,7 +64,8 @@ done
 start_time=`date +%s`
 
 pc_type='vyos'
-for num in ${VYOS_NUMS[@]}; do
+for i in ${!VYOS_NUMS[@]}; do
+    num=${VYOS_NUMS[$i]}
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     snapshot_name="vm${num}_cloned_snapshot"
@@ -73,20 +77,25 @@ for num in ${VYOS_NUMS[@]}; do
 done
 
 pc_type='web'
-for num in ${WEB_NUMS[@]}; do
+for i in ${!WEB_NUMS[@]}; do
+    num=${WEB_NUMS[$i]}
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
     snapshot_name="vm${num}_cloned_snapshot"
     _hostname="$pc_type$num"
     $tool_dir/clone_vm.sh $clone_type $num $WEB_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
-    $tool_dir/centos_config_setup.sh $clone_type $num $ip_address $_hostname # change cloned vm's config files
+    result=`grep -e "^ide2" $CONF_DIR/${num}.conf | grep 'CentOS-6'`
+    if [ ${#result} -ne 0 ]; then
+        $tool_dir/centos_config_setup.sh $clone_type $num $ip_address $_hostname # change cloned vm's config files
+    fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
     qm start $num &
 done
 
 pc_type='client'
-for num in ${CLIENT_NUMS[@]}; do
+for i in ${!CLIENT_NUMS[@]}; do
+    num=${CLIENT_NUMS[$i]}
     # bridge rules https://sites.google.com/a/cysec.cs.ritsumei.ac.jp/local/shareddevices/proxmox/network
     group_network_bridge="1${PROXMOX_NUM}${num:0:1}"
     ip_address="192.168.${group_network_bridge}.${num:2:1}"
@@ -94,17 +103,13 @@ for num in ${CLIENT_NUMS[@]}; do
     _hostname="$pc_type$num"
     if [ $scenario_num -eq 2 ]; then
         # Windowsのクローンではテンプレート元を変更させる必要がある
-        #mul_num=${num:0:1}
-        #mul_num=$((mul_num - 1))
-        #add_num=${num:2:1}
-        #add_num=$((add_num - 3))
-        #client_num=$((CLIENT_TEMP_NUM + student_per_group * mul_num + add_num))
-        client_num=$CLIENT_TEMP_NUM
+        client_num=$((CLIENT_TEMP_NUM + i))
         $tool_dir/clone_vm.sh $clone_type $num $client_num $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
     else
         $tool_dir/clone_vm.sh $clone_type $num $CLIENT_TEMP_NUM $_hostname $TARGET_STRAGE $group_network_bridge # clone vm
     fi
-    if [ $scenario_num -eq 1 ]; then
+    result=`grep -e "^ide2" $CONF_DIR/${num}.conf | grep 'CentOS-6'`
+    if [ ${#result} -ne 0 ]; then
         $tool_dir/centos_config_setup.sh $clone_type $num $ip_address $_hostname #change cloned vm's config file
     fi
     $tool_dir/create_snapshot.sh $num $snapshot_name # create snapshot
