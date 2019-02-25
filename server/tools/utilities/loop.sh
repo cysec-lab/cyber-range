@@ -40,14 +40,16 @@ fi
 ## 作成VMのレンジチェック
 loop_flg=1
 while [ $loop_flg = 1 ]; do
+	loop_flg=0
 	# VMのクローン
 	bash ./clone_many_same_vms.sh $CLONE_TYPE $TEMPLATE_VM_NUM $START_NUM $END_NUM
 
 	# VMクローン成否チェック
 	for ((new_vm_num=$START_NUM; new_vm_num <= $END_NUM; new_vm_num++)); do
 	    if [ ! -e "$CONF_DIR/${new_vm_num}.conf" ]; then
+
 	        # FULLクローンできなかったVMが存在する
-		loop_flg=0
+		loop_flg=1
 	    fi
 	done
 done
