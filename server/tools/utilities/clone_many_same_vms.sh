@@ -39,13 +39,13 @@ if [ ! -e "$CONF_DIR/${TEMPLATE_VM_NUM}.conf" ]; then
     exit 1
 fi
 
-# 作成VMのレンジチェック
-for ((new_vm_num=$START_NUM; new_vm_num <= $END_NUM; new_vm_num++)); do
-    if [ -e "$CONF_DIR/${new_vm_num}.conf" ]; then
-        echo "${new_vm_num}番はVMが存在しています"
-        exit 1
-    fi
-done
+## 作成VMのレンジチェック
+#for ((new_vm_num=$START_NUM; new_vm_num <= $END_NUM; new_vm_num++)); do
+#    if [ -e "$CONF_DIR/${new_vm_num}.conf" ]; then
+#        echo "${new_vm_num}番はVMが存在しています"
+#        exit 1
+#    fi
+#done
 
 # クローン後のVM名は「テンプレートVMの名前 + 数字」とするので、テンプレートVMの名前を取得する
 TEMPLATE_VM_NAME=`grep -e "^name:" $CONF_DIR/${TEMPLATE_VM_NUM}.conf | awk '{print $2}'`
@@ -54,6 +54,10 @@ TEMPLATE_VM_BRIDGE_NUMS=(`grep -e "^net" /etc/pve/qemu-server/${TEMPLATE_VM_NUM}
 
 # VMのクローン
 for ((new_vm_num=$START_NUM, i=1; new_vm_num <= $END_NUM; new_vm_num++, i++)); do
+    if [ -e "$CONF_DIR/${new_vm_num}.conf" ]; then
+        continue
+    fi
     NEW_VM_NAME=$TEMPLATE_VM_NAME$i
     bash $TOOL_DIR/clone_vm.sh $CLONE_TYPE $new_vm_num $TEMPLATE_VM_NUM  $TEMPLATE_VM_NAME local-zfs ${TEMPLATE_VM_BRIDGE_NUMS[@]}
+    sleep 60
 done
