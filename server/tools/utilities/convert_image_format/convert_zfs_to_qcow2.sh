@@ -24,6 +24,6 @@ if [ ! -e ${DIST_FILE_PATH%/*} ]; then
     mkdir -p ${DIST_FILE_PATH%/*}
 fi
 
-time dd if=$ZFS_FILE_PATH of=${DIST_FILE_PATH}.raw
+time dd if=$ZFS_FILE_PATH of=${DIST_FILE_PATH}.raw bs=16MB
 time qemu-img convert -f raw -O qcow2 ${DIST_FILE_PATH}.raw ${DIST_FILE_PATH}.qcow2
 rm ${DIST_FILE_PATH}.raw
