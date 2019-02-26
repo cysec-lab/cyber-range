@@ -8,8 +8,8 @@
         "scenario_num": "シナリオの数字"
     },
     "day": 1,
-    "group_num": 4,
-    "student_per_group": 1,
+    "group_num": 6,
+    "student_per_group": 4,
     "days": [
         {
             "_comment": "day1",
@@ -19,7 +19,7 @@
                     "clone_type": "zfs"
                 },
                 {
-                    "scenario_num": 3,
+                    "scenario_num": 2,
                     "clone_type": "zfs"
                 },
                 {
