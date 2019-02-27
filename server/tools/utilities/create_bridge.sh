@@ -17,7 +17,7 @@ cat << EOL >> $CONF_FILE
 auto vmbr$PROXMOX_NUM
 iface vmbr$PROXMOX_NUM inet static
         address 192.168.${PROXMOX_NUM}.254
-        netwmask 255.255.255.0
+        netmask 255.255.255.0
         bridge_ports none
         bridge_stp off
         bridge_fd 0
