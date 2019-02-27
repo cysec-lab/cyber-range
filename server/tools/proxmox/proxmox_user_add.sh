@@ -1,19 +1,15 @@
 #!/bin/bash
-#TODO: もっと柔軟性をもたせる
 
+# Proxmox UIで利用できるユーザの追加スクリプト
 if [ $# -ne 2 ]; then
-    echo "need [PC type] [VM num]"
+    echo "need [User name] [Password]"
     echo "sample:"
-    echo "$0 client 111"
+    echo "$0 student1 12345678"
     exit
 fi
 
-if [ $1 = 'client' or $1 = 'web' ]; then
-    pveum useradd $1$2@pve
-    pveum passwd $1$2@pve
-    #TODO except
+user_id=$1@pve
+password=$2
 
-else
-    echo "PC type is client or web"
-    exit 1
-fi
+pveum useradd $user_id
+pvesh set /access/password --userid $user_id --password $password
