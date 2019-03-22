@@ -1,7 +1,5 @@
 # サイバーレンジ
 
-![Badge Status](https://ci-as-a-service)
-
 サイバーレンジ演習環境を展開する上で必要となるツール郡
 
 ## Description
@@ -26,17 +24,16 @@ ZFS or FULLクローンなどクローンタイプ選択可能な演習環境展
 
   1. 基礎情報の設定
 
-    `build_environment/json_files/scenario_info.json` の `group_num` と `student_per_group` を設定する．
+  `build_environment/json_files/scenario_info.json` の `group_num` と `student_per_group` を設定する．
 
   2. シナリオの設定
 
-    `build_environment/json_files/scenario_info.json` の `day` と `dayX(Xは数値)`の `scenario_num` を確認する．
+  `build_environment/json_files/scenario_info.json` の `day` と `dayX(Xは数値)` の `scenario_num` を確認する．
     dayを1とするとday1のシナリオ分の演習環境展開が行われる
 
 2. 演習環境展開スクリプトの実行
 
-    演習環境構築スクリプトのディレクトリに移動し，スクリプトを実行する
-
+演習環境構築スクリプトのディレクトリに移動し，スクリプトを実行する
 
     $ cd ~/github/cysec-lab/cyber-range/build_environment/
     $ bash ./cyber_range_all_scenario_setup.sh
