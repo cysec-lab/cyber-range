@@ -6,12 +6,6 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 
-# proxmoxの設定ファイルのパス
-export CONF_DIR='/etc/pve/qemu-server'
-export IMAGE_DIR='/var/lib/vz/images'
-export WORK_DIR='/root/github/cyber_range/server/tools/proxmox'
-
-
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
